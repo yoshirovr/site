@@ -1,3 +1,6 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
 <title>yoshirovr</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
@@ -160,45 +163,6 @@
   .stk-note { --r: -6deg; left: -3%; bottom: 8%; width: 38%; z-index: 3; padding: 12px 14px 14px; font-family: "DynaPuff", system-ui, sans-serif; font-weight: 500; font-size: clamp(13px, 1.4vw, 15px); line-height: 1.3; color: #4A3A10; background: #FFF1C9; border-radius: 4px; box-shadow: 0 12px 22px rgba(31, 34, 32, .14); animation-delay: -4s; }
   .stk-note::before { content: ""; position: absolute; left: 50%; top: -7px; width: 14px; height: 14px; margin-left: -7px; border-radius: 50%; background: var(--eye-3); box-shadow: inset -2px -2px 0 rgba(0, 0, 0, .18); }
 
-  /* Adesivo temporário da Festa Many Afronight — segue o flyer: sol dourado, ilustração, 3D dourado e laranja */
-  .event-wrap { --r: -6deg; left: -9%; bottom: -2%; width: 58%; z-index: 5; animation-delay: -4s; }
-  .ev-glow { position: absolute; inset: -22%; z-index: 0; border-radius: 50%; pointer-events: none; background: radial-gradient(circle, rgba(255, 150, 40, .6), rgba(233, 30, 140, .32) 45%, transparent 70%); filter: blur(4px); animation: ev-pulse 1.8s ease-in-out infinite; }
-  .ev-ring { position: absolute; inset: 0; z-index: 0; border-radius: 22px; pointer-events: none; border: 3px solid rgba(255, 193, 74, .95); animation: ev-ring 2.2s ease-out infinite; }
-  .ev-ring.r2 { border-color: rgba(233, 30, 140, .85); animation-delay: 1.1s; }
-  @keyframes ev-pulse { 0%, 100% { transform: scale(.9); opacity: .6; } 50% { transform: scale(1.08); opacity: 1; } }
-  @keyframes ev-ring { 0% { transform: scale(1); opacity: .95; } 100% { transform: scale(1.3); opacity: 0; } }
-  .event-card { position: relative; z-index: 1; display: flex; flex-direction: column; align-items: flex-start; padding: 12px 14px 11px; overflow: hidden; text-decoration: none; color: #FFF3E0; border: 4px solid #fff; border-radius: 20px;
-    background: radial-gradient(90% 70% at 100% 0%, rgba(255, 120, 30, .35), transparent 60%), radial-gradient(80% 60% at 0% 100%, rgba(200, 20, 110, .45), transparent 65%), linear-gradient(150deg, #1A0409, #3E0914 55%, #6A1010);
-    box-shadow: 0 18px 38px rgba(90, 15, 30, .5); transition: box-shadow .2s ease; }
-  .event-card:hover { box-shadow: 0 20px 44px rgba(255, 120, 40, .6); }
-  .event-card > * { position: relative; z-index: 1; }
-  .ev-sun { position: absolute !important; z-index: 0 !important; right: -16%; top: -14%; width: 64%; aspect-ratio: 1; border-radius: 50%; overflow: hidden; box-shadow: 0 0 0 3px rgba(255, 193, 74, .85), 0 0 34px rgba(255, 150, 40, .65); }
-  .ev-sun img { display: block; width: 100%; height: 100%; object-fit: cover; }
-  .ev-sun::after { content: ""; position: absolute; inset: 0; background: linear-gradient(100deg, rgba(26, 4, 9, .8), transparent 50%), linear-gradient(0deg, rgba(26, 4, 9, .55), transparent 40%); }
-  .ev-embers { position: absolute !important; inset: 0; z-index: 0 !important; pointer-events: none; }
-  .ev-embers i { position: absolute; bottom: -6px; width: 3px; height: 3px; border-radius: 50%; background: #FFB347; box-shadow: 0 0 6px #FF8A2A; animation: ember 3.2s linear infinite; }
-  .ev-embers i:nth-child(1) { left: 12%; animation-delay: 0s; }
-  .ev-embers i:nth-child(2) { left: 30%; animation-delay: -1.1s; }
-  .ev-embers i:nth-child(3) { left: 48%; animation-delay: -2.2s; }
-  .ev-embers i:nth-child(4) { left: 66%; animation-delay: -.6s; }
-  .ev-embers i:nth-child(5) { left: 82%; animation-delay: -1.7s; }
-  .ev-embers i:nth-child(6) { left: 22%; animation-delay: -2.7s; width: 2px; height: 2px; }
-  @keyframes ember { 0% { transform: translate(0, 0); opacity: 0; } 15% { opacity: 1; } 100% { transform: translate(12px, -150px); opacity: 0; } }
-  .ev-when { font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: .08em; padding: 3px 8px; border-radius: 999px; background: #FFC14A; color: #2A0710; margin-bottom: 6px; }
-  .ev-when.today { background: #fff; color: #C2185B; animation: ev-blink 1.2s ease-in-out infinite; }
-  @keyframes ev-blink { 50% { background: #FFC14A; color: #2A0710; } }
-  .ev-festa { font-family: var(--display); font-style: italic; font-weight: 800; font-size: clamp(19px, 2.1vw, 25px); line-height: 1; letter-spacing: .01em; color: #FFD25E;
-    text-shadow: 0 1px 0 #F2A53A, 0 2px 0 #D9801C, 0 3px 0 #A85510, 0 4px 0 #6E2A06, 0 6px 8px rgba(0, 0, 0, .55); }
-  .ev-many { font-family: "Pacifico", "DynaPuff", cursive; font-size: clamp(34px, 4.2vw, 48px); line-height: 1.05; margin: -4px 0 0 -2px; color: #FF8A2A;
-    text-shadow: -1px -1px 0 #FFE1A6, 0 2px 0 #C2410C, 0 3px 0 #8F2308, 0 5px 0 #4D0F06, 0 0 22px rgba(255, 120, 30, .6); }
-  .ev-afro { isolation: isolate; margin: 2px 0 0 6px; padding: 1px 8px 2px; font-family: var(--display); font-style: italic; font-weight: 800; font-size: clamp(13px, 1.5vw, 17px); letter-spacing: .04em; color: #fff; text-shadow: 0 2px 0 rgba(0, 0, 0, .35); }
-  .ev-afro::before { content: ""; position: absolute; inset: 8% -8% 10%; z-index: -1; background: linear-gradient(95deg, transparent 0 2%, #E91E8C 4% 88%, transparent 98%); transform: skewX(-14deg) rotate(-2deg); opacity: .92; }
-  .ev-afro::after { content: ""; position: absolute; left: 6%; right: -14%; bottom: -6px; height: 4px; z-index: -1; border-radius: 4px; background: linear-gradient(90deg, #FFC14A, #FF7A1A); transform: rotate(-2deg); }
-  .ev-info { display: flex; align-items: stretch; gap: 8px; margin-top: 12px; font-size: 8.5px; line-height: 1.2; letter-spacing: .04em; text-transform: uppercase; color: #FFE9C4; }
-  .ev-info span { display: flex; flex-direction: column; justify-content: center; }
-  .ev-info small { font-size: 8px; color: #FFC98A; font-weight: 600; }
-  .ev-info b { font-family: var(--display); font-size: 12.5px; font-weight: 800; color: #FFD25E; letter-spacing: .02em; }
-  .ev-info i { width: 1px; background: linear-gradient(180deg, transparent, #FFC14A, transparent); }
   .p-many { scroll-margin-top: 96px; }
   .p-many:target { animation: many-glow 1.4s ease 2; }
   @keyframes many-glow { 50% { box-shadow: 0 0 0 4px #FFC14A, 0 0 40px rgba(255, 140, 40, .7); } }
@@ -231,6 +195,8 @@
   .purple .eyebrow .tri { background: var(--eye-3); }
 
   .btn { display: inline-flex; align-items: center; gap: 9px; padding: 12px 18px; border-radius: 999px; font-weight: 700; font-size: 14px; text-decoration: none; border: 1px solid transparent; transition: transform .18s ease, filter .18s ease, background .18s ease; white-space: nowrap; }
+  /* O degradê cobre também a borda transparente (sem repetir a cor inicial na ponta) */
+  .btn { background-origin: border-box !important; }
   .btn:hover { transform: translateY(-2px); }
   .btn svg.i { width: 18px; height: 18px; }
 
@@ -345,6 +311,8 @@
   .p-nova .note { font-size: 14px; color: #DDE7E5; }
   .p-nova .note b { color: #2FE3A8; }
   .btn.nova { background: linear-gradient(90deg, #2FE3A8, #1EC8E6); color: #0B1A17; }
+  .btn.nova-ghost { background: rgba(18, 20, 22, .6); color: #F1F5F4; border-color: rgba(47, 227, 168, .45); }
+  .btn.nova-ghost:hover { background: rgba(47, 227, 168, .12); }
   @media (max-width: 560px) {
     .p-nova { background:
       linear-gradient(180deg, rgba(18, 20, 22, .2) 0%, rgba(18, 20, 22, .88) 180px, #121416 260px),
@@ -502,6 +470,10 @@
   .sg-row .bar { grid-column: 1 / -1; height: 6px; border-radius: 999px; background: var(--purple-sheet); overflow: hidden; }
   .sg-row .bar i { display: block; height: 100%; border-radius: 999px; background: linear-gradient(90deg, var(--bean), var(--eye-3)); }
   .stats-empty { padding: 24px; border-radius: 24px; background: #fff; border: 1px dashed var(--line); color: var(--muted); }
+  .gc-card { grid-column: 1 / -1; display: flex; flex-direction: column; align-items: flex-start; gap: 10px; padding: 26px; border-radius: 24px; background: #fff; border: 1px solid var(--line); box-shadow: var(--shadow); }
+  .gc-card h3 { font-family: var(--display); font-weight: 800; font-size: 22px; letter-spacing: -.02em; }
+  .gc-card p { color: var(--muted); max-width: 52ch; }
+  .gc-card .btn { margin-top: 4px; background: var(--ink); color: #fff; }
   .stats-note { margin-top: 16px; font-size: 13px; color: var(--muted); max-width: 70ch; }
   @media (max-width: 760px) {
     .tiles { grid-template-columns: 1fr 1fr; }
@@ -602,7 +574,8 @@
 
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
 </style>
-
+</head>
+<body>
 <div class="ambient" aria-hidden="true">
   <i class="a1"></i><i class="a2"></i><i class="a3"></i><i class="a4"></i>
   <svg viewBox="0 0 1440 900" preserveAspectRatio="none">
@@ -695,26 +668,7 @@
         <span class="bubble float" aria-hidden="true">oii! <b>✦</b></span>
         <span class="stk stk-paw float" aria-hidden="true"><svg><use href="#paw"/></svg></span>
         <span class="stk stk-selo float" aria-hidden="true"><span class="mask m-selo selo"></span><span class="mask m-kanji kanji-in"></span></span>
-        <span class="stk-note float" id="stk-note" hidden>vídeos curtos direto do VRChat pra você ♡</span>
-        <!-- Adesivo temporário: Festa Many Afronight (some sozinho depois do evento) -->
-        <div class="event-wrap float" id="event-stk">
-          <span class="ev-glow" aria-hidden="true"></span>
-          <span class="ev-ring" aria-hidden="true"></span>
-          <span class="ev-ring r2" aria-hidden="true"></span>
-          <a class="event-card" href="#many" aria-label="Festa Many Afronight, sábado 26/09 às 21h. Ver o grupo MANY">
-            <span class="ev-sun" aria-hidden="true"><img src="assets/many-festa-arte.jpg" alt="" width="360" height="360"></span>
-            <span class="ev-embers" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i></span>
-            <span class="ev-when" id="ev-when">SÁB 26/09</span>
-            <span class="ev-festa">FESTA</span>
-            <span class="ev-many">Many</span>
-            <span class="ev-afro">AFRONIGHT</span>
-            <span class="ev-info" aria-hidden="true">
-              <span><small>Começa às</small><b>21H BR</b><small>01H PT</small></span><i></i>
-              <span><small>Sábado</small><b>26/09</b></span><i></i>
-              <span><small>Sorteio</small><b>VRChat+</b></span>
-            </span>
-          </a>
-        </div>
+        <span class="stk-note float">vídeos curtos direto do VRChat pra você ♡</span>
         <span class="heart float" aria-hidden="true"><svg viewBox="0 0 24 24"><path fill="currentColor" d="M12 21s-8.5-5-8.5-11.2A4.8 4.8 0 0 1 12 7a4.8 4.8 0 0 1 8.5 2.8C20.5 16 12 21 12 21z"/></svg></span>
         <span class="spark s1" aria-hidden="true">✦</span>
         <span class="spark s2" aria-hidden="true">✦</span>
@@ -812,6 +766,7 @@
           <p class="note">Comprando com o meu cupom você ganha o desconto <b>e ainda leva um mimo</b> de presente.</p>
           <div class="actions">
             <a class="btn nova" href="https://novatrackers.com.br/" target="_blank" rel="noopener">Acessar a loja <svg class="i"><use href="#arrow"/></svg></a>
+            <a class="btn nova-ghost" href="https://www.instagram.com/novatrackers/" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg> @novatrackers</a>
           </div>
         </article>
 
@@ -1073,7 +1028,7 @@
             <button class="btn soft" id="stats-lock" type="button" data-track="off">Sair</button>
           </div>
         </div>
-        <div class="tiles">
+        <div class="tiles" id="stats-tiles">
           <div class="tile"><span class="lbl-s">Total de cliques</span><b id="st-total">0</b></div>
           <div class="tile"><span class="lbl-s">Botões clicados</span><b id="st-buttons">0</b></div>
           <div class="tile"><span class="lbl-s">Pessoas contadas</span><b id="st-people">0</b></div>
@@ -1098,6 +1053,42 @@
 </footer>
 
 <script>
+  // ---------- Estatísticas do site publicado (GoatCounter) ----------
+  // Código da conta no GoatCounter: 'yoshirovr' para https://yoshirovr.goatcounter.com. Vazio = desligado.
+  var GOATCOUNTER_CODE = 'yoshirovr';
+
+  var gc = (function () {
+    var queue = [], timer = null;
+    // Na prévia do Claude (window.claude) os cliques vão para o banco dela; aqui só no site publicado.
+    var on = !!GOATCOUNTER_CODE && !(window.claude && window.claude.use);
+    if (on) {
+      var s = document.createElement('script');
+      s.async = true;
+      s.src = 'https://gc.zgo.at/count.js';
+      s.setAttribute('data-goatcounter', 'https://' + GOATCOUNTER_CODE + '.goatcounter.com/count');
+      document.head.appendChild(s);
+    }
+    function flush() {
+      if (!(window.goatcounter && window.goatcounter.count)) return;
+      while (queue.length) window.goatcounter.count(queue.shift());
+      if (timer) { clearInterval(timer); timer = null; }
+    }
+    function send(vars) {
+      if (!on) return;
+      queue.push(vars);
+      flush();
+      if (queue.length && !timer) {
+        var tries = 0;
+        timer = setInterval(function () { flush(); if (++tries > 40 && timer) { clearInterval(timer); timer = null; } }, 250);
+      }
+    }
+    return {
+      dashboard: GOATCOUNTER_CODE ? 'https://' + GOATCOUNTER_CODE + '.goatcounter.com' : '',
+      event: function (name) { send({ path: 'clique › ' + name, title: name, event: true }); },
+      view: function (page) { send({ path: '/' + page, title: 'yoshirovr · ' + page }); }
+    };
+  })();
+
   // Troca entre as páginas: início, produtos (#produtos) e FAQ (#faq)
   (function () {
     var views = {
@@ -1117,22 +1108,12 @@
       });
       var target = page === 'home' && id && id !== 'topo' ? document.getElementById(id) : null;
       if (target) target.scrollIntoView(); else window.scrollTo(0, 0);
+      if (page !== 'home') gc.view(page);
     }
     window.addEventListener('hashchange', route);
     route();
   })();
 
-  // ---------- Adesivo temporário: Festa Many Afronight (26/09, 21h BR) ----------
-  (function () {
-    var stk = document.getElementById('event-stk'), note = document.getElementById('stk-note');
-    var END = Date.parse('2026-09-27T07:00:00Z'); // madrugada de 27/09 (04h BR): a festa já acabou
-    if (!stk) return;
-    if (Date.now() > END) { stk.remove(); if (note) note.hidden = false; return; }
-    try {
-      var hoje = new Date().toLocaleDateString('pt-BR', { timeZone: 'America/Sao_Paulo' });
-      if (hoje === '26/09/2026') { var w = document.getElementById('ev-when'); w.textContent = 'HOJE · 21h BR'; w.classList.add('today'); }
-    } catch (e) {}
-  })();
   // ---------- Contador de cliques ----------
   // Cada pessoa grava a própria contagem em clicks/<id> (um documento por pessoa);
   // a página de estatísticas soma todos. Fora do link publicado não há banco: nada é gravado.
@@ -1176,8 +1157,10 @@
       if (dirty) schedule();
     }
     function hit(el) {
-      if (off || el.getAttribute('data-track') === 'off') return;
+      if (el.getAttribute('data-track') === 'off') return;
       var k = keyOf(el);
+      gc.event(k);
+      if (off) return;
       if (ref) { counts[k] = (counts[k] || 0) + 1; schedule(); }
       else { pending[k] = (pending[k] || 0) + 1; }
     }
@@ -1283,12 +1266,28 @@
       note.textContent = '';
       var db = null;
       try { db = window.claude && window.claude.use ? await window.claude.use('db') : null; } catch (e) { db = null; }
+      var tiles = document.getElementById('stats-tiles');
       if (!db) {
-        render({}, 0);
-        when.textContent = 'Sem conexão com o banco de estatísticas.';
-        note.textContent = 'As contagens só existem no link publicado do site. Aqui (fora dele) nenhum clique é gravado.';
+        tiles.hidden = true;
+        groupsEl.textContent = '';
+        var card = el('div', 'gc-card');
+        if (gc.dashboard) {
+          when.textContent = 'No site publicado, as estatísticas ficam no painel do GoatCounter.';
+          card.appendChild(el('h3', null, 'Painel de estatísticas'));
+          card.appendChild(el('p', null, 'Visitas, países, de onde as pessoas vieram e, em “Events”, cada botão clicado com a quantidade.'));
+          var go = el('a', 'btn', 'Abrir o painel do GoatCounter');
+          go.href = gc.dashboard; go.target = '_blank'; go.rel = 'noopener'; go.setAttribute('data-track', 'off');
+          card.appendChild(go);
+          note.textContent = 'O painel pede o login da sua conta do GoatCounter.';
+        } else {
+          when.textContent = 'Estatísticas ainda não configuradas neste site.';
+          card.appendChild(el('h3', null, 'Falta ligar o GoatCounter'));
+          card.appendChild(el('p', null, 'Coloque o código da conta em GOATCOUNTER_CODE, no início do script da página, e publique de novo.'));
+        }
+        groupsEl.appendChild(card);
         return;
       }
+      tiles.hidden = false;
       try {
         var snap = await db.collection('clicks').get();
         var totals = {}, people = 0;
@@ -1332,3 +1331,5 @@
     });
   })();
 </script>
+</body>
+</html>
