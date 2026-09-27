@@ -528,6 +528,16 @@
   .gc-card h3 { font-family: var(--display); font-weight: 800; font-size: 22px; letter-spacing: -.02em; }
   .gc-card p { color: var(--muted); max-width: 52ch; }
   .gc-card .btn { margin-top: 4px; background: var(--ink); color: #fff; }
+  .stats-range { display: flex; gap: 4px; padding: 4px; border-radius: 999px; background: #fff; border: 1px solid var(--line); }
+  .stats-range button { font: 700 13px var(--body); padding: 7px 12px; border-radius: 999px; border: 0; background: transparent; color: var(--muted); cursor: pointer; }
+  .stats-range button.on { background: var(--ink); color: #fff; }
+  .stats-actions { flex-wrap: wrap; align-items: center; }
+  .gc-form { display: flex; gap: 8px; width: 100%; max-width: 520px; }
+  .gc-form input { flex: 1; min-width: 0; font: 600 15px var(--mono); padding: 11px 16px; border-radius: 999px; border: 1.5px solid var(--line); background: var(--bg); color: var(--ink); }
+  .gc-form input:focus { outline: none; border-color: var(--eye-3); }
+  .gc-card ol { margin: 0; padding-left: 20px; color: var(--muted); display: flex; flex-direction: column; gap: 4px; }
+  .gc-card .err { color: #C0392B; font-weight: 600; font-size: 14px; }
+  .sg.pages .bar i { background: linear-gradient(90deg, var(--eye-2), var(--eye-3)); }
   .stats-note { margin-top: 16px; font-size: 13px; color: var(--muted); max-width: 70ch; }
   @media (max-width: 760px) {
     .tiles { grid-template-columns: 1fr 1fr; }
@@ -1153,6 +1163,11 @@
         <div class="stats-bar">
           <p class="stats-when" id="stats-when">Carregando…</p>
           <div class="stats-actions">
+            <div class="stats-range" id="stats-range" hidden>
+              <button type="button" data-days="7" data-track="off">7 dias</button>
+              <button type="button" data-days="30" data-track="off">30 dias</button>
+              <button type="button" data-days="0" data-track="off" class="on">Tudo</button>
+            </div>
             <button class="btn soft" id="stats-refresh" type="button" data-track="off">Atualizar</button>
             <button class="btn soft" id="stats-lock" type="button" data-track="off">Sair</button>
           </div>
@@ -1160,7 +1175,7 @@
         <div class="tiles" id="stats-tiles">
           <div class="tile"><span class="lbl-s">Total de cliques</span><b id="st-total">0</b></div>
           <div class="tile"><span class="lbl-s">Botões clicados</span><b id="st-buttons">0</b></div>
-          <div class="tile"><span class="lbl-s">Pessoas contadas</span><b id="st-people">0</b></div>
+          <div class="tile"><span class="lbl-s" id="st-people-lbl">Pessoas contadas</span><b id="st-people">0</b></div>
           <div class="tile wide"><span class="lbl-s">Mais clicado</span><b id="st-top">—</b></div>
         </div>
         <div id="stats-groups" class="stats-groups"></div>
@@ -1422,9 +1437,87 @@
     document.getElementById('stats-refresh').addEventListener('click', load);
 
     function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
+
+    // ---- Site publicado: números vindos da API do GoatCounter ----
+    var rangeEl = document.getElementById('stats-range');
+    var rangeDays = 0;
+    var memToken = '';
+    var forgetBtn = el('button', 'btn soft', 'Esquecer token');
+    forgetBtn.type = 'button'; forgetBtn.hidden = true; forgetBtn.setAttribute('data-track', 'off');
+    document.querySelector('.stats-actions').appendChild(forgetBtn);
+    forgetBtn.addEventListener('click', function () { setToken(''); load(); });
+    rangeEl.addEventListener('click', function (ev) {
+      var b = ev.target.closest('button[data-days]');
+      if (!b) return;
+      rangeDays = Number(b.getAttribute('data-days'));
+      rangeEl.querySelectorAll('button').forEach(function (x) { x.classList.toggle('on', x === b); });
+      load();
+    });
+    function getToken() { try { return localStorage.getItem('yv-gc-token') || memToken; } catch (e) { return memToken; } }
+    function setToken(v) { memToken = v; try { v ? localStorage.setItem('yv-gc-token', v) : localStorage.removeItem('yv-gc-token'); } catch (e) {} }
+    var PAGE_NAMES = { '/': 'Início', '/produtos': 'Produtos', '/faq': 'FAQ', '/stats': 'Estatísticas' };
+
+    async function gcFetch(token, days) {
+      var base = 'https://' + GOATCOUNTER_CODE + '.goatcounter.com/api/v0';
+      var start = days ? new Date(Date.now() - days * 864e5) : new Date('2026-09-01T00:00:00Z');
+      var end = new Date(Date.now() + 36e5);
+      var q = 'start=' + encodeURIComponent(start.toISOString().slice(0, 10)) + '&end=' + encodeURIComponent(end.toISOString().slice(0, 10));
+      var headers = { 'Authorization': 'Bearer ' + token, 'Content-Type': 'application/json' };
+      async function get(url) {
+        var r = await fetch(url, { headers: headers });
+        if (!r.ok) { var err = new Error('HTTP ' + r.status); err.status = r.status; throw err; }
+        return r.json();
+      }
+      var clicks = {}, pages = {}, seen = [], visits = 0;
+      for (var page = 0; page < 10; page++) {
+        var url = base + '/stats/hits?' + q + '&limit=100' + (seen.length ? '&exclude_paths=' + seen.join(',') : '');
+        var res = await get(url);
+        (res.hits || []).forEach(function (h) {
+          seen.push(h.path_id);
+          var n = Number(h.count) || 0;
+          if (!n) return;
+          var path = String(h.path || '');
+          if (h.event) {
+            var key = path.indexOf('clique › ') === 0 ? path.slice(9) : path;
+            clicks[key] = (clicks[key] || 0) + n;
+          } else {
+            var name = PAGE_NAMES[path] || path;
+            pages[name] = (pages[name] || 0) + n;
+            visits += n;
+          }
+        });
+        if (!res.more) break;
+      }
+      return { clicks: clicks, pages: pages, visits: visits };
+    }
+
+    function showConnect(errText) {
+      groupsEl.textContent = '';
+      when.textContent = 'Conecte o GoatCounter para ver os cliques aqui.';
+      note.textContent = '';
+      var card = el('div', 'gc-card');
+      card.appendChild(el('h3', null, 'Conectar ao GoatCounter'));
+      var ol = el('ol');
+      ol.appendChild(el('li', null, 'No painel do GoatCounter, abra Settings → API e clique em “New API token”.'));
+      ol.appendChild(el('li', null, 'Dê um nome (ex.: “site”) e marque só a permissão de ler estatísticas (Read statistics).'));
+      ol.appendChild(el('li', null, 'Copie o token e cole abaixo. Ele fica salvo só neste aparelho, nunca vai para o código do site.'));
+      card.appendChild(ol);
+      if (errText) card.appendChild(el('p', 'err', errText));
+      var form = el('form', 'gc-form');
+      var inp = el('input'); inp.type = 'password'; inp.id = 'gc-token'; inp.name = 'gc-token'; inp.placeholder = 'Cole o token aqui'; inp.autocomplete = 'off'; inp.required = true;
+      var ok = el('button', 'btn', 'Conectar'); ok.type = 'submit'; ok.setAttribute('data-track', 'off');
+      form.appendChild(inp); form.appendChild(ok);
+      form.addEventListener('submit', function (ev) { ev.preventDefault(); var v = inp.value.trim(); if (!v) return; setToken(v); load(); });
+      card.appendChild(form);
+      var go = el('a', 'btn soft', 'Abrir o painel do GoatCounter');
+      go.href = gc.dashboard; go.target = '_blank'; go.rel = 'noopener'; go.setAttribute('data-track', 'off');
+      card.appendChild(go);
+      groupsEl.appendChild(card);
+    }
     function fmt(n) { return n.toLocaleString('pt-BR'); }
 
-    function render(totals, people) {
+    function render(totals, people, peopleLabel, pages) {
+      document.getElementById('st-people-lbl').textContent = peopleLabel || 'Pessoas contadas';
       var keys = Object.keys(totals);
       var total = keys.reduce(function (s, k) { return s + totals[k]; }, 0);
       var max = keys.reduce(function (m, k) { return Math.max(m, totals[k]); }, 0);
@@ -1434,7 +1527,26 @@
       var top = keys.slice().sort(function (a, b) { return totals[b] - totals[a]; })[0];
       document.getElementById('st-top').textContent = top ? top + ' (' + fmt(totals[top]) + ')' : '—';
       groupsEl.textContent = '';
-      if (!keys.length) { groupsEl.appendChild(el('p', 'stats-empty', 'Nenhum clique registrado ainda.')); return; }
+      if (!keys.length) groupsEl.appendChild(el('p', 'stats-empty', 'Nenhum clique registrado ainda nesse período.'));
+      var pc = null;
+      if (pages && Object.keys(pages).length) {
+        var pmax = Math.max.apply(null, Object.keys(pages).map(function (k) { return pages[k]; }));
+        pc = el('div', 'sg pages');
+        var ph = el('div', 'sg-head');
+        ph.appendChild(el('h3', null, 'Visitas por página'));
+        ph.appendChild(el('span', null, fmt(Object.keys(pages).reduce(function (s, k) { return s + pages[k]; }, 0)) + ' visitas'));
+        pc.appendChild(ph);
+        Object.keys(pages).sort(function (a, b) { return pages[b] - pages[a]; }).forEach(function (k) {
+          var row = el('div', 'sg-row');
+          row.appendChild(el('span', null, k));
+          row.appendChild(el('span', 'n', fmt(pages[k])));
+          var bar = el('span', 'bar'); var fill = el('i');
+          fill.style.width = Math.max(4, Math.round(pages[k] / pmax * 100)) + '%';
+          bar.appendChild(fill); row.appendChild(bar);
+          pc.appendChild(row);
+        });
+      }
+      if (!keys.length) { if (pc) groupsEl.appendChild(pc); return; }
       var groups = {};
       keys.forEach(function (k) {
         var i = k.indexOf(' › ');
@@ -1444,7 +1556,11 @@
       });
       Object.keys(groups).map(function (g) {
         return { g: g, items: groups[g], sum: groups[g].reduce(function (s, x) { return s + x.n; }, 0) };
-      }).sort(function (a, b) { return b.sum - a.sum; }).forEach(function (grp) {
+      }).sort(function (a, b) {
+        var pri = { 'Redes': 0, 'Parceiros': 1 };
+        var pa = a.g in pri ? pri[a.g] : 2, pb = b.g in pri ? pri[b.g] : 2;
+        return pa - pb || b.sum - a.sum;
+      }).forEach(function (grp) {
         var card = el('div', 'sg');
         var head = el('div', 'sg-head');
         head.appendChild(el('h3', null, grp.g));
@@ -1461,6 +1577,7 @@
         });
         groupsEl.appendChild(card);
       });
+      if (pc) groupsEl.appendChild(pc);
     }
 
     async function load() {
@@ -1469,24 +1586,38 @@
       var db = null;
       try { db = window.claude && window.claude.use ? await window.claude.use('db') : null; } catch (e) { db = null; }
       var tiles = document.getElementById('stats-tiles');
+      rangeEl.hidden = true;
+      forgetBtn.hidden = true;
       if (!db) {
-        tiles.hidden = true;
-        groupsEl.textContent = '';
-        var card = el('div', 'gc-card');
-        if (gc.dashboard) {
-          when.textContent = 'No site publicado, as estatísticas ficam no painel do GoatCounter.';
-          card.appendChild(el('h3', null, 'Painel de estatísticas'));
-          card.appendChild(el('p', null, 'Visitas, países, de onde as pessoas vieram e, em “Events”, cada botão clicado com a quantidade.'));
-          var go = el('a', 'btn', 'Abrir o painel do GoatCounter');
-          go.href = gc.dashboard; go.target = '_blank'; go.rel = 'noopener'; go.setAttribute('data-track', 'off');
-          card.appendChild(go);
-          note.textContent = 'O painel pede o login da sua conta do GoatCounter.';
-        } else {
+        if (!gc.dashboard) {
+          tiles.hidden = true;
+          groupsEl.textContent = '';
+          var card = el('div', 'gc-card');
           when.textContent = 'Estatísticas ainda não configuradas neste site.';
           card.appendChild(el('h3', null, 'Falta ligar o GoatCounter'));
           card.appendChild(el('p', null, 'Coloque o código da conta em GOATCOUNTER_CODE, no início do script da página, e publique de novo.'));
+          groupsEl.appendChild(card);
+          return;
         }
-        groupsEl.appendChild(card);
+        var token = getToken();
+        if (!token) { tiles.hidden = true; showConnect(''); return; }
+        tiles.hidden = false;
+        rangeEl.hidden = false;
+        forgetBtn.hidden = false;
+        try {
+          var data = await gcFetch(token, rangeDays);
+          render(data.clicks, data.visits, 'Visitas no site', data.pages);
+          when.textContent = 'Atualizado às ' + new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }) + ' · ' + (rangeDays ? 'últimos ' + rangeDays + ' dias' : 'desde o início');
+          note.textContent = 'Números do GoatCounter. Um clique novo pode levar alguns minutos para aparecer aqui.';
+        } catch (e) {
+          if (e && (e.status === 401 || e.status === 403)) {
+            setToken('');
+            tiles.hidden = true;
+            showConnect('O GoatCounter não aceitou esse token. Confira se ele tem permissão de ler estatísticas e cole de novo.');
+          } else {
+            when.textContent = 'Não consegui falar com o GoatCounter agora. Tente “Atualizar” em instantes.';
+          }
+        }
         return;
       }
       tiles.hidden = false;
