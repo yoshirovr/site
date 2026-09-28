@@ -67,6 +67,9 @@
   }
 
   * { box-sizing: border-box; }
+  /* Reset básico (a prévia do Claude já fazia isso; no site publicado precisa estar aqui) */
+  html, body { margin: 0; padding: 0; }
+  img { max-width: 100%; }
   [hidden] { display: none !important; }
   body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 
@@ -118,8 +121,9 @@
   }
   @media (max-width: 440px) {
     .nav .cta { display: none; }
-    .nav .bar { padding-right: 8px; }
-    .nav ul a { padding: 8px 11px; }
+    .nav .bar { padding-right: 6px; padding-left: 8px; gap: 6px; }
+    .nav ul a { padding: 8px 9px; font-size: 13px; }
+    .logo .ym { display: none; }
   }
 
   /* ---------- Banner ---------- */
@@ -264,8 +268,11 @@
   .bjorn p { font-size: 13px; opacity: .9; }
   .bjorn p b { font-family: var(--mono); }
 
-  .net { grid-column: span 4; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 14px; padding: 14px 16px 14px 14px; border-radius: 22px; background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .1); text-decoration: none; color: #F2F5F3; transition: background .18s ease, border-color .18s ease; }
+  .net { grid-column: span 3; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 14px; padding: 14px 16px 14px 14px; border-radius: 22px; background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .1); text-decoration: none; color: #F2F5F3; transition: background .18s ease, border-color .18s ease; }
   .net:hover { background: rgba(255, 255, 255, .1); border-color: var(--bean); }
+  .net-peki .ico { background: #ECEBFA; padding: 2px; overflow: hidden; box-shadow: 0 0 0 2px #9C8EC4; }
+  .net-peki .ico img { width: 100%; height: 100%; border-radius: 12px; object-fit: cover; }
+  .net-peki:hover { border-color: #9C8EC4; }
   .net .ico { width: 44px; height: 44px; border-radius: 14px; display: grid; place-items: center; background: rgba(43, 230, 168, .14); color: var(--bean); }
   .net h3 { font-family: var(--display); font-weight: 700; font-size: 17px; line-height: 1.2; }
   .net p { font-size: 13px; color: #A9B1AD; }
@@ -280,7 +287,7 @@
 
   @media (max-width: 900px) {
     .ig, .bjorn { grid-column: 1 / -1; }
-    .net { grid-column: span 4; grid-template-columns: 1fr; justify-items: start; gap: 10px; }
+    .net { grid-column: span 6; grid-template-columns: auto 1fr; justify-items: start; gap: 12px; }
     .net .go { display: none; }
   }
   @media (max-width: 560px) {
@@ -313,8 +320,8 @@
       radial-gradient(60% 70% at 85% 100%, rgba(58, 160, 255, .32), transparent 70%),
       radial-gradient(80% 60% at 50% 0%, rgba(166, 75, 216, .35), transparent 70%),
       linear-gradient(180deg, #120A22, #0B0716); box-shadow: 0 24px 60px rgba(40, 10, 70, .35); }
-  .p-tropi { grid-row: 4; grid-column: 1; z-index: 1; }
-  .p-many { grid-row: 4; grid-column: 2; z-index: 1; }
+  .p-tropi { grid-row: 4; grid-column: 2; z-index: 1; }
+  .p-many { grid-row: 4; grid-column: 1; z-index: 1; }
   .p-tropi, .p-many { box-shadow: 0 16px 40px rgba(0, 0, 0, .45); border: 1px solid rgba(255, 255, 255, .08); }
 
   /* Luzes de festa ao fundo: pontos desfocados que acendem e apagam cada um no seu tempo */
@@ -327,8 +334,8 @@
   @media (max-width: 860px) {
     /* Celular: uma coluna. Linhas 1-3 = NovaTrackers, MarcoVR, Doremi; 4 = respiro; 5-6 = TropiPaw e MANY */
     .party-stage { grid-row: 4 / 7; margin: 0 -12px -12px; border-radius: 28px; }
-    .p-tropi { grid-row: 5; grid-column: 1; }
-    .p-many { grid-row: 6; grid-column: 1; }
+    .p-tropi { grid-row: 6; grid-column: 1; }
+    .p-many { grid-row: 5; grid-column: 1; }
   }
 
   /* NovaTrackers: imagem oficial (Novaman + usuário com trackers) sobre fundo escuro */
@@ -458,6 +465,14 @@
   .btn.many-ghost { background: transparent; color: #EAF6FF; border-color: rgba(234, 246, 255, .3); }
   .btn.many-ghost:hover { background: rgba(234, 246, 255, .08); }
 
+  /* ---------- Criadores que já participaram dos vídeos ---------- */
+  .cria-grid { display: flex; flex-wrap: wrap; gap: 10px; }
+  .cria { display: inline-flex; align-items: center; gap: 9px; padding: 4px 14px 4px 4px; border-radius: 999px; background: #fff; border: 1px solid var(--line); text-decoration: none; font-size: 13.5px; font-weight: 600; color: var(--ink); box-shadow: 0 2px 8px rgba(31, 34, 32, .05); transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease; }
+  .cria:hover { transform: translateY(-2px); border-color: #D62976; box-shadow: 0 8px 18px rgba(214, 41, 118, .15); }
+  .cria-av { flex: none; width: 38px; height: 38px; padding: 2px; border-radius: 50%; background: conic-gradient(from 200deg, #FEDA75, #FA7E1E, #D62976, #962FBF, #4F5BD5, #FEDA75); }
+  .cria-av img, .cria-av b { display: grid; place-items: center; width: 100%; height: 100%; border-radius: 50%; border: 2px solid #fff; object-fit: cover; background: var(--fur-1); font-family: var(--display); font-weight: 800; font-size: 14px; color: var(--eye-4); }
+  @media (max-width: 480px) { .cria { font-size: 12.5px; padding-right: 12px; } .cria-av { width: 34px; height: 34px; } }
+
   /* ---------- Contato ---------- */
   .band { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
   .contact { display: flex; flex-direction: column; gap: 14px; padding: 32px; border-radius: 32px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); }
@@ -491,12 +506,52 @@
   .swatches { display: flex; gap: 5px; }
   .swatches i { width: 14px; height: 14px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, .15); }
 
+  /* ---------- Página de personagens ---------- */
+  .chars { display: flex; flex-direction: column; gap: 22px; }
+  .char { display: grid; grid-template-columns: .9fr 1.1fr; gap: 28px; align-items: center; padding: 24px; border-radius: 32px; background: #fff; border: 1px solid var(--line); box-shadow: var(--shadow); }
+  .char.flip .char-art { order: 2; }
+  .char-art { position: relative; display: grid; place-items: center; min-height: 340px; border-radius: 24px; overflow: hidden;
+    background: radial-gradient(circle at 50% 55%, #fff 0 30%, transparent 70%), linear-gradient(140deg, var(--tint), color-mix(in srgb, var(--c1) 22%, #fff)); }
+  .char-art::before { content: ""; position: absolute; inset: 14px; border-radius: 18px; border: 2px dashed color-mix(in srgb, var(--c1) 40%, transparent); pointer-events: none; }
+  .char-art img { position: relative; display: block; width: min(92%, 380px); height: auto; filter: drop-shadow(0 16px 26px rgba(31, 34, 32, .18)); }
+  .char-art.photo { padding: 0; min-height: 0; }
+  .char-art.photo::before { display: none; }
+  .char-art.photo img { width: 100%; max-height: 460px; object-fit: cover; object-position: top; filter: none; }
+  .char-info { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; }
+  .char-jp { font-family: var(--mono); font-weight: 700; font-size: 13px; letter-spacing: .2em; color: var(--c1); }
+  .char h2 { font-family: var(--display); font-weight: 800; font-size: clamp(34px, 4.4vw, 48px); line-height: 1; letter-spacing: -.035em; }
+  .char-role { font-family: "DynaPuff", system-ui, sans-serif; font-weight: 600; font-size: 13px; padding: 4px 12px; border-radius: 999px; background: color-mix(in srgb, var(--c1) 16%, #fff); color: color-mix(in srgb, var(--c1) 70%, #1F2220); border: 1.5px solid color-mix(in srgb, var(--c1) 45%, #fff); }
+  .char p { color: var(--muted); max-width: 52ch; }
+  .char-traits { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 6px; font-size: 14px; }
+  .char-traits li { display: flex; gap: 10px; align-items: baseline; }
+  .char-traits li::before { content: ""; flex: none; width: 9px; height: 8px; background: var(--c1); clip-path: polygon(50% 0, 100% 100%, 0 100%); }
+  .char-pal { display: flex; gap: 6px; margin-top: 2px; }
+  .char-pal i { width: 22px; height: 22px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 0 0 1px rgba(31, 34, 32, .12); }
+  .char-quote { margin: 4px 0 0; padding: 12px 16px; border-radius: 16px; background: var(--tint); border-left: 4px solid var(--c1); font-size: 14px; color: var(--ink); display: flex; flex-direction: column; gap: 3px; }
+  .char-quote span { font-weight: 700; color: color-mix(in srgb, var(--c1) 75%, #1F2220); }
+  .char-links { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+  .char-links .btn { background: var(--ink); color: #fff; }
+  .char-links .btn:hover { background: var(--c1); }
+  @media (max-width: 820px) {
+    .char, .char.flip { grid-template-columns: 1fr; padding: 18px; }
+    .char.flip .char-art { order: 0; }
+    .char-art { min-height: 260px; }
+  }
+  /* Na turma do banner, cada personagem leva para a página */
+  .turma-list a { display: flex; flex-direction: column; align-items: center; gap: 5px; text-decoration: none; color: inherit; }
+  .turma-lbl a { color: inherit; text-decoration: none; border-bottom: 1.5px dashed currentColor; }
+  .turma-lbl a:hover { color: var(--ink); }
+
   /* ---------- Página de estatísticas ---------- */
   .foot-end { display: inline-flex; align-items: center; gap: 12px; }
   .stats-link { display: inline-grid; place-items: center; width: 26px; height: 26px; opacity: .14; transition: opacity .2s ease; }
   .stats-link:hover, .stats-link:focus-visible { opacity: .6; }
   .stats-link svg { width: 100%; height: 100%; filter: grayscale(1); }
   .stats-hero h1 { font-size: clamp(40px, 7vw, 88px); }
+  /* Estatísticas bloqueadas: só a caixinha de senha, sem título nem explicação */
+  #view-stats.locked .stats-hero, #view-stats.locked .drift, #view-stats.locked .seam-seal { display: none; }
+  #view-stats.locked .sheet { background: transparent; margin-top: 0; border-radius: 0; min-height: 72vh; display: grid; place-items: center; padding-block: 120px 80px; }
+  #view-stats.locked .gate { margin-inline: auto; width: min(100%, 380px); }
   .gate { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; max-width: 420px; padding: 28px; border-radius: 28px; background: #fff; border: 1px solid var(--line); box-shadow: var(--shadow); }
   .gate-paw { width: 44px; height: 44px; margin-bottom: 4px; }
   .gate label { font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
@@ -538,6 +593,19 @@
   .gc-card ol { margin: 0; padding-left: 20px; color: var(--muted); display: flex; flex-direction: column; gap: 4px; }
   .gc-card .err { color: #C0392B; font-weight: 600; font-size: 14px; }
   .sg.pages .bar i { background: linear-gradient(90deg, var(--eye-2), var(--eye-3)); }
+  .stats-tabs { display: inline-flex; gap: 4px; padding: 4px; margin-bottom: 14px; border-radius: 999px; background: #fff; border: 1px solid var(--line); }
+  .stats-tabs button { font: 700 14px var(--body); padding: 8px 16px; border-radius: 999px; border: 0; background: transparent; color: var(--muted); cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+  .stats-tabs button.on { background: var(--eye-4); color: #fff; }
+  .stats-tabs b { font-family: var(--mono); font-size: 11px; padding: 1px 7px; border-radius: 999px; background: rgba(92, 58, 181, .14); }
+  .stats-tabs button.on b { background: rgba(255, 255, 255, .22); }
+  .stats-questions { display: flex; flex-direction: column; gap: 10px; }
+  .stats-questions.sugs .qi { border-left-color: var(--bean); }
+  @media (max-width: 440px) { .stats-tabs button { padding: 8px 11px; font-size: 13px; } }
+  .qi { padding: 16px 18px; border-radius: 20px; background: #fff; border: 1px solid var(--line); border-left: 4px solid var(--eye-3); }
+  .qi p { font-weight: 600; font-size: 15px; line-height: 1.5; }
+  .qi .meta { display: flex; flex-wrap: wrap; gap: 6px 12px; margin-top: 6px; font-size: 12.5px; color: var(--muted); }
+  .qi .meta b { color: var(--eye-4); }
+  .lock-code { width: 100%; font: 600 12px var(--mono); padding: 12px 14px; border-radius: 14px; border: 1.5px dashed var(--eye-3); background: var(--bg); color: var(--ink); word-break: break-all; resize: none; }
   .stats-note { margin-top: 16px; font-size: 13px; color: var(--muted); max-width: 70ch; }
   @media (max-width: 760px) {
     .tiles { grid-template-columns: 1fr 1fr; }
@@ -576,11 +644,26 @@
   .row > span { color: var(--muted); }
   .chip-m { font-family: var(--mono); font-size: 12px; font-weight: 700; padding: 3px 9px; border-radius: 999px; background: var(--purple-sheet); color: var(--eye-4); }
   .chip-now { font-size: 12px; font-weight: 700; padding: 3px 10px; border-radius: 999px; background: var(--bean); color: var(--ink); }
+  .a-text { color: var(--muted); max-width: 62ch; line-height: 1.65; }
   .faq-more { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin-top: 6px; padding: 24px 26px; border-radius: 26px; color: #fff; background: linear-gradient(110deg, var(--eye-4), var(--eye-3)); box-shadow: 0 14px 34px rgba(92, 58, 181, .28); }
   .faq-more h2 { font-family: var(--display); font-weight: 800; font-size: 22px; letter-spacing: -.02em; line-height: 1.2; }
   .faq-more p { opacity: .88; }
   .faq-more .acts { display: flex; flex-wrap: wrap; gap: 10px; }
   .faq-more .btn { background: #fff; color: var(--eye-4); }
+  .ask { display: flex; flex-direction: column; gap: 8px; margin-top: 4px; padding: 22px 24px; border-radius: 26px; background: #fff; border: 1.5px solid #D5CFF7; box-shadow: var(--shadow); }
+  .ask label { font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  .ask label small { text-transform: none; letter-spacing: 0; font-family: var(--body); font-weight: 500; }
+  .ask textarea, .ask input { font: 500 15px var(--body); padding: 12px 14px; border-radius: 16px; border: 1.5px solid var(--line); background: var(--bg); color: var(--ink); resize: vertical; }
+  .ask textarea:focus, .ask input:focus { outline: none; border-color: var(--eye-3); }
+  .ask-count { align-self: flex-end; margin-top: -4px; font-family: var(--mono); font-size: 11px; color: var(--muted); }
+  .ask-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
+  .ask-actions .btn { background: var(--eye-4); color: #fff; }
+  .ask-actions .btn.soft { background: #fff; color: var(--ink); border-color: var(--line); }
+  .ask-actions .btn[disabled] { opacity: .6; cursor: wait; }
+  .ask-msg { min-height: 1.3em; font-size: 14px; font-weight: 600; }
+  .ask-msg.ok { color: var(--green-ink); }
+  .ask-msg.err { color: #C0392B; }
+  .faq-more .btn.ask-open { background: var(--bean); color: var(--ink); }
   .faq-more .btn.ghost { background: transparent; color: #fff; border-color: rgba(255, 255, 255, .45); }
   @media (max-width: 760px) {
     .a { padding: 0 16px 18px; }
@@ -626,6 +709,8 @@
   .soon h3 { font-family: var(--display); font-weight: 800; font-size: 24px; line-height: 1.1; letter-spacing: -.02em; }
   .soon p { color: var(--muted); }
   .soon .btn { align-self: flex-start; margin-top: auto; }
+  .soon .btn.sug-open { background: var(--bean); color: var(--ink); }
+  .products > .sug { grid-column: 1 / -1; margin-top: 0; }
   .notify { display: flex; flex-direction: column; gap: 12px; padding: 28px; border-radius: 32px; color: #fff; background: linear-gradient(120deg, var(--eye-4), var(--eye-3) 70%, #7A7BEA); box-shadow: 0 16px 36px rgba(92, 58, 181, .25); }
   .notify h3 { font-family: var(--display); font-weight: 800; font-size: 24px; line-height: 1.1; letter-spacing: -.02em; }
   .notify p { opacity: .88; }
@@ -745,7 +830,10 @@
   <symbol id="video" viewBox="0 0 24 24"><rect x="3" y="6" width="13" height="12" rx="3"/><path d="M16 10.5l5-3v9l-5-3"/></symbol>
   <symbol id="tracker" viewBox="0 0 24 24"><rect x="4.5" y="4.5" width="15" height="15" rx="4"/><path d="M9 16V9l6 7V9"/><circle cx="16.3" cy="7.7" r=".9" fill="currentColor"/></symbol>
   <symbol id="chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+  <symbol id="chat" viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.5 4v-4h0A1.5 1.5 0 0 1 4 14.5z"/><path d="M8.5 8.5h7M8.5 11.5h4.5"/></symbol>
+  <symbol id="paw-line" viewBox="0 0 24 24"><ellipse cx="6" cy="10.2" rx="2" ry="2.7" transform="rotate(-18 6 10.2)"/><ellipse cx="9.9" cy="6" rx="2.1" ry="2.9"/><ellipse cx="14.1" cy="6" rx="2.1" ry="2.9"/><ellipse cx="18" cy="10.2" rx="2" ry="2.7" transform="rotate(18 18 10.2)"/><path d="M12 12c-3.2 0-5.8 2.9-5.8 5.6 0 1.8 1.4 2.9 3.1 2.9 1.1 0 1.7-.6 2.7-.6s1.6.6 2.7.6c1.7 0 3.1-1.1 3.1-2.9 0-2.7-2.6-5.6-5.8-5.6z"/></symbol>
   <symbol id="globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.9 5.6 3.9 9s-1.3 6.4-3.9 9c-2.6-2.6-3.9-5.6-3.9-9S9.4 5.6 12 3z"/></symbol>
+  <symbol id="bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.6 10.8c.7.5 1.1 1.3 1.1 2.1V16h5v-.1c0-.8.4-1.6 1.1-2.1A6 6 0 0 0 12 3z"/></symbol>
   <symbol id="heart" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.4-7.5-10A4.3 4.3 0 0 1 12 7.4 4.3 4.3 0 0 1 19.5 10c0 5.6-7.5 10-7.5 10z"/></symbol>
 </svg>
 
@@ -758,6 +846,7 @@
         <li><a href="#redes" data-view="home">Redes</a></li>
         <li><a href="#parceiros" data-view="home">Parceiros</a></li>
         <li class="keep"><a href="#produtos" data-view="produtos">Produtos</a></li>
+        <li class="keep"><a href="#personagens" data-view="personagens">Personagens</a></li>
         <li class="keep"><a href="#faq" data-view="faq">FAQ</a></li>
         <li><a href="#contato" data-view="home">Contato</a></li>
       </ul>
@@ -780,12 +869,11 @@
           <a class="btn soft" href="#parceiros">Conhecer os parceiros</a>
         </div>
         <div class="turma">
-          <span class="turma-lbl">a turma ✦</span>
           <ul class="turma-list">
-            <li style="--c:#2BE6A8; --t:#E3FBF1"><img src="assets/turma-yoshiro.webp" alt="Yoshiro" width="160" height="160"><span>Yoshiro</span></li>
-            <li style="--c:#9B3CF0; --t:#F1E7FD"><img src="assets/turma-bjorn.webp" alt="Bjorn" width="160" height="160"><span>Bjorn</span></li>
-            <li style="--c:#5B5F9E; --t:#ECEBFA"><img src="assets/turma-peki.webp" alt="Peki" width="160" height="160"><span>Peki</span></li>
-            <li style="--c:#F28A3A; --t:#EEEAF6"><img src="assets/turma-aya.webp" alt="Aya" width="160" height="160"><span>Aya</span></li>
+            <li style="--c:#2BE6A8; --t:#E3FBF1"><a href="#personagens"><img src="assets/turma-yoshiro.webp" alt="Yoshiro" width="160" height="160"><span>Yoshiro</span></a></li>
+            <li style="--c:#9B3CF0; --t:#F1E7FD"><a href="#personagens"><img src="assets/turma-bjorn.webp" alt="Bjorn" width="160" height="160"><span>Bjorn</span></a></li>
+            <li style="--c:#5B5F9E; --t:#ECEBFA"><a href="#personagens"><img src="assets/turma-peki.webp" alt="Peki" width="160" height="160"><span>Peki</span></a></li>
+            <li style="--c:#F28A3A; --t:#EEEAF6"><a href="#personagens"><img src="assets/turma-aya.webp" alt="Aya" width="160" height="160"><span>Aya</span></a></li>
           </ul>
         </div>
       </div>
@@ -860,6 +948,11 @@
         <a class="net" href="https://x.com/yoshirovr" target="_blank" rel="noopener">
           <span class="ico"><svg class="i"><use href="#x"/></svg></span>
           <div><h3>X (Twitter)</h3><p>@yoshirovr</p></div>
+          <span class="go"><svg class="i"><use href="#arrow"/></svg></span>
+        </a>
+        <a class="net net-peki" href="https://www.instagram.com/pekithecat/" target="_blank" rel="noopener">
+          <span class="ico"><img src="assets/turma-peki.webp" alt="" width="160" height="160"></span>
+          <div><h3>Peki</h3><p>@pekithecat</p></div>
           <span class="go"><svg class="i"><use href="#arrow"/></svg></span>
         </a>
       </div>
@@ -945,7 +1038,7 @@
         </article>
 
         <div class="party-stage" aria-hidden="true">
-          <div class="lights"><i style="left:6%;top:12%;--s:420px;--lc:#EE4B9C;--ld:2.6s;--ldel:-0s"></i><i style="left:50%;top:2%;--s:380px;--lc:#8C50E6;--ld:3.2s;--ldel:-1.2s"></i><i style="left:95%;top:14%;--s:420px;--lc:#28BEE6;--ld:2.8s;--ldel:-2.1s"></i><i style="left:8%;top:94%;--s:440px;--lc:#FC8A5B;--ld:3s;--ldel:-0.7s"></i><i style="left:92%;top:92%;--s:440px;--lc:#C77DFF;--ld:2.4s;--ldel:-1.7s"></i></div>
+          <div class="lights"><i style="left:94%;top:12%;--s:420px;--lc:#EE4B9C;--ld:2.6s;--ldel:-0s"></i><i style="left:50%;top:2%;--s:380px;--lc:#8C50E6;--ld:3.2s;--ldel:-1.2s"></i><i style="left:5%;top:14%;--s:420px;--lc:#28BEE6;--ld:2.8s;--ldel:-2.1s"></i><i style="left:92%;top:94%;--s:440px;--lc:#FC8A5B;--ld:3s;--ldel:-0.7s"></i><i style="left:8%;top:92%;--s:440px;--lc:#C77DFF;--ld:2.4s;--ldel:-1.7s"></i></div>
         </div>
 
         <!-- TropiPaw -->
@@ -974,9 +1067,53 @@
     </div>
   </section>
 
+  <!-- Criadores que já participaram dos vídeos -->
+  <section class="sheet green" id="criadores" aria-labelledby="cria-t" data-area="Criadores">
+    <span class="mask m-selo seam-seal s-left" aria-hidden="true"></span>
+    <div class="wrap">
+      <div class="head">
+        <div>
+          <div class="eyebrow"><span class="tri" aria-hidden="true"></span>Collabs</div>
+          <h2 id="cria-t">Quem já apareceu nos vídeos</h2>
+        </div>
+        <p>Criadores de conteúdo que já participaram dos meus vídeos. Passa lá e segue também!</p>
+      </div>
+      <div class="cria-grid">
+            <a class="cria" href="https://www.instagram.com/berryvrofc/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/berryvrofc.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@berryvrofc</span></a>
+            <a class="cria" href="https://www.instagram.com/_bevilax_/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/_bevilax_.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@_bevilax_</span></a>
+            <a class="cria" href="https://www.instagram.com/caf3ina0404/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/caf3ina0404.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@caf3ina0404</span></a>
+            <a class="cria" href="https://www.instagram.com/circoroxo/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/circoroxo.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@circoroxo</span></a>
+            <a class="cria" href="https://www.instagram.com/edugamesbr04/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/edugamesbr04.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@edugamesbr04</span></a>
+            <a class="cria" href="https://www.instagram.com/erosvr.lobo/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/erosvr.lobo.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@erosvr.lobo</span></a>
+            <a class="cria" href="https://www.instagram.com/francis_dustchat/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/francis_dustchat.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@francis_dustchat</span></a>
+            <a class="cria" href="https://www.instagram.com/furryluzzy/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/furryluzzy.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@furryluzzy</span></a>
+            <a class="cria" href="https://www.instagram.com/ghoul_uwu/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/ghoul_uwu.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@ghoul_uwu</span></a>
+            <a class="cria" href="https://www.instagram.com/glaux_foxtail/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/glaux_foxtail.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@glaux_foxtail</span></a>
+            <a class="cria" href="https://www.instagram.com/ivofurry/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/ivofurry.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@ivofurry</span></a>
+            <a class="cria" href="https://www.instagram.com/_j.a.u.m_/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/_j.a.u.m_.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@_j.a.u.m_</span></a>
+            <a class="cria" href="https://www.instagram.com/kael_ice_wolf/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/kael_ice_wolf.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@kael_ice_wolf</span></a>
+            <a class="cria" href="https://www.instagram.com/legoshiinvr/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/legoshiinvr.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@legoshiinvr</span></a>
+            <a class="cria" href="https://www.instagram.com/low_lezz/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/low_lezz.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@low_lezz</span></a>
+            <a class="cria" href="https://www.instagram.com/macvisk/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/macvisk.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@macvisk</span></a>
+            <a class="cria" href="https://www.instagram.com/meliora.vrc/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/meliora.vrc.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@meliora.vrc</span></a>
+            <a class="cria" href="https://www.instagram.com/mordekai_vr/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/mordekai_vr.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@mordekai_vr</span></a>
+            <a class="cria" href="https://www.instagram.com/nilonefasto/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/nilonefasto.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@nilonefasto</span></a>
+            <a class="cria" href="https://www.instagram.com/notorio0__/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/notorio0__.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@notorio0__</span></a>
+            <a class="cria" href="https://www.instagram.com/pao_de_queijo_vr1/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/pao_de_queijo_vr1.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@pao_de_queijo_vr1</span></a>
+            <a class="cria" href="https://www.instagram.com/pauromateusu/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/pauromateusu.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@pauromateusu</span></a>
+            <a class="cria" href="https://www.instagram.com/_robsonfoster/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/_robsonfoster.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@_robsonfoster</span></a>
+            <a class="cria" href="https://www.instagram.com/russelvr_/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/russelvr_.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@russelvr_</span></a>
+            <a class="cria" href="https://www.instagram.com/sawvrc/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/sawvrc.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@sawvrc</span></a>
+            <a class="cria" href="https://www.instagram.com/scafflive/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/scafflive.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@scafflive</span></a>
+            <a class="cria" href="https://www.instagram.com/sharkellmad/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/sharkellmad.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@sharkellmad</span></a>
+            <a class="cria" href="https://www.instagram.com/skull_jp07/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/skull_jp07.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@skull_jp07</span></a>
+            <a class="cria" href="https://www.instagram.com/volkovgamer_vr/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/volkovgamer_vr.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@volkovgamer_vr</span></a>
+            <a class="cria" href="https://www.instagram.com/yuianubis/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/yuianubis.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@yuianubis</span></a>
+      </div>
+    </div>
+  </section>
   <!-- Contato -->
   <section class="sheet fur" id="contato" aria-label="Contato e apoio" data-area="Contato">
-    <span class="mask m-selo seam-seal s-left" aria-hidden="true"></span>
     <div class="wrap">
       <div class="band">
         <div class="contact">
@@ -1034,7 +1171,8 @@
         <div class="soon">
           <svg class="pawmini" aria-hidden="true"><use href="#paw"/></svg>
           <h3>Novos produtos em breve</h3>
-          <p>Estou preparando os próximos lançamentos. Eles vão aparecer aqui primeiro.</p>
+          <p>Estou preparando os próximos lançamentos. Eles vão aparecer aqui primeiro. Tem uma ideia? Me conta qual produto você gostaria de ver!</p>
+          <button class="btn sug-open" type="button" id="sug-open"><svg class="i"><use href="#bulb"/></svg> Sugerir um produto</button>
         </div>
 
         <div class="notify">
@@ -1042,6 +1180,19 @@
           <p>Os lançamentos são anunciados primeiro no Instagram.</p>
           <a class="btn" href="https://www.instagram.com/yoshirovr/" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg> Seguir @yoshirovr</a>
         </div>
+
+        <form class="ask sug" id="sug-form" hidden>
+          <label for="sug-q">Sua sugestão de produto</label>
+          <textarea id="sug-q" name="sug-q" maxlength="200" rows="3" required placeholder="Ex.: chaveiro do Peki, camiseta com o lobo, adesivos da turma…"></textarea>
+          <span class="ask-count" id="sug-count">0/200</span>
+          <label for="sug-name">Seu nome ou @ <small>(opcional)</small></label>
+          <input id="sug-name" name="sug-name" maxlength="40" placeholder="@seuinsta" autocomplete="off">
+          <div class="ask-actions">
+            <button class="btn" type="submit" id="sug-send" data-track="off">Enviar sugestão</button>
+            <button class="btn soft" type="button" id="sug-cancel" data-track="off">Cancelar</button>
+          </div>
+          <p class="ask-msg" id="sug-msg" role="status"></p>
+        </form>
       </div>
     </div>
   </section>
@@ -1123,22 +1274,138 @@
           </div>
         </details>
 
+        <details class="qa" open>
+          <summary><span class="q-ico"><svg class="i"><use href="#heart"/></svg></span><span class="q">O Yoshiro namora a Aya?</span><svg class="i chev"><use href="#chev"/></svg></summary>
+          <div class="a">
+            <p class="a-text">Não! A Aya participa dos vídeos apenas como personagem. Nunca tivemos um relacionamento: ela só faz parte da lore que eu construí.</p>
+          </div>
+        </details>
+
+        <details class="qa" open>
+          <summary><span class="q-ico"><svg class="i"><use href="#paw-line"/></svg></span><span class="q">O Peki é filho do Yoshiro e da Aya?</span><svg class="i chev"><use href="#chev"/></svg></summary>
+          <div class="a">
+            <p class="a-text">Não. O Peki é filho do Yoshiro com a Daiemi, uma gatinha branca que apareceu em poucos vídeos. A Aya é a madrasta do Peki, mas trata ele como filho, e ele trata ela como mãe.</p>
+          </div>
+        </details>
+
         <div class="faq-more">
           <div>
             <h2>Não achou sua pergunta?</h2>
             <p>Me chama no Instagram ou no Telegram.</p>
           </div>
           <div class="acts">
-            <a class="btn" href="https://www.instagram.com/yoshirovr/" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg> Instagram</a>
+            <button class="btn ask-open" type="button" id="ask-open"><svg class="i"><use href="#chat"/></svg> Enviar uma pergunta</button>
+            <a class="btn ghost" href="https://www.instagram.com/yoshirovr/" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg> Instagram</a>
             <a class="btn ghost" href="https://t.me/yoshirovr" target="_blank" rel="noopener"><svg class="i"><use href="#tg"/></svg> Telegram</a>
           </div>
         </div>
+
+        <form class="ask" id="ask-form" hidden>
+          <label for="ask-q">Sua pergunta</label>
+          <textarea id="ask-q" name="ask-q" maxlength="200" rows="3" required placeholder="Escreva sua pergunta aqui…"></textarea>
+          <span class="ask-count" id="ask-count">0/200</span>
+          <label for="ask-name">Seu nome ou @ <small>(opcional)</small></label>
+          <input id="ask-name" name="ask-name" maxlength="40" placeholder="@seuinsta" autocomplete="off">
+          <div class="ask-actions">
+            <button class="btn" type="submit" id="ask-send" data-track="off">Enviar pergunta</button>
+            <button class="btn soft" type="button" id="ask-cancel" data-track="off">Cancelar</button>
+          </div>
+          <p class="ask-msg" id="ask-msg" role="status"></p>
+        </form>
       </div>
     </div>
   </section>
  </div>
+
+ <!-- Página: Personagens -->
+ <div id="view-personagens" hidden data-area="Personagens">
+  <header class="banner shop-hero chars-hero">
+    <div class="wrap">
+      <div class="eyebrow"><span class="tri" aria-hidden="true"></span>A turma</div>
+      <h1>personagens<span>.</span></h1>
+      <p>Quem aparece nos vídeos do yoshirovr.</p>
+    </div>
+  </header>
+
+  <section class="sheet purple" aria-label="Personagens">
+    <div class="wrap chars">
+
+      <article class="char" style="--c1:#2BE6A8; --c2:#5C5DE0; --tint:#E3FBF1" aria-labelledby="ch-yoshiro">
+        <div class="char-art"><img src="assets/char-yoshiro.webp" alt="Arte do Yoshiro de corpo inteiro: pelagem branca e preta, cabelo e cauda com verde-menta, óculos redondos e o kanji 義膽 tatuado no peito" width="520" height="680" loading="lazy"></div>
+        <div class="char-info">
+          <span class="char-jp" lang="ja">義朗</span>
+          <h2 id="ch-yoshiro">Yoshiro</h2>
+          <span class="char-role">Criador do canal</span>
+          <p>O dono do yoshirovr e quem aparece em todos os vídeos. Pelagem branca e cinza com detalhes em verde-menta, olhos em degradê do verde ao roxo, óculos redondos e os caninos de cima dourados.</p>
+          <ul class="char-traits">
+            <li>Sobrancelhas grandes e delineado de duas pontas</li>
+            <li>Triângulo acima do focinho</li>
+            <li>Bigodes com as pontas verdes</li>
+            <li>Tatuagens: o kanji 義膽 e um lobo</li>
+          </ul>
+          <div class="char-pal" aria-label="Paleta do Yoshiro"><i style="background:#2BE6A8"></i><i style="background:#47C98F"></i><i style="background:#5DFFDB"></i><i style="background:#40CAC5"></i><i style="background:#5C5DE0"></i><i style="background:#5C3AB5"></i><i style="background:#E9E9E9"></i><i style="background:#CACBCA"></i><i style="background:#1F2220"></i></div>
+          <blockquote class="char-quote"><span lang="ja">誰かの笑顔を見るために、私は微笑む。</span>“Pra ver o sorriso de alguém, eu sorrio.”</blockquote>
+          <div class="char-links"><a class="btn" href="https://www.instagram.com/yoshirovr/" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg> @yoshirovr</a></div>
+        </div>
+      </article>
+
+      <article class="char flip" style="--c1:#9B3CF0; --c2:#C77DFF; --tint:#F1E7FD" aria-labelledby="ch-bjorn">
+        <div class="char-art"><img src="assets/char-bjorn.webp" alt="Arte do Bjorn de corpo inteiro: pelagem cinza-escura e branca, mecha e ponta da cauda roxas e olhos roxos" width="560" height="624" loading="lazy"></div>
+        <div class="char-info">
+          <h2 id="ch-bjorn">Bjorn</h2>
+          <span class="char-role">Namorado do Yoshiro</span>
+          <p>Aparece em muitos dos vídeos ao lado do Yoshiro. Pelagem cinza-escura com o peito claro, uma mecha roxa no cabelo e grandes olhos roxos.</p>
+          <ul class="char-traits">
+            <li>Mecha roxa que cai sobre o rosto</li>
+            <li>Olhos roxos grandes e brilhantes</li>
+            <li>Bochechas com marquinhas vermelhas</li>
+          </ul>
+          <div class="char-pal" aria-label="Paleta do Bjorn"><i style="background:#3A393D"></i><i style="background:#1E1B24"></i><i style="background:#9B3CF0"></i><i style="background:#C77DFF"></i><i style="background:#E4E3E8"></i><i style="background:#D8344A"></i></div>
+          <div class="char-links"><a class="btn" href="https://www.instagram.com/sr_bjorn" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg> @sr_bjorn</a></div>
+        </div>
+      </article>
+
+      <article class="char" style="--c1:#5B5F9E; --c2:#9C8EC4; --tint:#ECEBFA" aria-labelledby="ch-peki">
+        <div class="char-art"><img src="assets/char-peki.webp" alt="Arte do Peki sentado: pelagem branca, cabelo azul-arroxeado, óculos redondos, brinco de cruz e moletom preto" width="680" height="680" loading="lazy"></div>
+        <div class="char-info">
+          <span class="char-jp" lang="ja">苛猫</span>
+          <h2 id="ch-peki">Peki</h2>
+          <span class="char-role">Filho do Yoshiro</span>
+          <p>Pelagem branca com cabelo azul-arroxeado, óculos redondos, brinco de cruz, moletom preto e patas roxas. Na arte oficial: uma presença um pouco barulhenta, mas muito fofa.</p>
+          <ul class="char-traits">
+            <li>Óculos redondos e brinco de cruz</li>
+            <li>Moletom preto com coleira roxa</li>
+            <li>Patas e cauda em azul-arroxeado</li>
+          </ul>
+          <div class="char-pal" aria-label="Paleta do Peki"><i style="background:#F2F0F7"></i><i style="background:#5B5F9E"></i><i style="background:#3E4270"></i><i style="background:#9C8EC4"></i><i style="background:#1E2326"></i></div>
+          <blockquote class="char-quote"><span lang="ja">ちょっとうるさいけど可愛い存在。</span>“Uma presença um pouco barulhenta, mas fofa.”</blockquote>
+          <div class="char-links"><a class="btn" href="https://www.instagram.com/pekithecat/" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg> @pekithecat</a></div>
+        </div>
+      </article>
+
+      <article class="char flip" style="--c1:#F28A3A; --c2:#8E7BB0; --tint:#EEEAF6" aria-labelledby="ch-aya">
+        <div class="char-art photo"><img src="assets/char-aya.webp" alt="Arte da Aya: orelhas longas caídas, cabelo preto e branco, olhos laranja e moletom listrado" width="480" height="936" loading="lazy"></div>
+        <div class="char-info">
+          <span class="char-jp" lang="ja">彩綾</span>
+          <h2 id="ch-aya">Aya</h2>
+          <span class="char-role">Esposa da Lore</span>
+          <p>Orelhas longas e caídas, cabelo preto e branco bagunçado, olhos laranja e uma pintinha na testa. Aparece de moletom preto listrado.</p>
+          <ul class="char-traits">
+            <li>Orelhas longas com a parte de dentro rosada</li>
+            <li>Olhos laranja com contorno escuro</li>
+            <li>Pintinha preta na testa</li>
+          </ul>
+          <div class="char-pal" aria-label="Paleta da Aya"><i style="background:#1E1A20"></i><i style="background:#F3EFF4"></i><i style="background:#F28A3A"></i><i style="background:#C9B6D6"></i><i style="background:#E86A8E"></i></div>
+          <blockquote class="char-quote"><span lang="ja">君が笑うなら、僕も幸せだ。</span>“Se você sorri, eu também fico feliz.”</blockquote>
+        </div>
+      </article>
+
+    </div>
+  </section>
+ </div>
+
  <!-- Página: Estatísticas (acesso pela patinha do rodapé) -->
- <div id="view-stats" hidden data-area="Estatísticas">
+ <div id="view-stats" class="locked" hidden data-area="Estatísticas">
   <header class="banner shop-hero stats-hero">
     <div class="wrap">
       <div class="eyebrow"><span class="tri" aria-hidden="true"></span>Área restrita</div>
@@ -1172,6 +1439,11 @@
             <button class="btn soft" id="stats-lock" type="button" data-track="off">Sair</button>
           </div>
         </div>
+        <div class="stats-tabs" id="stats-tabs" role="tablist" aria-label="Tipo de estatística">
+          <button type="button" role="tab" class="on" data-tab="cliques" data-track="off">Cliques</button>
+          <button type="button" role="tab" data-tab="perguntas" data-track="off">Perguntas <b id="q-count">0</b></button>
+          <button type="button" role="tab" data-tab="sugestoes" data-track="off">Sugestões <b id="s-count">0</b></button>
+        </div>
         <div class="tiles" id="stats-tiles">
           <div class="tile"><span class="lbl-s">Total de cliques</span><b id="st-total">0</b></div>
           <div class="tile"><span class="lbl-s">Botões clicados</span><b id="st-buttons">0</b></div>
@@ -1179,6 +1451,8 @@
           <div class="tile wide"><span class="lbl-s">Mais clicado</span><b id="st-top">—</b></div>
         </div>
         <div id="stats-groups" class="stats-groups"></div>
+        <div id="stats-questions" class="stats-questions" hidden></div>
+        <div id="stats-suggestions" class="stats-questions sugs" hidden></div>
         <p class="stats-note" id="stats-note"></p>
       </div>
     </div>
@@ -1200,6 +1474,9 @@
   // ---------- Estatísticas do site publicado (GoatCounter) ----------
   // Código da conta no GoatCounter: 'yoshirovr' para https://yoshirovr.goatcounter.com. Vazio = desligado.
   var GOATCOUNTER_CODE = 'yoshirovr';
+  // Token de leitura do GoatCounter TRANCADO com a senha das estatísticas (gerado na própria página).
+  // Sem a senha ele não serve para nada. Vazio = cada navegador conecta o token uma vez.
+  var GC_TOKEN_LOCKED = '';
 
   var gc = (function () {
     var queue = [], timer = null;
@@ -1229,6 +1506,21 @@
     return {
       dashboard: GOATCOUNTER_CODE ? 'https://' + GOATCOUNTER_CODE + '.goatcounter.com' : '',
       event: function (name) { send({ path: 'clique › ' + name, title: name, event: true }); },
+      // Pergunta do FAQ / sugestão de produto: vira um evento "pergunta › texto ‹nome›" ou "sugestão › texto ‹nome›";
+      // resolve true quando o count.js recebeu
+      post: function (kind, text, name) {
+        return new Promise(function (resolve) {
+          if (!on) { resolve(null); return; }
+          var path = kind + ' › ' + text + (name ? ' ‹' + name + '›' : '');
+          send({ path: path, title: kind === 'sugestão' ? 'Sugestão de produto' : 'Pergunta do FAQ', event: true });
+          var tries = 0;
+          (function check() {
+            if (!queue.length && window.goatcounter && window.goatcounter.count) { resolve(true); return; }
+            if (++tries > 16) { resolve(false); return; }
+            setTimeout(check, 250);
+          })();
+        });
+      },
       view: function (page) { send({ path: '/' + page, title: 'yoshirovr · ' + page }); }
     };
   })();
@@ -1239,6 +1531,7 @@
       home: document.getElementById('view-home'),
       produtos: document.getElementById('view-produtos'),
       faq: document.getElementById('view-faq'),
+      personagens: document.getElementById('view-personagens'),
       stats: document.getElementById('view-stats')
     };
     var links = document.querySelectorAll('.nav ul a');
@@ -1262,7 +1555,7 @@
   (function () {
     if (!('IntersectionObserver' in window)) return;
     if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    var sel = '.sheet .head, .socials > *, .extras, .partners > *, .contact, .support, .products > *, .faq > *, .gate, .shop-hero .wrap > *';
+    var sel = '.sheet .head, .socials > *, .extras, .partners > *, .cria-grid, .contact, .support, .products > *, .faq > *, .gate, .shop-hero .wrap > *';
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
         if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
@@ -1330,6 +1623,45 @@
     window.addEventListener('resize', setTravel);
     window.addEventListener('hashchange', function () { setTimeout(setTravel, 50); });
   })();
+
+  // ---------- Enviar pergunta (FAQ) e sugestão de produto (Produtos) ----------
+  function wireSendForm(p, kind, texts) {
+    var open = document.getElementById(p + '-open');
+    var form = document.getElementById(p + '-form');
+    if (!open || !form) return;
+    var q = document.getElementById(p + '-q'), nm = document.getElementById(p + '-name');
+    var count = document.getElementById(p + '-count'), msg = document.getElementById(p + '-msg'), sendBtn = document.getElementById(p + '-send');
+    var lastSent = 0;
+    function setMsg(text, kind) { msg.textContent = text; msg.className = 'ask-msg' + (kind ? ' ' + kind : ''); }
+    open.addEventListener('click', function () { form.hidden = false; setMsg(''); q.focus(); });
+    document.getElementById(p + '-cancel').addEventListener('click', function () { form.hidden = true; });
+    q.addEventListener('input', function () { count.textContent = q.value.length + '/200'; });
+    form.addEventListener('submit', async function (ev) {
+      ev.preventDefault();
+      var text = q.value.replace(/\s+/g, ' ').trim();
+      var name = nm.value.replace(/[‹›]/g, '').replace(/\s+/g, ' ').trim();
+      if (text.length < 5) { setMsg(texts.short, 'err'); return; }
+      if (Date.now() - lastSent < 20000) { setMsg('Espera alguns segundos antes de mandar outra.', 'err'); return; }
+      sendBtn.disabled = true; setMsg('Enviando…');
+      var ok = await gc.post(kind, text.replace(/[‹›]/g, ''), name);
+      sendBtn.disabled = false;
+      if (ok === null) { setMsg('O envio de ' + texts.what + ' funciona no site publicado (yoshirovr.com).', 'err'); return; }
+      if (!ok) { setMsg('Não consegui enviar agora (talvez um bloqueador de anúncios). Me manda pelo Instagram!', 'err'); return; }
+      lastSent = Date.now();
+      q.value = ''; nm.value = ''; count.textContent = '0/200';
+      setMsg(texts.ok, 'ok');
+    });
+  }
+  wireSendForm('ask', 'pergunta', {
+    what: 'perguntas',
+    short: 'Escreve um pouquinho mais pra eu entender a pergunta.',
+    ok: 'Pergunta enviada! Obrigado ✦ Ela pode virar uma resposta aqui no FAQ.'
+  });
+  wireSendForm('sug', 'sugestão', {
+    what: 'sugestões',
+    short: 'Escreve um pouquinho mais pra eu entender a ideia.',
+    ok: 'Sugestão enviada! Obrigado ✦ Vou levar em conta nos próximos produtos.'
+  });
 
   // ---------- Contador de cliques ----------
   // Cada pessoa grava a própria contagem em clicks/<id> (um documento por pessoa);
@@ -1421,7 +1753,33 @@
     }
     function unlocked() { try { return sessionStorage.getItem('yv-stats') === '1'; } catch (e) { return false; } }
     function setUnlocked(v) { try { v ? sessionStorage.setItem('yv-stats', '1') : sessionStorage.removeItem('yv-stats'); } catch (e) {} }
-    function show(open) { gate.hidden = open; board.hidden = !open; if (open) load(); }
+    var sessionPass = '';
+    function show(open) {
+      // Com token trancado e sem token neste navegador, a senha precisa ser digitada nesta aba
+      if (open && GC_TOKEN_LOCKED && !sessionPass && !getToken()) { setUnlocked(false); open = false; }
+      gate.hidden = open; board.hidden = !open; document.getElementById('view-stats').classList.toggle('locked', !open); if (open) load();
+    }
+
+    // ---- Token trancado com a senha: PBKDF2 (lento de propósito) + AES-GCM ----
+    function b64(bytes) { var s = ''; bytes.forEach(function (b) { s += String.fromCharCode(b); }); return btoa(s); }
+    function unb64(str) { var s = atob(str); var out = new Uint8Array(s.length); for (var i = 0; i < s.length; i++) out[i] = s.charCodeAt(i); return out; }
+    async function lockKey(pass, salt) {
+      var base = await crypto.subtle.importKey('raw', new TextEncoder().encode(pass), 'PBKDF2', false, ['deriveKey']);
+      return crypto.subtle.deriveKey({ name: 'PBKDF2', salt: salt, iterations: 600000, hash: 'SHA-256' }, base, { name: 'AES-GCM', length: 256 }, false, ['encrypt', 'decrypt']);
+    }
+    async function lockToken(token, pass) {
+      var salt = crypto.getRandomValues(new Uint8Array(16)), iv = crypto.getRandomValues(new Uint8Array(12));
+      var ct = new Uint8Array(await crypto.subtle.encrypt({ name: 'AES-GCM', iv: iv }, await lockKey(pass, salt), new TextEncoder().encode(token)));
+      var all = new Uint8Array(salt.length + iv.length + ct.length); all.set(salt, 0); all.set(iv, 16); all.set(ct, 28);
+      return 'v1.' + b64(all);
+    }
+    async function unlockToken(blob, pass) {
+      try {
+        var all = unb64(String(blob).replace(/^v1\./, ''));
+        var pt = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: all.slice(16, 28) }, await lockKey(pass, all.slice(0, 16)), all.slice(28));
+        return new TextDecoder().decode(pt);
+      } catch (e) { return ''; }
+    }
 
     gate.addEventListener('submit', async function (ev) {
       ev.preventDefault();
@@ -1429,6 +1787,7 @@
       if (!window.crypto || !crypto.subtle) { msg.textContent = 'Este navegador não consegue verificar a senha aqui.'; return; }
       var ok = (await sha256(input.value)) === PASS_SHA256;
       if (!ok) { msg.textContent = 'Senha incorreta. Tente de novo.'; input.select(); return; }
+      sessionPass = input.value;
       input.value = '';
       setUnlocked(true);
       show(true);
@@ -1438,6 +1797,38 @@
 
     function el(tag, cls, text) { var e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; }
 
+    // ---- Abas: Cliques / Perguntas ----
+    var qEl = document.getElementById('stats-questions');
+    var sEl = document.getElementById('stats-suggestions');
+    var tabsEl = document.getElementById('stats-tabs');
+    var tab = 'cliques';
+    function applyTab() {
+      tabsEl.querySelectorAll('button').forEach(function (b) { var on = b.getAttribute('data-tab') === tab; b.classList.toggle('on', on); b.setAttribute('aria-selected', on ? 'true' : 'false'); });
+      groupsEl.hidden = tab !== 'cliques';
+      qEl.hidden = tab !== 'perguntas';
+      sEl.hidden = tab !== 'sugestoes';
+      var tl = document.getElementById('stats-tiles');
+      if (tl.dataset.show === '1') tl.hidden = tab !== 'cliques';
+    }
+    tabsEl.addEventListener('click', function (ev) { var b = ev.target.closest('button[data-tab]'); if (!b) return; tab = b.getAttribute('data-tab'); applyTab(); });
+    function renderQuestions(list, emptyText) { renderList(qEl, 'q-count', list, emptyText || 'Nenhuma pergunta enviada ainda nesse período.'); }
+    function renderSuggestions(list, emptyText) { renderList(sEl, 's-count', list, emptyText || 'Nenhuma sugestão de produto enviada ainda nesse período.'); }
+    function renderList(qEl, countId, list, emptyText) {
+      qEl.textContent = '';
+      document.getElementById(countId).textContent = list ? list.length : 0;
+      if (!list || !list.length) { qEl.appendChild(el('p', 'stats-empty', emptyText)); return; }
+      list.slice().sort(function (a, b) { return (b.day || '').localeCompare(a.day || ''); }).forEach(function (it) {
+        var box = el('div', 'qi');
+        box.appendChild(el('p', null, it.text));
+        var meta = el('div', 'meta');
+        meta.appendChild(el('b', null, it.name || 'Anônimo'));
+        if (it.day) { var p = it.day.split('-'); meta.appendChild(el('span', null, p[2] + '/' + p[1] + '/' + p[0])); }
+        if (it.n > 1) meta.appendChild(el('span', null, 'enviada ' + it.n + 'x'));
+        box.appendChild(meta);
+        qEl.appendChild(box);
+      });
+    }
+
     // ---- Site publicado: números vindos da API do GoatCounter ----
     var rangeEl = document.getElementById('stats-range');
     var rangeDays = 0;
@@ -1446,6 +1837,30 @@
     forgetBtn.type = 'button'; forgetBtn.hidden = true; forgetBtn.setAttribute('data-track', 'off');
     document.querySelector('.stats-actions').appendChild(forgetBtn);
     forgetBtn.addEventListener('click', function () { setToken(''); load(); });
+    var shareBtn = el('button', 'btn soft', 'Usar em outros navegadores');
+    shareBtn.type = 'button'; shareBtn.hidden = true; shareBtn.setAttribute('data-track', 'off');
+    document.querySelector('.stats-actions').appendChild(shareBtn);
+    shareBtn.addEventListener('click', async function () {
+      var token = getToken();
+      if (!token) return;
+      if (!sessionPass) { note.textContent = 'Saia e entre de novo com a senha para gerar o código.'; return; }
+      shareBtn.disabled = true; shareBtn.textContent = 'Gerando…';
+      var code = await lockToken(token, sessionPass);
+      shareBtn.disabled = false; shareBtn.textContent = 'Usar em outros navegadores';
+      var old = document.getElementById('lock-card'); if (old) old.remove();
+      var card = el('div', 'gc-card'); card.id = 'lock-card';
+      card.appendChild(el('h3', null, 'Código para outros navegadores'));
+      card.appendChild(el('p', null, 'Este é o seu token trancado com a senha das estatísticas. Sem a senha ele não serve para nada, então pode me mandar com tranquilidade. Depois de publicado, em qualquer navegador basta a senha.'));
+      var box = el('textarea'); box.readOnly = true; box.rows = 3; box.value = code; box.id = 'lock-code'; box.className = 'lock-code';
+      card.appendChild(box);
+      var copy = el('button', 'btn', 'Copiar código'); copy.type = 'button'; copy.setAttribute('data-track', 'off');
+      copy.addEventListener('click', function () {
+        (navigator.clipboard ? navigator.clipboard.writeText(code) : Promise.reject()).then(function () { copy.textContent = 'Copiado!'; }, function () { box.select(); copy.textContent = 'Selecionado: Ctrl+C'; });
+      });
+      card.appendChild(copy);
+      groupsEl.insertBefore(card, groupsEl.firstChild);
+      tab = 'cliques'; applyTab();
+    });
     rangeEl.addEventListener('click', function (ev) {
       var b = ev.target.closest('button[data-days]');
       if (!b) return;
@@ -1468,7 +1883,7 @@
         if (!r.ok) { var err = new Error('HTTP ' + r.status); err.status = r.status; throw err; }
         return r.json();
       }
-      var clicks = {}, pages = {}, seen = [], visits = 0;
+      var clicks = {}, pages = {}, seen = [], visits = 0, questions = [], suggestions = [];
       for (var page = 0; page < 10; page++) {
         var url = base + '/stats/hits?' + q + '&limit=100' + (seen.length ? '&exclude_paths=' + seen.join(',') : '');
         var res = await get(url);
@@ -1477,7 +1892,15 @@
           var n = Number(h.count) || 0;
           if (!n) return;
           var path = String(h.path || '');
-          if (h.event) {
+          var bucket = path.indexOf('pergunta › ') === 0 ? questions : path.indexOf('sugestão › ') === 0 ? suggestions : null;
+          if (h.event && bucket) {
+            var body = path.slice(path.indexOf(' › ') + 3), who = '';
+            var mm = body.match(/^(.*) ‹(.+)›$/);
+            if (mm) { body = mm[1]; who = mm[2]; }
+            var last = '';
+            (h.stats || []).forEach(function (d) { if ((Number(d.daily) || 0) > 0 && d.day > last) last = d.day; });
+            bucket.push({ text: body, name: who, n: n, day: last });
+          } else if (h.event) {
             var key = path.indexOf('clique › ') === 0 ? path.slice(9) : path;
             clicks[key] = (clicks[key] || 0) + n;
           } else {
@@ -1488,10 +1911,11 @@
         });
         if (!res.more) break;
       }
-      return { clicks: clicks, pages: pages, visits: visits };
+      return { clicks: clicks, pages: pages, visits: visits, questions: questions, suggestions: suggestions };
     }
 
     function showConnect(errText) {
+      tab = 'cliques'; applyTab();
       groupsEl.textContent = '';
       when.textContent = 'Conecte o GoatCounter para ver os cliques aqui.';
       note.textContent = '';
@@ -1586,8 +2010,13 @@
       var db = null;
       try { db = window.claude && window.claude.use ? await window.claude.use('db') : null; } catch (e) { db = null; }
       var tiles = document.getElementById('stats-tiles');
+      tiles.dataset.show = '0';
       rangeEl.hidden = true;
+      renderQuestions([], 'As perguntas enviadas pelo FAQ do yoshirovr.com aparecem aqui depois de conectar o GoatCounter.');
+      renderSuggestions([], 'As sugestões enviadas na página de Produtos do yoshirovr.com aparecem aqui depois de conectar o GoatCounter.');
+      setTimeout(applyTab, 0);
       forgetBtn.hidden = true;
+      shareBtn.hidden = true;
       if (!db) {
         if (!gc.dashboard) {
           tiles.hidden = true;
@@ -1600,13 +2029,22 @@
           return;
         }
         var token = getToken();
+        if (!token && GC_TOKEN_LOCKED && sessionPass) {
+          when.textContent = 'Destrancando…';
+          token = await unlockToken(GC_TOKEN_LOCKED, sessionPass);
+          if (token) setToken(token);
+        }
         if (!token) { tiles.hidden = true; showConnect(''); return; }
         tiles.hidden = false;
+        tiles.dataset.show = '1';
         rangeEl.hidden = false;
         forgetBtn.hidden = false;
+        shareBtn.hidden = !!GC_TOKEN_LOCKED;
         try {
           var data = await gcFetch(token, rangeDays);
           render(data.clicks, data.visits, 'Visitas no site', data.pages);
+          renderQuestions(data.questions);
+          renderSuggestions(data.suggestions);
           when.textContent = 'Atualizado às ' + new Date().toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' }) + ' · ' + (rangeDays ? 'últimos ' + rangeDays + ' dias' : 'desde o início');
           note.textContent = 'Números do GoatCounter. Um clique novo pode levar alguns minutos para aparecer aqui.';
         } catch (e) {
@@ -1621,6 +2059,7 @@
         return;
       }
       tiles.hidden = false;
+      tiles.dataset.show = '1';
       try {
         var snap = await db.collection('clicks').get();
         var totals = {}, people = 0;
