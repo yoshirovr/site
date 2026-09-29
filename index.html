@@ -466,12 +466,55 @@
   .btn.many-ghost:hover { background: rgba(234, 246, 255, .08); }
 
   /* ---------- Criadores que já participaram dos vídeos ---------- */
-  .cria-grid { display: flex; flex-wrap: wrap; gap: 10px; }
-  .cria { display: inline-flex; align-items: center; gap: 9px; padding: 4px 14px 4px 4px; border-radius: 999px; background: #fff; border: 1px solid var(--line); text-decoration: none; font-size: 13.5px; font-weight: 600; color: var(--ink); box-shadow: 0 2px 8px rgba(31, 34, 32, .05); transition: transform .18s ease, border-color .18s ease, box-shadow .18s ease; }
-  .cria:hover { transform: translateY(-2px); border-color: #D62976; box-shadow: 0 8px 18px rgba(214, 41, 118, .15); }
-  .cria-av { flex: none; width: 38px; height: 38px; padding: 2px; border-radius: 50%; background: conic-gradient(from 200deg, #FEDA75, #FA7E1E, #D62976, #962FBF, #4F5BD5, #FEDA75); }
-  .cria-av img, .cria-av b { display: grid; place-items: center; width: 100%; height: 100%; border-radius: 50%; border: 2px solid #fff; object-fit: cover; background: var(--fur-1); font-family: var(--display); font-weight: 800; font-size: 14px; color: var(--eye-4); }
-  @media (max-width: 480px) { .cria { font-size: 12.5px; padding-right: 12px; } .cria-av { width: 34px; height: 34px; } }
+  /* ---------- Collabs: carrossel de cards (a "arte" é a foto desfocada + a cor dela) ---------- */
+  .collab-rail { position: relative; }
+  .collab-track { display: flex; gap: 16px; overflow-x: auto; overscroll-behavior-x: contain; scrollbar-width: none; padding: 14px 8px 30px; margin: -14px -8px -30px; -webkit-mask-image: linear-gradient(90deg, transparent, #000 32px, #000 calc(100% - 32px), transparent); mask-image: linear-gradient(90deg, transparent, #000 32px, #000 calc(100% - 32px), transparent); }
+  .collab-track::-webkit-scrollbar { display: none; }
+  .rail-btn { position: absolute; top: 50%; z-index: 5; width: 46px; height: 46px; margin-top: -31px; display: grid; place-items: center; border-radius: 50%; border: 1px solid var(--line); background: #fff; color: var(--ink); box-shadow: 0 8px 22px rgba(31, 34, 32, .16); cursor: pointer; transition: transform .18s ease, background .18s ease, color .18s ease; }
+  .rail-btn:hover { background: var(--ink); color: #fff; transform: scale(1.06); }
+  .rail-btn svg.i { width: 20px; height: 20px; }
+  .rail-btn.prev { left: -22px; }
+  .rail-btn.prev svg { transform: rotate(90deg); }
+  .rail-btn.next { right: -22px; }
+  .rail-btn.next svg { transform: rotate(-90deg); }
+  @media (max-width: 760px) { .rail-btn { width: 40px; height: 40px; margin-top: -28px; } .rail-btn.prev { left: -8px; } .rail-btn.next { right: -8px; } }
+  .collab { --c: var(--bean); position: relative; flex: none; width: 196px; min-height: 236px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px 14px 18px; border-radius: 26px; overflow: hidden; isolation: isolate; color: #fff; background: #15121A; border: 1px solid rgba(255, 255, 255, .1); box-shadow: 0 14px 30px rgba(0, 0, 0, .22); transition: transform .22s ease, box-shadow .22s ease; }
+  .collab:hover { transform: translateY(-4px); box-shadow: 0 18px 36px color-mix(in srgb, var(--c) 35%, rgba(0, 0, 0, .25)); }
+  .collab > .bg { position: absolute; inset: -40%; z-index: -2; width: 180%; height: 180%; max-width: none; object-fit: cover; filter: blur(22px) saturate(1.7) brightness(.9); transition: transform .6s ease; }
+  .collab:hover > .bg { transform: scale(1.1) rotate(4deg); }
+  .collab::before { content: ""; position: absolute; inset: 0; z-index: -1; background: radial-gradient(90% 60% at 50% 32%, color-mix(in srgb, var(--c) 55%, transparent), transparent 70%), linear-gradient(180deg, rgba(10, 8, 14, .05) 0%, rgba(10, 8, 14, .5) 55%, rgba(10, 8, 14, .88) 100%); }
+  .collab::after { content: ""; position: absolute; inset: 0; z-index: 3; pointer-events: none; background: linear-gradient(110deg, transparent 35%, rgba(255, 255, 255, .22) 50%, transparent 65%); transform: translateX(-120%); transition: transform .8s ease; }
+  .collab:hover::after { transform: translateX(120%); }
+  .collab-av { flex: none; width: 96px; height: 96px; padding: 3px; border-radius: 50%; background: conic-gradient(from 200deg, #FEDA75, #FA7E1E, #D62976, #962FBF, #4F5BD5, #FEDA75); box-shadow: 0 0 0 6px color-mix(in srgb, var(--c) 30%, transparent), 0 12px 30px rgba(0, 0, 0, .45); }
+  .collab-av img { display: block; width: 100%; height: 100%; border-radius: 50%; border: 3px solid #15121A; object-fit: cover; background: var(--fur-1); }
+  .collab-name { margin: 14px 0 0; max-width: 100%; font-family: var(--display); font-weight: 800; font-size: 16px; line-height: 1.2; letter-spacing: -.01em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .collab-acts { position: relative; z-index: 4; display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; margin-top: 12px; }
+  .collab-go { display: inline-flex; align-items: center; gap: 6px; padding: 7px 13px; border-radius: 999px; font: 700 13px var(--body); text-decoration: none; cursor: pointer; background: rgba(255, 255, 255, .14); color: #fff; border: 1px solid rgba(255, 255, 255, .22); transition: background .2s ease, color .2s ease; }
+  .collab-go svg.i { width: 15px; height: 15px; }
+  .collab-go:hover, .collab-go:focus-visible { background: #fff; color: #15121A; }
+  .collab-go.vid { background: #fff; color: #15121A; border-color: #fff; }
+  .collab-go.vid:hover, .collab-go.vid:focus-visible { background: color-mix(in srgb, var(--c) 30%, #fff); }
+  /* Janela dos vídeos juntos */
+  html:has(.vid-dlg[open]) { overflow: hidden; }
+  .vid-dlg { width: min(94vw, 780px); max-height: 90vh; padding: 0; border: 0; border-radius: 28px; color: #fff; background: #15121A; box-shadow: 0 30px 80px rgba(0, 0, 0, .5); overflow: hidden; }
+  .vid-dlg[open] { display: flex; flex-direction: column; }
+  .vid-dlg.one { width: min(94vw, 420px); }
+  .vid-dlg::backdrop { background: rgba(10, 8, 14, .62); backdrop-filter: blur(6px); }
+  .vid-head { display: flex; align-items: center; gap: 14px; padding: 16px 18px; background: linear-gradient(120deg, color-mix(in srgb, var(--c, #5C3AB5) 45%, #15121A), #15121A 75%); border-bottom: 1px solid rgba(255, 255, 255, .08); }
+  .vid-head .collab-av { width: 56px; height: 56px; padding: 2px; box-shadow: none; }
+  .vid-head .collab-av img { border-width: 2px; }
+  .vid-head .grow { flex: 1; min-width: 0; }
+  .vid-head .lbl-s { color: rgba(255, 255, 255, .65); }
+  .vid-head h3 { margin: 2px 0 0; font-family: var(--display); font-weight: 800; font-size: 20px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .vid-x { flex: none; width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, .2); background: rgba(255, 255, 255, .08); color: #fff; font-size: 24px; line-height: 1; cursor: pointer; }
+  .vid-x:hover { background: #fff; color: #15121A; }
+  .vid-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); align-items: start; gap: 16px; padding: 18px; overflow-y: auto; }
+  .vid-list blockquote { display: grid; place-items: center; min-height: 220px; margin: 0; padding: 20px; border-radius: 16px; background: #fff; color: #15121A; }
+  .vid-list .instagram-media { min-width: 0 !important; width: 100% !important; margin: 0 !important; border-radius: 16px !important; }
+  .vid-list a { color: var(--eye-4); font-weight: 700; }
+  .vid-list .vid-more { grid-column: 1 / -1; justify-self: center; background: #fff; color: #15121A; }
+  .vid-foot { display: flex; justify-content: center; padding: 0 18px 18px; }
+  .vid-foot .btn { background: #fff; color: #15121A; }
 
   /* ---------- Contato ---------- */
   .band { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
@@ -834,6 +877,8 @@
   <symbol id="paw-line" viewBox="0 0 24 24"><ellipse cx="6" cy="10.2" rx="2" ry="2.7" transform="rotate(-18 6 10.2)"/><ellipse cx="9.9" cy="6" rx="2.1" ry="2.9"/><ellipse cx="14.1" cy="6" rx="2.1" ry="2.9"/><ellipse cx="18" cy="10.2" rx="2" ry="2.7" transform="rotate(18 18 10.2)"/><path d="M12 12c-3.2 0-5.8 2.9-5.8 5.6 0 1.8 1.4 2.9 3.1 2.9 1.1 0 1.7-.6 2.7-.6s1.6.6 2.7.6c1.7 0 3.1-1.1 3.1-2.9 0-2.7-2.6-5.6-5.8-5.6z"/></symbol>
   <symbol id="globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.9 5.6 3.9 9s-1.3 6.4-3.9 9c-2.6-2.6-3.9-5.6-3.9-9S9.4 5.6 12 3z"/></symbol>
   <symbol id="bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.6 10.8c.7.5 1.1 1.3 1.1 2.1V16h5v-.1c0-.8.4-1.6 1.1-2.1A6 6 0 0 0 12 3z"/></symbol>
+  <symbol id="pc" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8.5 20h7M12 16v4"/></symbol>
+  <symbol id="play" viewBox="0 0 24 24"><path d="M8 5.8v12.4a.8.8 0 0 0 1.2.7l9.7-6.2a.8.8 0 0 0 0-1.4L9.2 5.1A.8.8 0 0 0 8 5.8z"/></symbol>
   <symbol id="heart" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.4-7.5-10A4.3 4.3 0 0 1 12 7.4 4.3 4.3 0 0 1 19.5 10c0 5.6-7.5 10-7.5 10z"/></symbol>
 </svg>
 
@@ -1067,6 +1112,17 @@
     </div>
   </section>
 
+  <!-- Janela: vídeos que fizemos juntos (preenchida pelo script) -->
+  <dialog class="vid-dlg" id="vid-dlg" aria-labelledby="vid-t">
+    <div class="vid-head">
+      <span class="collab-av vid-av"><img src="" alt="" width="96" height="96"></span>
+      <div class="grow"><span class="lbl-s">Vídeos juntos</span><h3 id="vid-t">@</h3></div>
+      <button class="vid-x" type="button" aria-label="Fechar" data-track="off">&times;</button>
+    </div>
+    <div class="vid-list" id="vid-list"></div>
+    <div class="vid-foot"><a class="btn" id="vid-profile" href="#" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg><span>Ver perfil</span></a></div>
+  </dialog>
+
   <!-- Criadores que já participaram dos vídeos -->
   <section class="sheet green" id="criadores" aria-labelledby="cria-t" data-area="Criadores">
     <span class="mask m-selo seam-seal s-left" aria-hidden="true"></span>
@@ -1078,37 +1134,191 @@
         </div>
         <p>Criadores de conteúdo que já participaram dos meus vídeos. Passa lá e segue também!</p>
       </div>
-      <div class="cria-grid">
-            <a class="cria" href="https://www.instagram.com/berryvrofc/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/berryvrofc.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@berryvrofc</span></a>
-            <a class="cria" href="https://www.instagram.com/_bevilax_/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/_bevilax_.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@_bevilax_</span></a>
-            <a class="cria" href="https://www.instagram.com/caf3ina0404/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/caf3ina0404.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@caf3ina0404</span></a>
-            <a class="cria" href="https://www.instagram.com/circoroxo/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/circoroxo.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@circoroxo</span></a>
-            <a class="cria" href="https://www.instagram.com/edugamesbr04/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/edugamesbr04.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@edugamesbr04</span></a>
-            <a class="cria" href="https://www.instagram.com/erosvr.lobo/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/erosvr.lobo.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@erosvr.lobo</span></a>
-            <a class="cria" href="https://www.instagram.com/francis_dustchat/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/francis_dustchat.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@francis_dustchat</span></a>
-            <a class="cria" href="https://www.instagram.com/furryluzzy/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/furryluzzy.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@furryluzzy</span></a>
-            <a class="cria" href="https://www.instagram.com/ghoul_uwu/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/ghoul_uwu.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@ghoul_uwu</span></a>
-            <a class="cria" href="https://www.instagram.com/glaux_foxtail/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/glaux_foxtail.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@glaux_foxtail</span></a>
-            <a class="cria" href="https://www.instagram.com/ivofurry/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/ivofurry.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@ivofurry</span></a>
-            <a class="cria" href="https://www.instagram.com/_j.a.u.m_/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/_j.a.u.m_.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@_j.a.u.m_</span></a>
-            <a class="cria" href="https://www.instagram.com/kael_ice_wolf/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/kael_ice_wolf.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@kael_ice_wolf</span></a>
-            <a class="cria" href="https://www.instagram.com/legoshiinvr/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/legoshiinvr.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@legoshiinvr</span></a>
-            <a class="cria" href="https://www.instagram.com/low_lezz/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/low_lezz.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@low_lezz</span></a>
-            <a class="cria" href="https://www.instagram.com/macvisk/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/macvisk.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@macvisk</span></a>
-            <a class="cria" href="https://www.instagram.com/meliora.vrc/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/meliora.vrc.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@meliora.vrc</span></a>
-            <a class="cria" href="https://www.instagram.com/mordekai_vr/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/mordekai_vr.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@mordekai_vr</span></a>
-            <a class="cria" href="https://www.instagram.com/nilonefasto/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/nilonefasto.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@nilonefasto</span></a>
-            <a class="cria" href="https://www.instagram.com/notorio0__/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/notorio0__.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@notorio0__</span></a>
-            <a class="cria" href="https://www.instagram.com/pao_de_queijo_vr1/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/pao_de_queijo_vr1.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@pao_de_queijo_vr1</span></a>
-            <a class="cria" href="https://www.instagram.com/pauromateusu/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/pauromateusu.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@pauromateusu</span></a>
-            <a class="cria" href="https://www.instagram.com/_robsonfoster/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/_robsonfoster.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@_robsonfoster</span></a>
-            <a class="cria" href="https://www.instagram.com/russelvr_/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/russelvr_.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@russelvr_</span></a>
-            <a class="cria" href="https://www.instagram.com/sawvrc/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/sawvrc.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@sawvrc</span></a>
-            <a class="cria" href="https://www.instagram.com/scafflive/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/scafflive.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@scafflive</span></a>
-            <a class="cria" href="https://www.instagram.com/sharkellmad/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/sharkellmad.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@sharkellmad</span></a>
-            <a class="cria" href="https://www.instagram.com/skull_jp07/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/skull_jp07.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@skull_jp07</span></a>
-            <a class="cria" href="https://www.instagram.com/volkovgamer_vr/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/volkovgamer_vr.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@volkovgamer_vr</span></a>
-            <a class="cria" href="https://www.instagram.com/yuianubis/" target="_blank" rel="noopener"><span class="cria-av"><img src="assets/criadores/yuianubis.jpg" alt="" width="96" height="96" loading="lazy"></span><span>@yuianubis</span></a>
+      <div class="collab-rail" id="collab-rail">
+        <button class="rail-btn prev" type="button" aria-label="Voltar" data-track="off"><svg class="i"><use href="#chev"/></svg></button>
+        <div class="collab-track" id="collab-track">
+          <article class="collab" data-handle="pao_de_queijo_vr1" style="--c:#DB7D43">
+            <img class="bg" src="assets/criadores/pao_de_queijo_vr1.jpg" alt="" width="96" height="96" loading="lazy">
+            <span class="collab-av"><img src="assets/criadores/pao_de_queijo_vr1.jpg" alt="" width="96" height="96" loading="lazy"></span>
+            <h3 class="collab-name">@pao_de_queijo_vr1</h3>
+            <div class="collab-acts"><a class="collab-go" href="https://www.instagram.com/pao_de_queijo_vr1/" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg> Perfil</a></div>
+          </article>
+          <article class="collab" data-handle="francis_dustchat" style="--c:#8E7BB0">
+            <img class="bg" src="assets/criadores/francis_dustchat.jpg" alt="" width="96" height="96" loading="lazy">
+            <span class="collab-av"><img src="assets/criadores/francis_dustchat.jpg" alt="" width="96" height="96" loading="lazy"></span>
+            <h3 class="collab-name">@francis_dustchat</h3>
+            <div class="collab-acts"><a class="collab-go" href="https://www.instagram.com/francis_dustchat/" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg> Perfil</a></div>
+          </article>
+          <article class="collab" data-handle="mordekai_vr" style="--c:#DB4345">
+            <img class="bg" src="assets/criadores/mordekai_vr.jpg" alt="" width="96" height="96" loading="lazy">
+            <span class="collab-av"><img src="assets/criadores/mordekai_vr.jpg" alt="" width="96" height="96" loading="lazy"></span>
+            <h3 class="collab-name">@mordekai_vr</h3>
+            <div class="collab-acts"><a class="collab-go" href="https://www.instagram.com/mordekai_vr/" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg> Perfil</a></div>
+          </article>
+          <article class="collab" data-handle="volkovgamer_vr" style="--c:#4387DB">
+            <img class="bg" src="assets/criadores/volkovgamer_vr.jpg" alt="" width="96" height="96" loading="lazy">
+            <span class="collab-av"><img src="assets/criadores/volkovgamer_vr.jpg" alt="" width="96" height="96" loading="lazy"></span>
+            <h3 class="collab-name">@volkovgamer_vr</h3>
+            <div class="collab-acts"><a class="collab-go" href="https://www.instagram.com/volkovgamer_vr/" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg> Perfil</a></div>
+          </article>
+          <article class="collab" data-handle="kael_ice_wolf" style="--c:#43C2DB">
+            <img class="bg" src="assets/criadores/kael_ice_wolf.jpg" alt="" width="96" height="96" loading="lazy">
+            <span class="collab-av"><img src="assets/criadores/kael_ice_wolf.jpg" alt="" width="96" height="96" loading="lazy"></span>
+            <h3 class="collab-name">@kael_ice_wolf</h3>
+            <div class="collab-acts"><a class="collab-go" href="https://www.instagram.com/kael_ice_wolf/" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg> Perfil</a></div>
+          </article>
+          <article class="collab" data-handle="_robsonfoster" style="--c:#DB4387">
+            <img class="bg" src="assets/criadores/_robsonfoster.jpg" alt="" width="96" height="96" loading="lazy">
+            <span class="collab-av"><img src="assets/criadores/_robsonfoster.jpg" alt="" width="96" height="96" loading="lazy"></span>
+            <h3 class="collab-name">@_robsonfoster</h3>
+            <div class="collab-acts"><a class="collab-go" href="https://www.instagram.com/_robsonfoster/" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg> Perfil</a></div>
+          </article>
+          <article class="collab" data-handle="_bevilax_" style="--c:#C9DB43">
+            <img class="bg" src="assets/criadores/_bevilax_.jpg" alt="" width="96" height="96" loading="lazy">
+            <span class="collab-av"><img src="assets/criadores/_bevilax_.jpg" alt="" width="96" height="96" loading="lazy"></span>
+            <h3 class="collab-name">@_bevilax_</h3>
+            <div class="collab-acts"><a class="collab-go" href="https://www.instagram.com/_bevilax_/" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg> Perfil</a></div>
+          </article>
+          <article class="collab" data-handle="erosvr.lobo" style="--c:#DB7A43">
+            <img class="bg" src="assets/criadores/erosvr.lobo.jpg" alt="" width="96" height="96" loading="lazy">
+            <span class="collab-av"><img src="assets/criadores/erosvr.lobo.jpg" alt="" width="96" height="96" loading="lazy"></span>
+            <h3 class="collab-name">@erosvr.lobo</h3>
+            <div class="collab-acts"><a class="collab-go" href="https://www.instagram.com/erosvr.lobo/" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg> Perfil</a></div>
+          </article>
+          <article class="collab" data-handle="ivofurry" style="--c:#43A3DB">
+            <img class="bg" src="assets/criadores/ivofurry.jpg" alt="" width="96" height="96" loading="lazy">
+            <span class="collab-av"><img src="assets/criadores/ivofurry.jpg" alt="" width="96" height="96" loading="lazy"></span>
+            <h3 class="collab-name">@ivofurry</h3>
+            <div class="collab-acts"><a class="collab-go" href="https://www.instagram.com/ivofurry/" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg> Perfil</a></div>
+          </article>
+          <article class="collab" data-handle="circoroxo" style="--c:#7543DB">
+            <img class="bg" src="assets/criadores/circoroxo.jpg" alt="" width="96" height="96" loading="lazy">
+            <span class="collab-av"><img src="assets/criadores/circoroxo.jpg" alt="" width="96" height="96" loading="lazy"></span>
+            <h3 class="collab-name">@circoroxo</h3>
+            <div class="collab-acts"><a class="collab-go" href="https://www.instagram.com/circoroxo/" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg> Perfil</a></div>
+          </article>
+          <article class="collab" data-handle="skull_jp07" style="--c:#4382DB">
+            <img class="bg" src="assets/criadores/skull_jp07.jpg" alt="" width="96" height="96" loading="lazy">
+            <span class="collab-av"><img src="assets/criadores/skull_jp07.jpg" alt="" width="96" height="96" loading="lazy"></span>
+            <h3 class="collab-name">@skull_jp07</h3>
+            <div class="collab-acts"><a class="collab-go" href="https://www.instagram.com/skull_jp07/" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg> Perfil</a></div>
+          </article>
+          <article class="collab" data-handle="nilonefasto" style="--c:#B2DB43">
+            <img class="bg" src="assets/criadores/nilonefasto.jpg" alt="" width="96" height="96" loading="lazy">
+            <span class="collab-av"><img src="assets/criadores/nilonefasto.jpg" alt="" width="96" height="96" loading="lazy"></span>
+            <h3 class="collab-name">@nilonefasto</h3>
+            <div class="collab-acts"><a class="collab-go" href="https://www.instagram.com/nilonefasto/" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg> Perfil</a></div>
+          </article>
+          <article class="collab" data-handle="low_lezz" style="--c:#DB4345">
+            <img class="bg" src="assets/criadores/low_lezz.jpg" alt="" width="96" height="96" loading="lazy">
+            <span class="collab-av"><img src="assets/criadores/low_lezz.jpg" alt="" width="96" height="96" loading="lazy"></span>
+            <h3 class="collab-name">@low_lezz</h3>
+            <div class="collab-acts"><a class="collab-go" href="https://www.instagram.com/low_lezz/" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg> Perfil</a></div>
+          </article>
+          <article class="collab" data-handle="pauromateusu" style="--c:#4385DB">
+            <img class="bg" src="assets/criadores/pauromateusu.jpg" alt="" width="96" height="96" loading="lazy">
+            <span class="collab-av"><img src="assets/criadores/pauromateusu.jpg" alt="" width="96" height="96" loading="lazy"></span>
+            <h3 class="collab-name">@pauromateusu</h3>
+            <div class="collab-acts"><a class="collab-go" href="https://www.instagram.com/pauromateusu/" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg> Perfil</a></div>
+          </article>
+          <article class="collab" data-handle="ghoul_uwu" style="--c:#DB7D43">
+            <img class="bg" src="assets/criadores/ghoul_uwu.jpg" alt="" width="96" height="96" loading="lazy">
+            <span class="collab-av"><img src="assets/criadores/ghoul_uwu.jpg" alt="" width="96" height="96" loading="lazy"></span>
+            <h3 class="collab-name">@ghoul_uwu</h3>
+            <div class="collab-acts"><a class="collab-go" href="https://www.instagram.com/ghoul_uwu/" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg> Perfil</a></div>
+          </article>
+          <article class="collab" data-handle="furryluzzy" style="--c:#4343DB">
+            <img class="bg" src="assets/criadores/furryluzzy.jpg" alt="" width="96" height="96" loading="lazy">
+            <span class="collab-av"><img src="assets/criadores/furryluzzy.jpg" alt="" width="96" height="96" loading="lazy"></span>
+            <h3 class="collab-name">@furryluzzy</h3>
+            <div class="collab-acts"><a class="collab-go" href="https://www.instagram.com/furryluzzy/" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg> Perfil</a></div>
+          </article>
+          <article class="collab" data-handle="edugamesbr04" style="--c:#DB4354">
+            <img class="bg" src="assets/criadores/edugamesbr04.jpg" alt="" width="96" height="96" loading="lazy">
+            <span class="collab-av"><img src="assets/criadores/edugamesbr04.jpg" alt="" width="96" height="96" loading="lazy"></span>
+            <h3 class="collab-name">@edugamesbr04</h3>
+            <div class="collab-acts"><a class="collab-go" href="https://www.instagram.com/edugamesbr04/" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg> Perfil</a></div>
+          </article>
+          <article class="collab" data-handle="_j.a.u.m_" style="--c:#C743DB">
+            <img class="bg" src="assets/criadores/_j.a.u.m_.jpg" alt="" width="96" height="96" loading="lazy">
+            <span class="collab-av"><img src="assets/criadores/_j.a.u.m_.jpg" alt="" width="96" height="96" loading="lazy"></span>
+            <h3 class="collab-name">@_j.a.u.m_</h3>
+            <div class="collab-acts"><a class="collab-go" href="https://www.instagram.com/_j.a.u.m_/" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg> Perfil</a></div>
+          </article>
+          <article class="collab" data-handle="notorio0__" style="--c:#8F43DB">
+            <img class="bg" src="assets/criadores/notorio0__.jpg" alt="" width="96" height="96" loading="lazy">
+            <span class="collab-av"><img src="assets/criadores/notorio0__.jpg" alt="" width="96" height="96" loading="lazy"></span>
+            <h3 class="collab-name">@notorio0__</h3>
+            <div class="collab-acts"><a class="collab-go" href="https://www.instagram.com/notorio0__/" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg> Perfil</a></div>
+          </article>
+          <article class="collab" data-handle="scafflive" style="--c:#DB5743">
+            <img class="bg" src="assets/criadores/scafflive.jpg" alt="" width="96" height="96" loading="lazy">
+            <span class="collab-av"><img src="assets/criadores/scafflive.jpg" alt="" width="96" height="96" loading="lazy"></span>
+            <h3 class="collab-name">@scafflive</h3>
+            <div class="collab-acts"><a class="collab-go" href="https://www.instagram.com/scafflive/" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg> Perfil</a></div>
+          </article>
+          <article class="collab" data-handle="russelvr_" style="--c:#DB8243">
+            <img class="bg" src="assets/criadores/russelvr_.jpg" alt="" width="96" height="96" loading="lazy">
+            <span class="collab-av"><img src="assets/criadores/russelvr_.jpg" alt="" width="96" height="96" loading="lazy"></span>
+            <h3 class="collab-name">@russelvr_</h3>
+            <div class="collab-acts"><a class="collab-go" href="https://www.instagram.com/russelvr_/" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg> Perfil</a></div>
+          </article>
+          <article class="collab" data-handle="yuianubis" style="--c:#DB8243">
+            <img class="bg" src="assets/criadores/yuianubis.jpg" alt="" width="96" height="96" loading="lazy">
+            <span class="collab-av"><img src="assets/criadores/yuianubis.jpg" alt="" width="96" height="96" loading="lazy"></span>
+            <h3 class="collab-name">@yuianubis</h3>
+            <div class="collab-acts"><a class="collab-go" href="https://www.instagram.com/yuianubis/" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg> Perfil</a></div>
+          </article>
+          <article class="collab" data-handle="glaux_foxtail" style="--c:#DB434A">
+            <img class="bg" src="assets/criadores/glaux_foxtail.jpg" alt="" width="96" height="96" loading="lazy">
+            <span class="collab-av"><img src="assets/criadores/glaux_foxtail.jpg" alt="" width="96" height="96" loading="lazy"></span>
+            <h3 class="collab-name">@glaux_foxtail</h3>
+            <div class="collab-acts"><a class="collab-go" href="https://www.instagram.com/glaux_foxtail/" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg> Perfil</a></div>
+          </article>
+          <article class="collab" data-handle="sharkellmad" style="--c:#DB4382">
+            <img class="bg" src="assets/criadores/sharkellmad.jpg" alt="" width="96" height="96" loading="lazy">
+            <span class="collab-av"><img src="assets/criadores/sharkellmad.jpg" alt="" width="96" height="96" loading="lazy"></span>
+            <h3 class="collab-name">@sharkellmad</h3>
+            <div class="collab-acts"><a class="collab-go" href="https://www.instagram.com/sharkellmad/" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg> Perfil</a></div>
+          </article>
+          <article class="collab" data-handle="berryvrofc" style="--c:#DB4D43">
+            <img class="bg" src="assets/criadores/berryvrofc.jpg" alt="" width="96" height="96" loading="lazy">
+            <span class="collab-av"><img src="assets/criadores/berryvrofc.jpg" alt="" width="96" height="96" loading="lazy"></span>
+            <h3 class="collab-name">@berryvrofc</h3>
+            <div class="collab-acts"><a class="collab-go" href="https://www.instagram.com/berryvrofc/" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg> Perfil</a></div>
+          </article>
+          <article class="collab" data-handle="legoshiinvr" style="--c:#8E7BB0">
+            <img class="bg" src="assets/criadores/legoshiinvr.jpg" alt="" width="96" height="96" loading="lazy">
+            <span class="collab-av"><img src="assets/criadores/legoshiinvr.jpg" alt="" width="96" height="96" loading="lazy"></span>
+            <h3 class="collab-name">@legoshiinvr</h3>
+            <div class="collab-acts"><a class="collab-go" href="https://www.instagram.com/legoshiinvr/" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg> Perfil</a></div>
+          </article>
+          <article class="collab" data-handle="sawvrc" style="--c:#DBA843">
+            <img class="bg" src="assets/criadores/sawvrc.jpg" alt="" width="96" height="96" loading="lazy">
+            <span class="collab-av"><img src="assets/criadores/sawvrc.jpg" alt="" width="96" height="96" loading="lazy"></span>
+            <h3 class="collab-name">@sawvrc</h3>
+            <div class="collab-acts"><a class="collab-go" href="https://www.instagram.com/sawvrc/" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg> Perfil</a></div>
+          </article>
+          <article class="collab" data-handle="meliora.vrc" style="--c:#8E7BB0">
+            <img class="bg" src="assets/criadores/meliora.vrc.jpg" alt="" width="96" height="96" loading="lazy">
+            <span class="collab-av"><img src="assets/criadores/meliora.vrc.jpg" alt="" width="96" height="96" loading="lazy"></span>
+            <h3 class="collab-name">@meliora.vrc</h3>
+            <div class="collab-acts"><a class="collab-go" href="https://www.instagram.com/meliora.vrc/" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg> Perfil</a></div>
+          </article>
+          <article class="collab" data-handle="caf3ina0404" style="--c:#DB8543">
+            <img class="bg" src="assets/criadores/caf3ina0404.jpg" alt="" width="96" height="96" loading="lazy">
+            <span class="collab-av"><img src="assets/criadores/caf3ina0404.jpg" alt="" width="96" height="96" loading="lazy"></span>
+            <h3 class="collab-name">@caf3ina0404</h3>
+            <div class="collab-acts"><a class="collab-go" href="https://www.instagram.com/caf3ina0404/" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg> Perfil</a></div>
+          </article>
+          <article class="collab" data-handle="macvisk" style="--c:#5443DB">
+            <img class="bg" src="assets/criadores/macvisk.jpg" alt="" width="96" height="96" loading="lazy">
+            <span class="collab-av"><img src="assets/criadores/macvisk.jpg" alt="" width="96" height="96" loading="lazy"></span>
+            <h3 class="collab-name">@macvisk</h3>
+            <div class="collab-acts"><a class="collab-go" href="https://www.instagram.com/macvisk/" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg> Perfil</a></div>
+          </article>
+        </div>
+        <button class="rail-btn next" type="button" aria-label="Avançar" data-track="off"><svg class="i"><use href="#chev"/></svg></button>
       </div>
     </div>
   </section>
@@ -1229,6 +1439,42 @@
               <div class="g">
                 <span class="lbl-s">Bateria extra</span>
                 <span class="g-name">NEWDERY Neck Power Bank</span>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details class="qa" open>
+          <summary><span class="q-ico"><svg class="i"><use href="#pc"/></svg></span><span class="q">Qual é o seu PC?</span><svg class="i chev"><use href="#chev"/></svg></summary>
+          <div class="a">
+            <div class="gear">
+              <div class="g">
+                <span class="lbl-s">Processador</span>
+                <span class="g-name">AMD Ryzen 7 5700X3D</span>
+                <span class="chip-s">8 núcleos</span>
+              </div>
+              <div class="g">
+                <span class="lbl-s">Placa de vídeo</span>
+                <span class="g-name">NVIDIA GeForce RTX 2080 Ti</span>
+                <span class="chip-s">11 GB</span>
+              </div>
+              <div class="g">
+                <span class="lbl-s">Memória RAM</span>
+                <span class="g-name">Corsair Vengeance 32 GB</span>
+                <span class="chip-s">DDR4 · 2×16 GB</span>
+              </div>
+              <div class="g">
+                <span class="lbl-s">Placa-mãe</span>
+                <span class="g-name">Gigabyte B450 AORUS PRO WIFI</span>
+              </div>
+              <div class="g">
+                <span class="lbl-s">Armazenamento</span>
+                <span class="g-name">3 SSDs + HD</span>
+                <span class="chip-s">≈ 2 TB SSD + 2 TB HD</span>
+              </div>
+              <div class="g">
+                <span class="lbl-s">Sistema</span>
+                <span class="g-name">Windows 11</span>
               </div>
             </div>
           </div>
@@ -1389,14 +1635,13 @@
           <span class="char-jp" lang="ja">彩綾</span>
           <h2 id="ch-aya">Aya</h2>
           <span class="char-role">Esposa da Lore</span>
-          <p>Orelhas longas e caídas, cabelo preto e branco bagunçado, olhos laranja e uma pintinha na testa. Aparece de moletom preto listrado.</p>
+          <p>Orelhas longas e caídas, cabelo preto e branco bagunçado, olhos laranja e marquinhas pretas no lugar das sobrancelhas. Aparece de moletom preto listrado.</p>
           <ul class="char-traits">
             <li>Orelhas longas com a parte de dentro rosada</li>
             <li>Olhos laranja com contorno escuro</li>
-            <li>Pintinha preta na testa</li>
+            <li>Marquinhas pretas das sobrancelhas</li>
           </ul>
           <div class="char-pal" aria-label="Paleta da Aya"><i style="background:#1E1A20"></i><i style="background:#F3EFF4"></i><i style="background:#F28A3A"></i><i style="background:#C9B6D6"></i><i style="background:#E86A8E"></i></div>
-          <blockquote class="char-quote"><span lang="ja">君が笑うなら、僕も幸せだ。</span>“Se você sorri, eu também fico feliz.”</blockquote>
         </div>
       </article>
 
@@ -1555,7 +1800,7 @@
   (function () {
     if (!('IntersectionObserver' in window)) return;
     if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    var sel = '.sheet .head, .socials > *, .extras, .partners > *, .cria-grid, .contact, .support, .products > *, .faq > *, .gate, .shop-hero .wrap > *';
+    var sel = '.sheet .head, .socials > *, .extras, .partners > *, .collab-rail, .contact, .support, .products > *, .faq > *, .gate, .shop-hero .wrap > *';
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (e) {
         if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
@@ -1663,6 +1908,161 @@
     ok: 'Sugestão enviada! Obrigado ✦ Vou levar em conta nos próximos produtos.'
   });
 
+  // ---------- Collabs: carrossel que passa sozinho + janela com os vídeos juntos ----------
+  // Vídeos que fizemos juntos (Reels em collab no Instagram), pelo @ do criador.
+  // Cada código é o que aparece no link: instagram.com/reel/<código>/ — do mais novo para o mais antigo.
+  // Fora da lista: reels cujo embed o Instagram bloqueia (DJpizo_NU3i DT3d5BADd9k DTBcpemiZlb DTTeLSfibd7 DUJfeF8DeCm).
+  // Quem tem pelo menos um código ganha o botão "Vídeos" no card.
+  var COLLAB_VIDEOS = {
+    'pao_de_queijo_vr1': 'Dbde-JEhB0U DaQPCbzBwrp DXhyPhNhKJ8 DWruRUzEfpU DWcJrtOEdeb DUbkk-SD_OT DSvI0MjGCPg DQaE6bVjaZP DPy81cCjszu DPZpcf9jkp8 DMvEBFtt5Xd DMp6a8aNGzU',
+    'francis_dustchat': 'DW9vGJVhM01 DTyUO4sDey1 DSqRge7AfJn DRnUwIlAXuY DOJ4bE2DbFU DMLA1XqtK_q DK9w_G4t9XW DKZt7MoNo9S DJkZNslN_Ds',
+    'mordekai_vr': 'Dcv4V_5FtFC DcBiEJ1BBtX DaQPCbzBwrp DWruRUzEfpU DUEV1rvDd16 DRVTRA9Dcoi DQm85kQjffC DQIDY09jfWi DQC5zIrDdvs DOljYR9DVXK',
+    'volkovgamer_vr': 'DdB585CBHca DbBKOveBQh- DZ29-nRB7Iv DWruRUzEfpU DVedqo7gSvb DUUb9joDV9J DURN10qAb_D DT_MPWpjV1d',
+    'kael_ice_wolf': 'DXuSOJkh3Pm DUbhCaFDXDE DUUb9joDV9J DS8SLTWEXAI DRQJmIvDWtS DQC5zIrDdvs DLm9xKVN-mr',
+    '_robsonfoster': 'DTtKp5gDUEf DToLPBQkcUf DTTf2sAkSwQ DRVTRA9Dcoi DRQJmIvDWtS DP_ssVAjXkb DPCWCm3EbAj',
+    '_bevilax_': 'DdB585CBHca DXhyPhNhKJ8 DWPY16FB6zo DVwfQRClO3R DURN10qAb_D DS3QtCUjzq6',
+    'erosvr.lobo': 'Dbde-JEhB0U DUimKEojTEL DSmvnYaDA86 DLm9xKVN-mr DKkBBKBy6BF DKhfuv7tME3',
+    'ivofurry': 'DU6ahhUEvre DRQJmIvDWtS DRLACpLjXe_ DQm85kQjffC DMp6a8aNGzU DMiL-DSN95i',
+    'circoroxo': 'DWPY16FB6zo DU1UK5uCPh_ DUwARUmiEzf DQU7XEKDTXJ DLm9xKVN-mr',
+    'skull_jp07': 'DURN10qAb_D DTyUO4sDey1 DS3QtCUjzq6',
+    'nilonefasto': 'DdB585CBHca DWZr9vWBdP9 DVPLZXqERlk DRVTRA9Dcoi',
+    'low_lezz': 'DL4_UVmtTCF DLsPx5-sIjm DJm-CiPNXp6 DJkZNslN_Ds',
+    'pauromateusu': 'DX-DnfkN2Bw DWrEbl6BnPz DU6ahhUEvre DUUb9joDV9J',
+    'ghoul_uwu': 'DVW8oM7DDbT DTbMn3ujZjt DSvI0MjGCPg DSTArrDEStv',
+    'furryluzzy': 'DLFOQDtARgF DKJ1nBnAbTh DJ2a3Z4SGvl DJcq6hLNdAA',
+    'edugamesbr04': 'DP_ssVAjXkb DLh0JI3tvJD DLC7hL6sq28 DKMh0XptccX',
+    '_j.a.u.m_': 'Da0SNguBNK- DVYsyk7gEko DPR-sbuDeUG',
+    'notorio0__': 'DUtil7BElOZ DUbkk-SD_OT',
+    'scafflive': 'DWPY16FB6zo',
+    'russelvr_': 'DXhyPhNhKJ8 DWPY16FB6zo',
+    'yuianubis': 'DZ5D7FiBTi2',
+    'sharkellmad': 'DVYsyk7gEko',
+    'berryvrofc': 'DWPY16FB6zo',
+    'legoshiinvr': 'DMEubDpNeFz',
+    'sawvrc': 'DVYsyk7gEko',
+    'meliora.vrc': 'Dbde-JEhB0U',
+    'caf3ina0404': 'DVYsyk7gEko'
+  };
+  (function () {
+    var track = document.getElementById('collab-track');
+    if (!track) return;
+    var rail = track.parentElement;
+    var dlg = document.getElementById('vid-dlg'), list = document.getElementById('vid-list');
+    var cards = [].slice.call(track.children);
+
+    cards.forEach(function (card) {
+      var h = card.getAttribute('data-handle');
+      if (!COLLAB_VIDEOS[h]) return;
+      var b = document.createElement('button');
+      b.type = 'button'; b.className = 'collab-go vid'; b.setAttribute('data-handle', h);
+      b.innerHTML = '<svg class="i"><use href="#play"/></svg> Vídeos';
+      card.querySelector('.collab-acts').appendChild(b);
+    });
+    // Cópia da fileira no fim para dar a volta sem emenda
+    cards.forEach(function (card) {
+      var c = card.cloneNode(true);
+      c.setAttribute('aria-hidden', 'true');
+      c.querySelectorAll('a, button').forEach(function (x) { x.tabIndex = -1; });
+      track.appendChild(c);
+    });
+
+    var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var SPEED = reduce ? 0 : 30; // px por segundo
+    var hover = false, holdUntil = 0, last = 0, pos = 0, visible = true;
+    function half() { return track.scrollWidth / 2; }
+    function hold(ms) { holdUntil = performance.now() + ms; }
+    function tick(t) {
+      var dt = last ? Math.min(64, t - last) : 0; last = t;
+      if (SPEED && !hover && !dlg.open && visible && !document.hidden && t > holdUntil) {
+        if (Math.abs(track.scrollLeft - pos) > 2) pos = track.scrollLeft;
+        pos += SPEED * dt / 1000;
+        if (pos >= half()) pos -= half();
+        track.scrollLeft = pos;
+      } else {
+        pos = track.scrollLeft;
+      }
+      requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+    if ('IntersectionObserver' in window) new IntersectionObserver(function (e) { visible = e[0].isIntersecting; }).observe(rail);
+    rail.addEventListener('mouseenter', function () { hover = true; });
+    rail.addEventListener('mouseleave', function () { hover = false; });
+    ['pointerdown', 'wheel', 'touchstart', 'focusin'].forEach(function (ev) { track.addEventListener(ev, function () { hold(3000); }, { passive: true }); });
+    track.addEventListener('scroll', function () {
+      // Rolagem manual chegando numa ponta: pula para a cópia equivalente (fica igual na tela)
+      if (performance.now() < holdUntil) {
+        if (track.scrollLeft >= half() + 4) track.scrollLeft -= half();
+        else if (track.scrollLeft <= 0) track.scrollLeft += half();
+      }
+    }, { passive: true });
+    function step() { var c = track.children[0]; var w = c.offsetWidth + 16; return Math.max(w, Math.floor(track.clientWidth * .7 / w) * w); }
+    function go(dir) {
+      hold(3500);
+      var s = step();
+      if (dir > 0 && track.scrollLeft + s > half()) track.scrollLeft -= half();
+      if (dir < 0 && track.scrollLeft - s < 0) track.scrollLeft += half();
+      track.scrollBy({ left: dir * s, behavior: reduce ? 'auto' : 'smooth' });
+    }
+    rail.querySelector('.rail-btn.prev').addEventListener('click', function () { go(-1); });
+    rail.querySelector('.rail-btn.next').addEventListener('click', function () { go(1); });
+
+    // Janela com os vídeos (embeds do Instagram)
+    function loadEmbeds() {
+      if (window.instgrm && window.instgrm.Embeds) { window.instgrm.Embeds.process(); return; }
+      if (document.getElementById('ig-embed-js')) return;
+      var s = document.createElement('script');
+      s.id = 'ig-embed-js'; s.async = true; s.src = 'https://www.instagram.com/embed.js';
+      document.body.appendChild(s);
+    }
+    function openVideos(h) {
+      var card = track.querySelector('[data-handle="' + h + '"]');
+      dlg.style.setProperty('--c', card ? card.style.getPropertyValue('--c') : '');
+      dlg.querySelector('.vid-av img').src = 'assets/criadores/' + h + '.jpg';
+      document.getElementById('vid-t').textContent = '@' + h;
+      var n = String(COLLAB_VIDEOS[h] || '').split(/\s+/).filter(Boolean).length;
+      dlg.querySelector('.vid-head .lbl-s').textContent = n === 1 ? '1 vídeo em collab' : n + ' vídeos em collab';
+      dlg.classList.toggle('one', n === 1);
+      var prof = document.getElementById('vid-profile');
+      prof.href = 'https://www.instagram.com/' + h + '/';
+      prof.querySelector('span').textContent = 'Ver perfil de @' + h;
+      list.textContent = '';
+      shown = 0;
+      codes = String(COLLAB_VIDEOS[h] || '').split(/\s+/).filter(Boolean);
+      showMore();
+      dlg.showModal();
+      list.scrollTop = 0;
+    }
+    // Mostra os vídeos de 6 em 6 (cada um é um embed pesado do Instagram)
+    var codes = [], shown = 0, PAGE = 6;
+    function showMore() {
+      var old = list.querySelector('.vid-more'); if (old) old.remove();
+      codes.slice(shown, shown + PAGE).forEach(function (code) {
+        var link = 'https://www.instagram.com/reel/' + code + '/';
+        var bq = document.createElement('blockquote');
+        bq.className = 'instagram-media';
+        bq.setAttribute('data-instgrm-permalink', link + '?utm_source=ig_embed');
+        bq.setAttribute('data-instgrm-version', '14');
+        var a = document.createElement('a');
+        a.href = link; a.target = '_blank'; a.rel = 'noopener'; a.textContent = 'Ver este vídeo no Instagram';
+        bq.appendChild(a);
+        list.appendChild(bq);
+      });
+      shown = Math.min(codes.length, shown + PAGE);
+      if (shown < codes.length) {
+        var more = document.createElement('button');
+        more.type = 'button'; more.className = 'btn vid-more'; more.setAttribute('data-track', 'off');
+        more.textContent = 'Carregar mais vídeos (' + (codes.length - shown) + ')';
+        more.addEventListener('click', showMore);
+        list.appendChild(more);
+      }
+      loadEmbeds();
+    }
+    track.addEventListener('click', function (ev) { var b = ev.target.closest('.collab-go.vid'); if (b) openVideos(b.getAttribute('data-handle')); });
+    dlg.querySelector('.vid-x').addEventListener('click', function () { dlg.close(); });
+    dlg.addEventListener('click', function (ev) { if (ev.target === dlg) dlg.close(); });
+    dlg.addEventListener('close', function () { list.textContent = ''; hold(1500); });
+  })();
+
   // ---------- Contador de cliques ----------
   // Cada pessoa grava a própria contagem em clicks/<id> (um documento por pessoa);
   // a página de estatísticas soma todos. Fora do link publicado não há banco: nada é gravado.
@@ -1677,9 +2077,9 @@
       return clean(el.getAttribute('aria-label') || el.textContent) || el.getAttribute('href') || 'botão';
     }
     function cardOf(el) {
-      var c = el.parentElement && el.parentElement.closest('.partner, .product, .qa, .contact, .soon, .notify, .faq-more, .g, .bjorn');
+      var c = el.parentElement && el.parentElement.closest('.partner, .product, .qa, .contact, .soon, .notify, .faq-more, .g, .bjorn, .collab');
       if (!c) return '';
-      var h = c.querySelector('h3, h2, .g-name');
+      var h = c.querySelector('h3, h2, .g-name, .collab-name');
       if (!h) return '';
       var img = h.querySelector('img');
       return clean(img ? img.alt : h.textContent);
