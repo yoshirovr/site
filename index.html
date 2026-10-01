@@ -496,25 +496,32 @@
   .collab-go.vid:hover, .collab-go.vid:focus-visible { background: color-mix(in srgb, var(--c) 30%, #fff); }
   /* Janela dos vídeos juntos */
   html:has(.vid-dlg[open]) { overflow: hidden; }
-  .vid-dlg { width: min(94vw, 780px); max-height: 90vh; padding: 0; border: 0; border-radius: 28px; color: #fff; background: #15121A; box-shadow: 0 30px 80px rgba(0, 0, 0, .5); overflow: hidden; }
+  .vid-dlg { width: min(94vw, 780px); max-height: 90vh; padding: 0; border: 0; border-radius: 28px; color: var(--ink); background: #fff; box-shadow: 0 30px 80px rgba(0, 0, 0, .35); overflow: hidden; }
   .vid-dlg[open] { display: flex; flex-direction: column; }
   .vid-dlg.one { width: min(94vw, 420px); }
-  .vid-dlg::backdrop { background: rgba(10, 8, 14, .62); backdrop-filter: blur(6px); }
-  .vid-head { display: flex; align-items: center; gap: 14px; padding: 16px 18px; background: linear-gradient(120deg, color-mix(in srgb, var(--c, #5C3AB5) 45%, #15121A), #15121A 75%); border-bottom: 1px solid rgba(255, 255, 255, .08); }
+  .vid-dlg::backdrop { background: rgba(10, 8, 14, .55); backdrop-filter: blur(6px); }
+  .vid-head { display: flex; align-items: center; gap: 14px; padding: 16px 18px; background: linear-gradient(120deg, color-mix(in srgb, var(--c, #5C3AB5) 16%, #fff), #fff 70%); border-bottom: 1px solid var(--line); }
   .vid-head .collab-av { width: 56px; height: 56px; padding: 2px; box-shadow: none; }
-  .vid-head .collab-av img { border-width: 2px; }
+  .vid-head .collab-av img { border: 2px solid #fff; }
   .vid-head .grow { flex: 1; min-width: 0; }
-  .vid-head .lbl-s { color: rgba(255, 255, 255, .65); }
+  .vid-head .lbl-s { color: var(--muted); }
   .vid-head h3 { margin: 2px 0 0; font-family: var(--display); font-weight: 800; font-size: 20px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-  .vid-x { flex: none; width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(255, 255, 255, .2); background: rgba(255, 255, 255, .08); color: #fff; font-size: 24px; line-height: 1; cursor: pointer; }
-  .vid-x:hover { background: #fff; color: #15121A; }
+  .vid-x { flex: none; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); background: #fff; color: var(--ink); font-size: 24px; line-height: 1; cursor: pointer; }
+  .vid-x:hover { background: var(--ink); color: #fff; }
   .vid-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); align-items: start; gap: 16px; padding: 18px; overflow-y: auto; }
-  .vid-list blockquote { display: grid; place-items: center; min-height: 220px; margin: 0; padding: 20px; border-radius: 16px; background: #fff; color: #15121A; }
-  .vid-list .instagram-media { min-width: 0 !important; width: 100% !important; margin: 0 !important; border-radius: 16px !important; }
+  .vid-list blockquote { display: grid; place-items: center; min-height: 220px; margin: 0; padding: 20px; border-radius: 16px; background: #fff; color: var(--ink); border: 1px solid var(--line); }
+  .vid-list .instagram-media { min-width: 0 !important; width: 100% !important; margin: 0 !important; border-radius: 16px !important; border: 1px solid var(--line) !important; box-shadow: none !important; }
   .vid-list a { color: var(--eye-4); font-weight: 700; }
-  .vid-list .vid-more { grid-column: 1 / -1; justify-self: center; background: #fff; color: #15121A; }
+  .vid-card { position: relative; display: block; aspect-ratio: 9 / 16; border-radius: 16px; overflow: hidden; background: #15121A; border: 1px solid var(--line); text-decoration: none; }
+  .vid-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease; }
+  .vid-card:hover img { transform: scale(1.04); }
+  .vid-card .play { position: absolute; inset: 0; display: grid; place-items: center; background: linear-gradient(180deg, transparent 50%, rgba(10, 8, 14, .7)); }
+  .vid-card .play svg { width: 64px; height: 64px; padding: 18px; border-radius: 50%; color: #fff; background: rgba(255, 255, 255, .22); backdrop-filter: blur(6px); }
+  .vid-card .go { position: absolute; left: 50%; bottom: 16px; transform: translateX(-50%); display: inline-flex; align-items: center; gap: 6px; white-space: nowrap; padding: 8px 14px; border-radius: 999px; background: #fff; color: #15121A !important; font-size: 13px; font-weight: 700; }
+  .vid-card .go svg.i { width: 15px; height: 15px; }
+  .vid-list .vid-more { grid-column: 1 / -1; justify-self: center; background: var(--ink); color: #fff; }
   .vid-foot { display: flex; justify-content: center; padding: 0 18px 18px; }
-  .vid-foot .btn { background: #fff; color: #15121A; }
+  .vid-foot .btn { background: var(--ink); color: #fff; }
 
   /* ---------- Contato ---------- */
   .band { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
@@ -586,7 +593,9 @@
   .turma-lbl a:hover { color: var(--ink); }
 
   /* ---------- Página de estatísticas ---------- */
-  .foot-end { display: inline-flex; align-items: center; gap: 12px; }
+  .foot-end { display: inline-flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .foot-legal { color: #C9CECB; text-decoration: none; }
+  .foot-legal:hover, .foot-legal:focus-visible { color: #fff; text-decoration: underline; }
   .stats-link { display: inline-grid; place-items: center; width: 26px; height: 26px; opacity: .14; transition: opacity .2s ease; }
   .stats-link:hover, .stats-link:focus-visible { opacity: .6; }
   .stats-link svg { width: 100%; height: 100%; filter: grayscale(1); }
@@ -1711,7 +1720,7 @@
     <span class="swatches" aria-label="Paleta do Yoshiro">
       <i style="background:#2BE6A8"></i><i style="background:#47C98F"></i><i style="background:#5DFFDB"></i><i style="background:#40CAC5"></i><i style="background:#5C5DE0"></i><i style="background:#5C3AB5"></i><i style="background:#E9E9E9"></i><i style="background:#CACBCA"></i>
     </span>
-    <span class="foot-end">© 2026 · feito com &gt;ω&lt; <a class="stats-link" href="#stats" aria-label="Estatísticas do site" data-track="off"><svg aria-hidden="true"><use href="#paw"/></svg></a></span>
+    <span class="foot-end"><a class="foot-legal" href="privacidade">Privacidade</a><a class="foot-legal" href="termos">Termos</a>© 2026 · feito com &gt;ω&lt; <a class="stats-link" href="#stats" aria-label="Estatísticas do site" data-track="off"><svg aria-hidden="true"><use href="#paw"/></svg></a></span>
   </div>
 </footer>
 
@@ -1911,20 +1920,19 @@
   // ---------- Collabs: carrossel que passa sozinho + janela com os vídeos juntos ----------
   // Vídeos que fizemos juntos (Reels em collab no Instagram), pelo @ do criador.
   // Cada código é o que aparece no link: instagram.com/reel/<código>/ — do mais novo para o mais antigo.
-  // Fora da lista: reels cujo embed o Instagram bloqueia (DJpizo_NU3i DT3d5BADd9k DTBcpemiZlb DTTeLSfibd7 DUJfeF8DeCm).
   // Quem tem pelo menos um código ganha o botão "Vídeos" no card.
   var COLLAB_VIDEOS = {
-    'pao_de_queijo_vr1': 'Dbde-JEhB0U DaQPCbzBwrp DXhyPhNhKJ8 DWruRUzEfpU DWcJrtOEdeb DUbkk-SD_OT DSvI0MjGCPg DQaE6bVjaZP DPy81cCjszu DPZpcf9jkp8 DMvEBFtt5Xd DMp6a8aNGzU',
-    'francis_dustchat': 'DW9vGJVhM01 DTyUO4sDey1 DSqRge7AfJn DRnUwIlAXuY DOJ4bE2DbFU DMLA1XqtK_q DK9w_G4t9XW DKZt7MoNo9S DJkZNslN_Ds',
+    'pao_de_queijo_vr1': 'Dbde-JEhB0U DaQPCbzBwrp DXhyPhNhKJ8 DWruRUzEfpU DWcJrtOEdeb DUbkk-SD_OT DT3d5BADd9k DSvI0MjGCPg DQaE6bVjaZP DPy81cCjszu DPZpcf9jkp8 DMvEBFtt5Xd DMp6a8aNGzU',
+    'francis_dustchat': 'DW9vGJVhM01 DUJfeF8DeCm DT3d5BADd9k DTyUO4sDey1 DTTeLSfibd7 DSqRge7AfJn DRnUwIlAXuY DOJ4bE2DbFU DMLA1XqtK_q DK9w_G4t9XW DKZt7MoNo9S DJkZNslN_Ds',
     'mordekai_vr': 'Dcv4V_5FtFC DcBiEJ1BBtX DaQPCbzBwrp DWruRUzEfpU DUEV1rvDd16 DRVTRA9Dcoi DQm85kQjffC DQIDY09jfWi DQC5zIrDdvs DOljYR9DVXK',
     'volkovgamer_vr': 'DdB585CBHca DbBKOveBQh- DZ29-nRB7Iv DWruRUzEfpU DVedqo7gSvb DUUb9joDV9J DURN10qAb_D DT_MPWpjV1d',
-    'kael_ice_wolf': 'DXuSOJkh3Pm DUbhCaFDXDE DUUb9joDV9J DS8SLTWEXAI DRQJmIvDWtS DQC5zIrDdvs DLm9xKVN-mr',
+    'kael_ice_wolf': 'DXuSOJkh3Pm DUbhCaFDXDE DUUb9joDV9J DT3d5BADd9k DS8SLTWEXAI DRQJmIvDWtS DQC5zIrDdvs DLm9xKVN-mr',
     '_robsonfoster': 'DTtKp5gDUEf DToLPBQkcUf DTTf2sAkSwQ DRVTRA9Dcoi DRQJmIvDWtS DP_ssVAjXkb DPCWCm3EbAj',
-    '_bevilax_': 'DdB585CBHca DXhyPhNhKJ8 DWPY16FB6zo DVwfQRClO3R DURN10qAb_D DS3QtCUjzq6',
-    'erosvr.lobo': 'Dbde-JEhB0U DUimKEojTEL DSmvnYaDA86 DLm9xKVN-mr DKkBBKBy6BF DKhfuv7tME3',
+    '_bevilax_': 'DdB585CBHca DXhyPhNhKJ8 DWPY16FB6zo DVwfQRClO3R DURN10qAb_D DTBcpemiZlb DS3QtCUjzq6',
+    'erosvr.lobo': 'Dbde-JEhB0U DUimKEojTEL DSmvnYaDA86 DLm9xKVN-mr DKkBBKBy6BF DKhfuv7tME3 DJpizo_NU3i',
     'ivofurry': 'DU6ahhUEvre DRQJmIvDWtS DRLACpLjXe_ DQm85kQjffC DMp6a8aNGzU DMiL-DSN95i',
     'circoroxo': 'DWPY16FB6zo DU1UK5uCPh_ DUwARUmiEzf DQU7XEKDTXJ DLm9xKVN-mr',
-    'skull_jp07': 'DURN10qAb_D DTyUO4sDey1 DS3QtCUjzq6',
+    'skull_jp07': 'DURN10qAb_D DTyUO4sDey1 DTBcpemiZlb DS3QtCUjzq6',
     'nilonefasto': 'DdB585CBHca DWZr9vWBdP9 DVPLZXqERlk DRVTRA9Dcoi',
     'low_lezz': 'DL4_UVmtTCF DLsPx5-sIjm DJm-CiPNXp6 DJkZNslN_Ds',
     'pauromateusu': 'DX-DnfkN2Bw DWrEbl6BnPz DU6ahhUEvre DUUb9joDV9J',
@@ -1932,8 +1940,8 @@
     'furryluzzy': 'DLFOQDtARgF DKJ1nBnAbTh DJ2a3Z4SGvl DJcq6hLNdAA',
     'edugamesbr04': 'DP_ssVAjXkb DLh0JI3tvJD DLC7hL6sq28 DKMh0XptccX',
     '_j.a.u.m_': 'Da0SNguBNK- DVYsyk7gEko DPR-sbuDeUG',
-    'notorio0__': 'DUtil7BElOZ DUbkk-SD_OT',
-    'scafflive': 'DWPY16FB6zo',
+    'notorio0__': 'DUtil7BElOZ DUbkk-SD_OT DTBcpemiZlb',
+    'scafflive': 'DWPY16FB6zo DT3d5BADd9k',
     'russelvr_': 'DXhyPhNhKJ8 DWPY16FB6zo',
     'yuianubis': 'DZ5D7FiBTi2',
     'sharkellmad': 'DVYsyk7gEko',
@@ -1941,8 +1949,11 @@
     'legoshiinvr': 'DMEubDpNeFz',
     'sawvrc': 'DVYsyk7gEko',
     'meliora.vrc': 'Dbde-JEhB0U',
-    'caf3ina0404': 'DVYsyk7gEko'
+    'caf3ina0404': 'DVYsyk7gEko',
+    'glaux_foxtail': 'DTBcpemiZlb'
   };
+  // Reels cujo embed o Instagram bloqueia: aparecem com a capa (assets/collabs/<código>.jpg) e um link pro Instagram.
+  var NO_EMBED = ['DJpizo_NU3i', 'DT3d5BADd9k', 'DTBcpemiZlb', 'DTTeLSfibd7', 'DUJfeF8DeCm'];
   (function () {
     var track = document.getElementById('collab-track');
     if (!track) return;
@@ -2020,7 +2031,7 @@
       dlg.querySelector('.vid-av img').src = 'assets/criadores/' + h + '.jpg';
       document.getElementById('vid-t').textContent = '@' + h;
       var n = String(COLLAB_VIDEOS[h] || '').split(/\s+/).filter(Boolean).length;
-      dlg.querySelector('.vid-head .lbl-s').textContent = n === 1 ? '1 vídeo em collab' : n + ' vídeos em collab';
+      dlg.querySelector('.vid-head .lbl-s').textContent = 'Vídeos juntos';
       dlg.classList.toggle('one', n === 1);
       var prof = document.getElementById('vid-profile');
       prof.href = 'https://www.instagram.com/' + h + '/';
@@ -2038,6 +2049,14 @@
       var old = list.querySelector('.vid-more'); if (old) old.remove();
       codes.slice(shown, shown + PAGE).forEach(function (code) {
         var link = 'https://www.instagram.com/reel/' + code + '/';
+        if (NO_EMBED.indexOf(code) >= 0) {
+          // O Instagram não deixa esse vídeo tocar em outros sites: mostra a capa e leva pro Instagram
+          var card = document.createElement('a');
+          card.className = 'vid-card'; card.href = link; card.target = '_blank'; card.rel = 'noopener';
+          card.innerHTML = '<img src="assets/collabs/' + code + '.jpg" alt="Capa do vídeo" loading="lazy"><span class="play"><svg class="i"><use href="#play"/></svg></span><span class="go"><svg class="i"><use href="#ig"/></svg> Assistir no Instagram</span>';
+          list.appendChild(card);
+          return;
+        }
         var bq = document.createElement('blockquote');
         bq.className = 'instagram-media';
         bq.setAttribute('data-instgrm-permalink', link + '?utm_source=ig_embed');
