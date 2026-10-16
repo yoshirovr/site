@@ -538,10 +538,7 @@
   .hw-kicker span, .hw-kicker b { white-space: nowrap; }
   .hw-kicker b { color: #fff; }
   .hw-dot { width: 8px; height: 8px; border-radius: 50%; background: #FF2338; box-shadow: 0 0 10px #FF2338; animation: led 1.4s ease-in-out infinite; }
-  .hw-title { display: flex; align-items: center; flex-wrap: wrap; gap: 0 14px; margin: 4px 0 2px; }
-  .hw-title img { width: auto; height: 62px; filter: drop-shadow(0 4px 14px rgba(255, 35, 56, .45)); }
-  .hw-title span { position: relative; font-family: "Oswald", "Impact", sans-serif; font-weight: 700; font-size: clamp(34px, 4.4vw, 54px); line-height: 1; letter-spacing: .08em; text-transform: uppercase; color: #FF2338; text-shadow: 3px 3px 0 #000, 0 0 26px rgba(255, 35, 56, .65); }
-  .hw-title span::after { content: ""; position: absolute; left: -6%; right: -6%; top: 54%; height: 2px; background: linear-gradient(90deg, transparent, #FFD9DD 20%, #fff 50%, #FFD9DD 80%, transparent); box-shadow: 0 0 10px #FF2338, 0 0 3px #fff; transform: rotate(-2deg); }
+  .hw-title { margin: 6px 0 4px; font-family: var(--display); font-weight: 800; font-size: clamp(30px, 3.8vw, 44px); line-height: 1.05; letter-spacing: -.02em; color: #FF2338; }
   .hw-when { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; font-family: "Oswald", "Impact", sans-serif; font-weight: 600; font-size: 22px; letter-spacing: .04em; }
   .hw-when b { font-weight: 700; color: #fff; }
   .hw-when span { color: #FFB3BB; }
@@ -561,8 +558,30 @@
   @media (max-width: 520px) {
     .hw-promo { gap: 18px; }
     .hw-poster { width: 92px; }
-    .hw-title img { height: 46px; }
     .hw-when { font-size: 19px; }
+  }
+
+  /* Duas faixas de "cena do crime" cruzando a tela inteira logo acima do destaque, invadindo um pouco o card */
+  .hw-tapes { grid-column: 1 / -1; position: relative; z-index: 3; height: 0; pointer-events: none; }
+  .hw-tapes .clip { position: absolute; left: 50%; width: 100vw; translate: -50% 0; top: -150px; height: 260px; overflow: hidden; }
+  .hw-tape { position: absolute; left: -10%; width: 120%; top: 140px; display: flex; overflow: hidden; padding: 9px 0; font-family: "Oswald", "Impact", sans-serif; font-weight: 700; font-size: 20px; line-height: 1; letter-spacing: .14em; text-transform: uppercase; white-space: nowrap; box-shadow: 0 10px 26px rgba(0, 0, 0, .35); }
+  .hw-tape::before, .hw-tape::after { content: ""; position: absolute; left: 0; right: 0; height: 6px; background: repeating-linear-gradient(-45deg, var(--k) 0 10px, transparent 10px 20px); }
+  .hw-tape::before { top: 0; }
+  .hw-tape::after { bottom: 0; }
+  .hw-tape.t-red { --k: #0B0708; background: #FF2338; color: #0B0708; transform: rotate(-3.5deg); }
+  .hw-tape.t-black { --k: #FF2338; background: #0B0708; color: #FF2338; transform: rotate(3deg); text-shadow: 0 0 12px rgba(255, 35, 56, .6); }
+  .hw-tape .run { display: flex; flex: none; padding-top: 3px; animation: tape 38s linear infinite; }
+  .hw-tape.t-black .run { animation-direction: reverse; }
+  .hw-tape .run span { padding-right: 1.1em; }
+  .hw-tape .run span::after { content: "✦"; padding-left: 1.1em; font-size: .7em; vertical-align: .2em; }
+  .hw-tape .run b { font-weight: 700; color: #fff; }
+  .hw-tape.t-red .run b { color: #fff; text-shadow: 1px 1px 0 #0B0708; }
+  @keyframes tape { to { transform: translateX(-50%); } }
+  @media (max-width: 560px) {
+    .hw-tape { top: 144px; font-size: 15px; padding: 7px 0; }
+    .hw-tape::before, .hw-tape::after { height: 5px; }
+    .hw-tape.t-red { transform: rotate(-8deg); }
+    .hw-tape.t-black { transform: rotate(7deg); }
   }
 
   /* Concurso no card do MANY: faixa de "cena do crime" + título do pôster */
@@ -1030,6 +1049,14 @@
         <span class="spark s4" aria-hidden="true">✦</span>
       </div>
 
+      <!-- Faixas de Halloween cruzando o site logo acima do destaque (temporário; o texto é repetido pelo script) -->
+      <div class="hw-tapes" data-until="2026-11-01T06:00:00-03:00" aria-hidden="true">
+        <div class="clip">
+          <div class="hw-tape t-red"><div class="run"><span><b>Halloween</b> Many 31/10</span></div></div>
+          <div class="hw-tape t-black"><div class="run"><span><b>Halloween</b> Many 31/10</span></div></div>
+        </div>
+      </div>
+
       <!-- Destaque temporário: festa de Halloween do MANY (some sozinho depois da festa) -->
       <aside class="hw-promo" data-until="2026-11-01T06:00:00-03:00" aria-labelledby="hw-t">
         <button class="hw-poster" type="button" data-gallery="poster" aria-label="Ver o pôster da festa">
@@ -1037,7 +1064,7 @@
         </button>
         <div class="hw-info">
           <span class="hw-kicker"><i class="hw-dot" aria-hidden="true"></i><span>Festa do MANY</span> <b class="hw-count"></b></span>
-          <h2 class="hw-title" id="hw-t"><img src="assets/many-halloween/many-sangue.webp" alt="Many" width="520" height="327"><span>Halloween</span></h2>
+          <h2 class="hw-title" id="hw-t">Many Halloween</h2>
           <p class="hw-when"><b>31 OUT</b><span>21h BR · 00h PT</span></p>
           <p class="hw-djs">DJs <b>Aurora</b> &amp; <b>Vortex</b> · sorteio de <b>VRC+</b> durante o evento</p>
         </div>
@@ -2216,6 +2243,13 @@
       var left = Math.round((Date.parse('2026-10-31') - day(now)) / 864e5);
       count.textContent = left > 1 ? '· faltam ' + left + ' dias' : left === 1 ? '· é amanhã!' : '· é hoje!';
     }
+
+    // Repete o texto das faixas até cobrir a tela duas vezes (a animação anda metade e recomeça sem emenda)
+    [].forEach.call(document.querySelectorAll('.hw-tape .run'), function (run) {
+      var one = run.innerHTML, n = 0;
+      while (run.scrollWidth < window.innerWidth * 1.3 && n++ < 40) run.innerHTML += one;
+      run.innerHTML += run.innerHTML;
+    });
 
     var dlg = document.getElementById('hw-dlg');
     if (!dlg) return;
