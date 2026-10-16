@@ -28,7 +28,7 @@
 <meta name="twitter:image" content="https://yoshirovr.com/assets/og-image.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,600;0,700;0,800;1,800&family=Onest:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Gloock&family=DynaPuff:wght@500;600&family=Pacifico&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;0,600;0,700;0,800;1,800&family=Onest:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Gloock&family=DynaPuff:wght@500;600&family=Pacifico&family=Oswald:wght@600;700&display=swap">
 <style>
   /* Paleta oficial do Yoshiro (ficha de identidade)
      Verde oficial (beans) #2be6a8 · detalhes #47c98f
@@ -520,6 +520,89 @@
   .vid-foot { display: flex; justify-content: center; padding: 0 18px 18px; }
   .vid-foot .btn { background: var(--ink); color: #fff; }
 
+  /* ---------- Many Halloween (temporário: some sozinho depois da festa, ver data-until) ---------- */
+  /* Visual do pôster: preto, vermelho-sangue #FF2338, letras condensadas e um risco brilhante */
+  .hw-promo { grid-column: 1 / -1; position: relative; z-index: 2; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 22px 28px; margin-top: 6px; padding: 22px 28px 22px 22px; border-radius: 28px; color: #F4ECE6; overflow: hidden; isolation: isolate;
+    background:
+      repeating-linear-gradient(104deg, transparent 0 46px, rgba(255, 255, 255, .025) 46px 47px),
+      radial-gradient(520px 260px at 22% 0%, rgba(255, 35, 56, .32), transparent 70%),
+      radial-gradient(420px 260px at 100% 100%, rgba(120, 0, 20, .55), transparent 70%),
+      #0B0708;
+    border: 1px solid rgba(255, 35, 56, .35); box-shadow: 0 22px 50px rgba(120, 0, 20, .35), 0 0 0 6px rgba(255, 35, 56, .06);
+    animation: in-up .7s cubic-bezier(.2, .8, .2, 1) .85s backwards; }
+  .hw-poster { position: relative; display: block; width: 128px; padding: 0; border: 0; border-radius: 10px; background: none; cursor: zoom-in; transform: rotate(-4deg); box-shadow: 0 16px 34px rgba(0, 0, 0, .6), 0 0 0 3px rgba(255, 255, 255, .9); transition: transform .25s ease; }
+  .hw-poster:hover { transform: rotate(-1deg) scale(1.04); }
+  .hw-poster img { display: block; width: 100%; height: auto; border-radius: 10px; }
+  .hw-poster::after { content: "ver pôster"; position: absolute; left: 50%; bottom: -12px; translate: -50% 0; padding: 3px 10px; border-radius: 999px; background: #FF2338; color: #fff; font: 700 11px var(--body); white-space: nowrap; transform: rotate(4deg); }
+  .hw-kicker { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 8px; font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #FFB3BB; }
+  .hw-kicker span, .hw-kicker b { white-space: nowrap; }
+  .hw-kicker b { color: #fff; }
+  .hw-dot { width: 8px; height: 8px; border-radius: 50%; background: #FF2338; box-shadow: 0 0 10px #FF2338; animation: led 1.4s ease-in-out infinite; }
+  .hw-title { display: flex; align-items: center; flex-wrap: wrap; gap: 0 14px; margin: 4px 0 2px; }
+  .hw-title img { width: auto; height: 62px; filter: drop-shadow(0 4px 14px rgba(255, 35, 56, .45)); }
+  .hw-title span { position: relative; font-family: "Oswald", "Impact", sans-serif; font-weight: 700; font-size: clamp(34px, 4.4vw, 54px); line-height: 1; letter-spacing: .08em; text-transform: uppercase; color: #FF2338; text-shadow: 3px 3px 0 #000, 0 0 26px rgba(255, 35, 56, .65); }
+  .hw-title span::after { content: ""; position: absolute; left: -6%; right: -6%; top: 54%; height: 2px; background: linear-gradient(90deg, transparent, #FFD9DD 20%, #fff 50%, #FFD9DD 80%, transparent); box-shadow: 0 0 10px #FF2338, 0 0 3px #fff; transform: rotate(-2deg); }
+  .hw-when { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; font-family: "Oswald", "Impact", sans-serif; font-weight: 600; font-size: 22px; letter-spacing: .04em; }
+  .hw-when b { font-weight: 700; color: #fff; }
+  .hw-when span { color: #FFB3BB; }
+  .hw-djs { font-size: 14px; color: #CDBFC2; }
+  .hw-djs b { color: #fff; }
+  .hw-acts { display: flex; flex-direction: column; align-items: stretch; gap: 8px; }
+  .hw-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 11px 18px; border-radius: 999px; font: 700 14px var(--body); text-decoration: none; white-space: nowrap; cursor: pointer; color: #fff; background: rgba(255, 255, 255, .07); border: 1px solid rgba(255, 255, 255, .22); transition: transform .18s ease, background .18s ease; }
+  .hw-btn:hover { transform: translateY(-2px); background: rgba(255, 255, 255, .14); }
+  .hw-btn svg.i { width: 18px; height: 18px; }
+  .hw-btn.red { background: #FF2338; border-color: #FF2338; box-shadow: 0 8px 22px rgba(255, 35, 56, .4); }
+  .hw-btn.red:hover { background: #FF4558; }
+  @media (max-width: 860px) {
+    .hw-promo { grid-template-columns: auto 1fr; padding: 20px; }
+    .hw-acts { grid-column: 1 / -1; flex-direction: row; flex-wrap: wrap; }
+    .hw-acts .hw-btn { flex: 1 1 auto; }
+  }
+  @media (max-width: 520px) {
+    .hw-promo { gap: 18px; }
+    .hw-poster { width: 92px; }
+    .hw-title img { height: 46px; }
+    .hw-when { font-size: 19px; }
+  }
+
+  /* Concurso no card do MANY: faixa de "cena do crime" + título do pôster */
+  .hw-contest { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 8px; width: 100%; margin-top: 4px; padding: 22px 16px 14px; border: 1px solid rgba(255, 35, 56, .45); border-radius: 20px; cursor: pointer; overflow: hidden; color: #F4ECE6; font: inherit;
+    background: radial-gradient(300px 140px at 50% 40%, rgba(255, 35, 56, .28), transparent 70%), #0B0708; box-shadow: 0 0 0 4px rgba(255, 35, 56, .08); transition: transform .2s ease, box-shadow .2s ease; }
+  .hw-contest::before { content: ""; position: absolute; inset: 0 0 auto; height: 9px; background: repeating-linear-gradient(-45deg, #FF2338 0 10px, #0B0708 10px 20px); }
+  .hw-contest:hover { transform: translateY(-3px); box-shadow: 0 0 0 4px rgba(255, 35, 56, .2), 0 16px 34px rgba(255, 35, 56, .3); }
+  .hw-contest img { width: min(100%, 330px); height: auto; }
+  .hw-contest-tag { position: absolute; top: 16px; right: 12px; padding: 2px 9px; border-radius: 999px; background: #FF2338; color: #fff; font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; transform: rotate(4deg); }
+  .hw-contest-go { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; font-size: 14px; }
+  .hw-contest-go svg.i { width: 16px; height: 16px; transition: transform .2s ease; }
+  .hw-contest:hover .hw-contest-go svg.i { transform: translateX(3px); }
+
+  /* Janela com as artes (carrossel) */
+  html:has(.hw-dlg[open]) { overflow: hidden; }
+  .hw-dlg { --ar: .8; --h: min(calc(92vh - 130px), 900px); width: min(94vw, calc(var(--h) * var(--ar))); max-height: 94vh; padding: 0; border: 1px solid rgba(255, 35, 56, .35); border-radius: 24px; color: #F4ECE6; background: #0B0708; box-shadow: 0 30px 80px rgba(0, 0, 0, .6); overflow: hidden; }
+  .hw-dlg[open] { display: flex; flex-direction: column; }
+  .hw-dlg::backdrop { background: rgba(8, 2, 4, .78); backdrop-filter: blur(6px); }
+  .hw-dlg-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 12px 12px 18px; }
+  .hw-dlg-head h3 { font-family: "Oswald", "Impact", sans-serif; font-weight: 700; font-size: 18px; letter-spacing: .06em; text-transform: uppercase; color: #FF2338; }
+  .hw-dlg .vid-x { border-color: rgba(255, 255, 255, .2); background: rgba(255, 255, 255, .06); color: #fff; }
+  .hw-dlg .vid-x:hover { background: #fff; color: #0B0708; }
+  .hw-stage { position: relative; }
+  .hw-slides { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; }
+  .hw-slides::-webkit-scrollbar { display: none; }
+  .hw-slides img { flex: none; width: 100%; height: auto; aspect-ratio: var(--ar); object-fit: cover; scroll-snap-align: center; display: block; background: #000; }
+  .hw-nav { position: absolute; top: 50%; width: 42px; height: 42px; margin-top: -21px; display: grid; place-items: center; border-radius: 50%; border: 1px solid rgba(255, 255, 255, .25); background: rgba(11, 7, 8, .7); color: #fff; cursor: pointer; backdrop-filter: blur(4px); }
+  .hw-nav:hover { background: #FF2338; border-color: #FF2338; }
+  .hw-nav[disabled] { opacity: 0; pointer-events: none; }
+  .hw-nav svg.i { width: 20px; height: 20px; }
+  .hw-nav.prev { left: 10px; }
+  .hw-nav.prev svg { transform: rotate(90deg); }
+  .hw-nav.next { right: 10px; }
+  .hw-nav.next svg { transform: rotate(-90deg); }
+  .hw-dots { display: flex; justify-content: center; gap: 8px; padding: 12px 0 0; }
+  .hw-dots:empty { display: none; }
+  .hw-dots button { width: 9px; height: 9px; padding: 0; border: 0; border-radius: 999px; background: rgba(255, 255, 255, .3); cursor: pointer; transition: width .2s ease, background .2s ease; }
+  .hw-dots button[aria-current="true"] { width: 26px; background: #FF2338; }
+  .hw-foot { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; padding: 12px 16px 16px; }
+
   /* ---------- Contato ---------- */
   .band { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
   .contact { display: flex; flex-direction: column; gap: 14px; padding: 32px; border-radius: 32px; background: var(--surface); border: 1px solid var(--line); box-shadow: var(--shadow); }
@@ -946,6 +1029,24 @@
         <span class="spark s3" aria-hidden="true">✦</span>
         <span class="spark s4" aria-hidden="true">✦</span>
       </div>
+
+      <!-- Destaque temporário: festa de Halloween do MANY (some sozinho depois da festa) -->
+      <aside class="hw-promo" data-until="2026-11-01T06:00:00-03:00" aria-labelledby="hw-t">
+        <button class="hw-poster" type="button" data-gallery="poster" aria-label="Ver o pôster da festa">
+          <img src="assets/many-halloween/poster-thumb.webp" alt="Pôster da festa Many Halloween" width="360" height="540">
+        </button>
+        <div class="hw-info">
+          <span class="hw-kicker"><i class="hw-dot" aria-hidden="true"></i><span>Festa do MANY</span> <b class="hw-count"></b></span>
+          <h2 class="hw-title" id="hw-t"><img src="assets/many-halloween/many-sangue.webp" alt="Many" width="520" height="327"><span>Halloween</span></h2>
+          <p class="hw-when"><b>31 OUT</b><span>21h BR · 00h PT</span></p>
+          <p class="hw-djs">DJs <b>Aurora</b> &amp; <b>Vortex</b> · sorteio de <b>VRC+</b> durante o evento</p>
+        </div>
+        <div class="hw-acts">
+          <a class="hw-btn red" href="https://vrc.group/MANYML.6219" target="_blank" rel="noopener">Entrar no grupo <svg class="i"><use href="#arrow"/></svg></a>
+          <button class="hw-btn" type="button" data-gallery="concurso">Concurso de avatar</button>
+          <a class="hw-btn" href="https://discord.gg/SP55mVVV5j" target="_blank" rel="noopener"><svg class="i"><use href="#dc"/></svg> Discord</a>
+        </div>
+      </aside>
     </div>
   </header>
 
@@ -1112,7 +1213,13 @@
           <div class="actions">
             <a class="btn many" href="https://vrc.group/MANYML.6219" target="_blank" rel="noopener">Entrar no grupo do <b>VRChat</b> <svg class="i"><use href="#arrow"/></svg></a>
             <a class="btn many-ghost" href="https://www.instagram.com/manyml.6219/" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg> @manyml.6219</a>
+            <a class="btn many-ghost" href="https://discord.gg/SP55mVVV5j" target="_blank" rel="noopener"><svg class="i"><use href="#dc"/></svg> Discord</a>
           </div>
+          <button class="hw-contest" type="button" data-gallery="concurso" data-until="2026-11-01T06:00:00-03:00">
+            <span class="hw-contest-tag">até 30/10</span>
+            <img src="assets/many-halloween/titulo-concurso.webp" alt="Concurso de avatar Halloween" width="640" height="206">
+            <span class="hw-contest-go">Ver como participar e os prêmios <svg class="i"><use href="#arrow"/></svg></span>
+          </button>
         </article>
       </div>
     </div>
@@ -1127,6 +1234,21 @@
     </div>
     <div class="vid-list" id="vid-list"></div>
     <div class="vid-foot"><a class="btn" id="vid-profile" href="#" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg><span>Ver perfil</span></a></div>
+  </dialog>
+
+  <!-- Janela: artes do Halloween do MANY (preenchida pelo script) -->
+  <dialog class="hw-dlg" id="hw-dlg" aria-labelledby="hw-dlg-t">
+    <div class="hw-dlg-head">
+      <h3 id="hw-dlg-t"></h3>
+      <button class="vid-x" type="button" aria-label="Fechar" data-track="off">&times;</button>
+    </div>
+    <div class="hw-stage">
+      <div class="hw-slides" id="hw-slides"></div>
+      <button class="hw-nav prev" type="button" aria-label="Imagem anterior" data-track="off"><svg class="i"><use href="#chev"/></svg></button>
+      <button class="hw-nav next" type="button" aria-label="Próxima imagem" data-track="off"><svg class="i"><use href="#chev"/></svg></button>
+    </div>
+    <div class="hw-dots" id="hw-dots"></div>
+    <div class="hw-foot" id="hw-foot"></div>
   </dialog>
 
   <!-- Criadores que já participaram dos vídeos -->
@@ -2077,6 +2199,90 @@
     dlg.querySelector('.vid-x').addEventListener('click', function () { dlg.close(); });
     dlg.addEventListener('click', function (ev) { if (ev.target === dlg) dlg.close(); });
     dlg.addEventListener('close', function () { list.textContent = ''; hold(1500); });
+  })();
+
+  // ---------- Many Halloween (temporário) ----------
+  // Tudo com data-until some sozinho depois dessa hora; quando a festa passar, dá pra apagar este bloco.
+  (function () {
+    var now = Date.now();
+    [].slice.call(document.querySelectorAll('[data-until]')).forEach(function (el) {
+      if (now > Date.parse(el.getAttribute('data-until'))) el.remove();
+    });
+
+    // "faltam X dias" / "é hoje!" contando no horário de Brasília
+    var count = document.querySelector('.hw-count');
+    if (count) {
+      var day = function (t) { return Date.parse(new Date(t).toLocaleDateString('en-CA', { timeZone: 'America/Sao_Paulo' })); };
+      var left = Math.round((Date.parse('2026-10-31') - day(now)) / 864e5);
+      count.textContent = left > 1 ? '· faltam ' + left + ' dias' : left === 1 ? '· é amanhã!' : '· é hoje!';
+    }
+
+    var dlg = document.getElementById('hw-dlg');
+    if (!dlg) return;
+    var DISCORD = 'https://discord.gg/SP55mVVV5j', GROUP = 'https://vrc.group/MANYML.6219';
+    var SETS = {
+      concurso: { title: 'Concurso de avatar', ar: '4 / 5', imgs: [
+        ['concurso-1', 'Concurso de avatar Halloween: mostre seu avatar mais assustador e concorra a prêmios. Envie foto ou vídeo até 30/10.'],
+        ['concurso-2', 'Como participar: 1. Monte seu melhor avatar de Halloween no VRChat. 2. Tire uma foto ou grave um vídeo de até 1 minuto dele. 3. Envie no canal indicado do Discord até 30/10. 4. O avatar tem que ser seu (privado) e no tema Halloween. A apresentação também conta.'],
+        ['concurso-3', 'Prêmios: 1º lugar 20 euros, 2º lugar VRC+. Prêmio secreto: depois da festa, no mundo do Milo, tem um sticker escondido; quem achar ganha VRC+. Quem decide é o júri da organização Many, com resultado ao vivo na festa em 31/10.']
+      ], foot: [['red', DISCORD, 'Enviar no Discord', 'dc']] },
+      poster: { title: 'Many Halloween · 31/10', ar: '2 / 3', imgs: [
+        ['poster', 'Pôster da festa Many Halloween: DJs Aurora e Vortex, 31 de outubro, 21h no Brasil, sorteio de VRC+ durante o evento.']
+      ], foot: [['red', GROUP, 'Entrar no grupo', 'arrow'], ['', DISCORD, 'Discord', 'dc']] }
+    };
+    var slides = document.getElementById('hw-slides'), dots = document.getElementById('hw-dots'), foot = document.getElementById('hw-foot');
+    var prev = dlg.querySelector('.hw-nav.prev'), next = dlg.querySelector('.hw-nav.next');
+
+    function current() { return Math.round(slides.scrollLeft / Math.max(1, slides.clientWidth)); }
+    function sync() {
+      var i = current(), n = slides.children.length;
+      [].forEach.call(dots.children, function (d, k) { d.setAttribute('aria-current', k === i ? 'true' : 'false'); });
+      prev.disabled = i <= 0; next.disabled = i >= n - 1;
+    }
+    function go(i) { slides.scrollTo({ left: i * slides.clientWidth, behavior: 'smooth' }); }
+
+    function open(key) {
+      var set = SETS[key]; if (!set) return;
+      dlg.style.setProperty('--ar', set.ar);
+      document.getElementById('hw-dlg-t').textContent = set.title;
+      slides.textContent = ''; dots.textContent = ''; foot.textContent = '';
+      set.imgs.forEach(function (im, k) {
+        var img = document.createElement('img');
+        img.src = 'assets/many-halloween/' + im[0] + '.webp'; img.alt = im[1];
+        if (k) img.loading = 'lazy';
+        slides.appendChild(img);
+        if (set.imgs.length > 1) {
+          var d = document.createElement('button');
+          d.type = 'button'; d.setAttribute('aria-label', 'Imagem ' + (k + 1)); d.setAttribute('data-track', 'off');
+          d.addEventListener('click', function () { go(k); });
+          dots.appendChild(d);
+        }
+      });
+      set.foot.forEach(function (b) {
+        var a = document.createElement('a');
+        a.className = 'hw-btn ' + b[0]; a.href = b[1]; a.target = '_blank'; a.rel = 'noopener';
+        var ico = '<svg class="i"><use href="#' + b[3] + '"/></svg>';
+        a.innerHTML = b[3] === 'arrow' ? b[2] + ' ' + ico : ico + ' ' + b[2];
+        foot.appendChild(a);
+      });
+      dlg.showModal();
+      slides.scrollLeft = 0;
+      sync();
+    }
+
+    document.addEventListener('click', function (ev) {
+      var b = ev.target.closest('[data-gallery]');
+      if (b) open(b.getAttribute('data-gallery'));
+    });
+    prev.addEventListener('click', function () { go(current() - 1); });
+    next.addEventListener('click', function () { go(current() + 1); });
+    slides.addEventListener('scroll', sync, { passive: true });
+    dlg.addEventListener('keydown', function (ev) {
+      if (ev.key === 'ArrowRight') { ev.preventDefault(); go(current() + 1); }
+      if (ev.key === 'ArrowLeft') { ev.preventDefault(); go(current() - 1); }
+    });
+    dlg.querySelector('.vid-x').addEventListener('click', function () { dlg.close(); });
+    dlg.addEventListener('click', function (ev) { if (ev.target === dlg) dlg.close(); });
   })();
 
   // ---------- Contador de cliques ----------
