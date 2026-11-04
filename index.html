@@ -238,7 +238,7 @@
   .sheet.dark .wolf-mark { color: var(--bean); opacity: .07; }
 
   .socials { display: grid; grid-template-columns: repeat(12, 1fr); gap: 12px; }
-  .ig { grid-column: span 7; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 18px; padding: 20px 22px; border-radius: 26px; background: var(--bean); color: var(--ink); text-decoration: none; transition: transform .18s ease; }
+  .ig { grid-column: 1 / -1; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 18px; padding: 20px 22px; border-radius: 26px; background: var(--bean); color: var(--ink); text-decoration: none; transition: transform .18s ease; }
   .ig:hover { transform: translateY(-3px); }
   .ig .mark { width: 60px; height: 60px; border-radius: 18px; display: grid; place-items: center; background: var(--ink); color: var(--bean); }
   .ig .mark svg.i { width: 32px; height: 32px; }
@@ -246,24 +246,6 @@
   .ig h3 { font-family: var(--display); font-weight: 800; font-size: 24px; line-height: 1.1; letter-spacing: -.02em; }
   .ig .handle { font-family: var(--mono); font-weight: 700; font-size: 13px; }
   .ig .btn { background: var(--ink); color: #fff; }
-
-  /* Bjorn: rede do namorado, focada no roxo */
-  .bjorn { grid-column: span 5; display: grid; grid-template-columns: auto 1fr; align-items: center; gap: 16px; padding: 16px 20px 16px 16px; border-radius: 26px; text-decoration: none; color: #fff;
-    background: linear-gradient(110deg, var(--eye-4), var(--eye-3)); box-shadow: 0 14px 34px rgba(92, 58, 181, .35); transition: transform .18s ease; }
-  .bjorn:hover { transform: translateY(-3px); }
-  .bjorn-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 10px; }
-  .bjorn-actions .bj-btn { white-space: nowrap; }
-  .bj-btn { display: inline-flex; align-items: center; gap: 6px; padding: 7px 13px; border-radius: 999px; background: #fff; color: var(--eye-4); font-weight: 700; font-size: 13px; text-decoration: none; border: 1px solid transparent; transition: transform .18s ease, background .18s ease; }
-  .bj-btn:hover { transform: translateY(-2px); }
-  .bj-btn.ghost { background: rgba(255, 255, 255, .14); color: #fff; border-color: rgba(255, 255, 255, .4); }
-  .bj-btn.ghost:hover { background: rgba(255, 255, 255, .24); }
-  .bj-btn svg.i { width: 16px; height: 16px; }
-  .bjorn img { width: 68px; height: 68px; border-radius: 50%; object-fit: cover; border: 3px solid rgba(255, 255, 255, .85); box-shadow: 0 0 0 3px rgba(190, 120, 255, .45), 0 0 24px rgba(190, 120, 255, .55); }
-  .bjorn .badge { display: inline-flex; align-items: center; gap: 6px; font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; background: rgba(255, 255, 255, .16); padding: 3px 9px; border-radius: 999px; margin-bottom: 4px; }
-  .bjorn .badge svg.i { width: 12px; height: 12px; stroke-width: 2.4; }
-  .bjorn h3 { font-family: var(--display); font-weight: 800; font-size: 22px; line-height: 1.1; letter-spacing: -.02em; }
-  .bjorn p { font-size: 13px; opacity: .9; }
-  .bjorn p b { font-family: var(--mono); }
 
   .net { grid-column: span 3; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 14px; padding: 14px 16px 14px 14px; border-radius: 22px; background: rgba(255, 255, 255, .06); border: 1px solid rgba(255, 255, 255, .1); text-decoration: none; color: #F2F5F3; transition: background .18s ease, border-color .18s ease; }
   .net:hover { background: rgba(255, 255, 255, .1); border-color: var(--bean); }
@@ -283,7 +265,6 @@
   .pill span { font-family: var(--mono); font-size: 12px; color: #A9B1AD; }
 
   @media (max-width: 900px) {
-    .ig, .bjorn { grid-column: 1 / -1; }
     .net { grid-column: span 6; grid-template-columns: auto 1fr; justify-items: start; gap: 12px; }
     .net .go { display: none; }
   }
@@ -872,7 +853,7 @@
     .soon, .notify { padding: 22px; }
   }
 
-  /* ---------- A turma (Yoshiro, Peki, Aya, Bjorn) ---------- */
+  /* ---------- A turma (Yoshiro, Peki, Aya) ---------- */
   .turma { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 16px; margin-top: 26px; }
   .turma-lbl { font-family: "DynaPuff", system-ui, sans-serif; font-weight: 600; font-size: 15px; color: var(--muted); }
   .turma-list { display: flex; gap: 14px; list-style: none; margin: 0; padding: 0; }
@@ -1024,7 +1005,6 @@
         <div class="turma">
           <ul class="turma-list">
             <li style="--c:#2BE6A8; --t:#E3FBF1"><a href="#personagens"><img src="assets/turma-yoshiro.webp" alt="Yoshiro" width="160" height="160"><span>Yoshiro</span></a></li>
-            <li style="--c:#9B3CF0; --t:#F1E7FD"><a href="#personagens"><img src="assets/turma-bjorn.webp" alt="Bjorn" width="160" height="160"><span>Bjorn</span></a></li>
             <li style="--c:#5B5F9E; --t:#ECEBFA"><a href="#personagens"><img src="assets/turma-peki.webp" alt="Peki" width="160" height="160"><span>Peki</span></a></li>
             <li style="--c:#F28A3A; --t:#EEEAF6"><a href="#personagens"><img src="assets/turma-aya.webp" alt="Aya" width="160" height="160"><span>Aya</span></a></li>
           </ul>
@@ -1101,18 +1081,6 @@
           <span class="btn">Seguir <svg class="i"><use href="#arrow"/></svg></span>
         </a>
 
-        <div class="bjorn">
-          <img src="assets/bjorn.jpg" alt="Avatar do Bjorn: furry de olho roxo brilhante" width="360" height="360">
-          <div>
-            <span class="badge"><svg class="i"><use href="#heart"/></svg>Meu namorado</span>
-            <h3>Bjorn</h3>
-            <p><b>@sr_bjorn</b> · segue meu mozão</p>
-            <div class="bjorn-actions">
-              <a class="bj-btn" href="https://www.instagram.com/sr_bjorn" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg> Instagram</a>
-              <a class="bj-btn ghost" href="https://srbjorn.github.io/" target="_blank" rel="noopener"><svg class="i"><use href="#globe"/></svg> Site do Bjorn</a>
-            </div>
-          </div>
-        </div>
 
         <a class="net" href="https://www.tiktok.com/@yoshirovr" target="_blank" rel="noopener">
           <span class="ico"><svg class="i"><use href="#tt"/></svg></span>
@@ -1292,6 +1260,12 @@
       <div class="collab-rail" id="collab-rail">
         <button class="rail-btn prev" type="button" aria-label="Voltar" data-track="off"><svg class="i"><use href="#chev"/></svg></button>
         <div class="collab-track" id="collab-track">
+          <article class="collab" data-handle="sr_bjorn" style="--c:#9B3CF0">
+            <img class="bg" src="assets/criadores/sr_bjorn.jpg" alt="" width="96" height="96" loading="lazy">
+            <span class="collab-av"><img src="assets/criadores/sr_bjorn.jpg" alt="" width="96" height="96" loading="lazy"></span>
+            <h3 class="collab-name">@sr_bjorn</h3>
+            <div class="collab-acts"><a class="collab-go" href="https://www.instagram.com/sr_bjorn/" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg> Perfil</a></div>
+          </article>
           <article class="collab" data-handle="pao_de_queijo_vr1" style="--c:#DB7D43">
             <img class="bg" src="assets/criadores/pao_de_queijo_vr1.jpg" alt="" width="96" height="96" loading="lazy">
             <span class="collab-av"><img src="assets/criadores/pao_de_queijo_vr1.jpg" alt="" width="96" height="96" loading="lazy"></span>
@@ -1750,23 +1724,7 @@
         </div>
       </article>
 
-      <article class="char flip" style="--c1:#9B3CF0; --c2:#C77DFF; --tint:#F1E7FD" aria-labelledby="ch-bjorn">
-        <div class="char-art"><img src="assets/char-bjorn.webp" alt="Arte do Bjorn de corpo inteiro: pelagem cinza-escura e branca, mecha e ponta da cauda roxas e olhos roxos" width="560" height="624" loading="lazy"></div>
-        <div class="char-info">
-          <h2 id="ch-bjorn">Bjorn</h2>
-          <span class="char-role">Namorado do Yoshiro</span>
-          <p>Aparece em muitos dos vídeos ao lado do Yoshiro. Pelagem cinza-escura com o peito claro, uma mecha roxa no cabelo e grandes olhos roxos.</p>
-          <ul class="char-traits">
-            <li>Mecha roxa que cai sobre o rosto</li>
-            <li>Olhos roxos grandes e brilhantes</li>
-            <li>Bochechas com marquinhas vermelhas</li>
-          </ul>
-          <div class="char-pal" aria-label="Paleta do Bjorn"><i style="background:#3A393D"></i><i style="background:#1E1B24"></i><i style="background:#9B3CF0"></i><i style="background:#C77DFF"></i><i style="background:#E4E3E8"></i><i style="background:#D8344A"></i></div>
-          <div class="char-links"><a class="btn" href="https://www.instagram.com/sr_bjorn" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg> @sr_bjorn</a> <a class="btn" href="https://srbjorn.github.io/" target="_blank" rel="noopener"><svg class="i"><use href="#globe"/></svg> Site do Bjorn</a></div>
-        </div>
-      </article>
-
-      <article class="char" style="--c1:#5B5F9E; --c2:#9C8EC4; --tint:#ECEBFA" aria-labelledby="ch-peki">
+      <article class="char flip" style="--c1:#5B5F9E; --c2:#9C8EC4; --tint:#ECEBFA" aria-labelledby="ch-peki">
         <div class="char-art"><img src="assets/char-peki.webp" alt="Arte do Peki sentado: pelagem branca, cabelo azul-arroxeado, óculos redondos, brinco de cruz e moletom preto" width="680" height="680" loading="lazy"></div>
         <div class="char-info">
           <span class="char-jp" lang="ja">苛猫</span>
@@ -1784,7 +1742,7 @@
         </div>
       </article>
 
-      <article class="char flip" style="--c1:#F28A3A; --c2:#8E7BB0; --tint:#EEEAF6" aria-labelledby="ch-aya">
+      <article class="char" style="--c1:#F28A3A; --c2:#8E7BB0; --tint:#EEEAF6" aria-labelledby="ch-aya">
         <div class="char-art photo"><img src="assets/char-aya.webp" alt="Arte da Aya: orelhas longas caídas, cabelo preto e branco, olhos laranja e moletom listrado" width="480" height="936" loading="lazy"></div>
         <div class="char-info">
           <span class="char-jp" lang="ja">彩綾</span>
@@ -2068,6 +2026,7 @@
   // Cada código é o que aparece no link: instagram.com/reel/<código>/ — do mais novo para o mais antigo.
   // Quem tem pelo menos um código ganha o botão "Vídeos" no card.
   var COLLAB_VIDEOS = {
+    'sr_bjorn': 'DfFOdYVBFxo De1xqFGhdM9 DeKANk6hKnd Dd9IQI4BucV Dd3-nEqhNCb DdeSEdlhFSZ DdbwV4CIQpr DdRWrq_hu69 DdB585CBHca DcydLiYB8zv DctTnRIh_oC DcgbmzhhANO DbqhPeRBD-r Dbde-JEhB0U DaynzLlhFmP DavIplUhIiT DanaPN3Bfj- DaVYrRchKZe DZ29-nRB7Iv DZnCXnehR8h DZfUBBqhcEE DZaKVF4OHzS DZaKZUJuU9_ DZNk9LioqXZ DZII52nBSLT DYpPRBrhCfl DYFMP-hB53e DX-DnfkN2Bw DX7RCzqhPIU DXpguBXBZgD DXhyPhNhKJ8 DW9vGJVhM01 DWrEbl6BnPz DV9XQt9Dqy3 DV1oz1djruc',
     'pao_de_queijo_vr1': 'Dbde-JEhB0U DaQPCbzBwrp DXhyPhNhKJ8 DWruRUzEfpU DWcJrtOEdeb DUbkk-SD_OT DT3d5BADd9k DSvI0MjGCPg DQaE6bVjaZP DPy81cCjszu DPZpcf9jkp8 DMvEBFtt5Xd DMp6a8aNGzU',
     'francis_dustchat': 'DW9vGJVhM01 DUJfeF8DeCm DT3d5BADd9k DTyUO4sDey1 DTTeLSfibd7 DSqRge7AfJn DRnUwIlAXuY DOJ4bE2DbFU DMLA1XqtK_q DK9w_G4t9XW DKZt7MoNo9S DJkZNslN_Ds',
     'mordekai_vr': 'Dcv4V_5FtFC DcBiEJ1BBtX DaQPCbzBwrp DWruRUzEfpU DUEV1rvDd16 DRVTRA9Dcoi DQm85kQjffC DQIDY09jfWi DQC5zIrDdvs DOljYR9DVXK',
@@ -2333,7 +2292,7 @@
       return clean(el.getAttribute('aria-label') || el.textContent) || el.getAttribute('href') || 'botão';
     }
     function cardOf(el) {
-      var c = el.parentElement && el.parentElement.closest('.partner, .product, .qa, .contact, .soon, .notify, .faq-more, .g, .bjorn, .collab');
+      var c = el.parentElement && el.parentElement.closest('.partner, .product, .qa, .contact, .soon, .notify, .faq-more, .g, .collab');
       if (!c) return '';
       var h = c.querySelector('h3, h2, .g-name, .collab-name');
       if (!h) return '';
