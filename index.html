@@ -501,107 +501,109 @@
   .vid-foot { display: flex; justify-content: center; padding: 0 18px 18px; }
   .vid-foot .btn { background: var(--ink); color: #fff; }
 
-  /* ---------- Many Halloween (temporário: some sozinho depois da festa, ver data-until) ---------- */
-  /* Visual do pôster: preto, vermelho-sangue #FF2338, letras condensadas e um risco brilhante */
-  .hw-promo { grid-column: 1 / -1; position: relative; z-index: 2; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 22px 28px; margin-top: 6px; padding: 22px 28px 22px 22px; border-radius: 28px; color: #F4ECE6; overflow: hidden; isolation: isolate;
+  /* ---------- Festa do MANY em destaque (temporário: some sozinho depois da festa, ver data-until) ---------- */
+  /* Visual do Many Dream: céu pastel, nuvens, letras brancas com contorno índigo e chão xadrez */
+  .festa-promo { grid-column: 1 / -1; position: relative; z-index: 2; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 22px 28px; margin-top: 6px; padding: 22px 28px 22px 22px; border-radius: 28px; color: #24188A; overflow: hidden; isolation: isolate;
     background:
-      repeating-linear-gradient(104deg, transparent 0 46px, rgba(255, 255, 255, .025) 46px 47px),
-      radial-gradient(520px 260px at 22% 0%, rgba(255, 35, 56, .32), transparent 70%),
-      radial-gradient(420px 260px at 100% 100%, rgba(120, 0, 20, .55), transparent 70%),
-      #0B0708;
-    border: 1px solid rgba(255, 35, 56, .35); box-shadow: 0 22px 50px rgba(120, 0, 20, .35), 0 0 0 6px rgba(255, 35, 56, .06);
+      radial-gradient(260px 90px at 12% 100%, rgba(255, 255, 255, .85), transparent 70%),
+      radial-gradient(320px 100px at 62% 108%, rgba(255, 255, 255, .7), transparent 70%),
+      radial-gradient(420px 220px at 100% 0%, rgba(255, 154, 216, .55), transparent 70%),
+      linear-gradient(120deg, #9FD3FF, #C3B6FF 52%, #FFC4E8);
+    border: 2px solid rgba(255, 255, 255, .8); box-shadow: 0 22px 50px rgba(59, 59, 255, .22), 0 0 0 6px rgba(185, 166, 255, .18);
     animation: in-up .7s cubic-bezier(.2, .8, .2, 1) .85s backwards; }
-  .hw-poster { position: relative; display: block; width: 128px; padding: 0; border: 0; border-radius: 10px; background: none; cursor: zoom-in; transform: rotate(-4deg); box-shadow: 0 16px 34px rgba(0, 0, 0, .6), 0 0 0 3px rgba(255, 255, 255, .9); transition: transform .25s ease; }
-  .hw-poster:hover { transform: rotate(-1deg) scale(1.04); }
-  .hw-poster img { display: block; width: 100%; height: auto; border-radius: 10px; }
-  .hw-poster::after { content: "ver pôster"; position: absolute; left: 50%; bottom: -12px; translate: -50% 0; padding: 3px 10px; border-radius: 999px; background: #FF2338; color: #fff; font: 700 11px var(--body); white-space: nowrap; transform: rotate(4deg); }
-  .hw-kicker { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 8px; font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #FFB3BB; }
-  .hw-kicker span, .hw-kicker b { white-space: nowrap; }
-  .hw-kicker b { color: #fff; }
-  .hw-dot { width: 8px; height: 8px; border-radius: 50%; background: #FF2338; box-shadow: 0 0 10px #FF2338; animation: led 1.4s ease-in-out infinite; }
-  .hw-title { margin: 6px 0 4px; font-family: var(--display); font-weight: 800; font-size: clamp(30px, 3.8vw, 44px); line-height: 1.05; letter-spacing: -.02em; color: #FF2338; }
-  .hw-when { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; font-family: "Oswald", "Impact", sans-serif; font-weight: 600; font-size: 22px; letter-spacing: .04em; }
-  .hw-when b { font-weight: 700; color: #fff; }
-  .hw-when span { color: #FFB3BB; }
-  .hw-djs { font-size: 14px; color: #CDBFC2; }
-  .hw-djs b { color: #fff; }
-  .hw-acts { display: flex; flex-direction: column; align-items: stretch; gap: 8px; }
-  .hw-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 11px 18px; border-radius: 999px; font: 700 14px var(--body); text-decoration: none; white-space: nowrap; cursor: pointer; color: #fff; background: rgba(255, 255, 255, .07); border: 1px solid rgba(255, 255, 255, .22); transition: transform .18s ease, background .18s ease; }
-  .hw-btn:hover { transform: translateY(-2px); background: rgba(255, 255, 255, .14); }
-  .hw-btn svg.i { width: 18px; height: 18px; }
-  .hw-btn.red { background: #FF2338; border-color: #FF2338; box-shadow: 0 8px 22px rgba(255, 35, 56, .4); }
-  .hw-btn.red:hover { background: #FF4558; }
+  .festa-poster { position: relative; display: block; width: 136px; padding: 0; border: 0; border-radius: 12px; background: none; cursor: zoom-in; transform: rotate(-4deg); box-shadow: 0 16px 34px rgba(36, 24, 138, .35), 0 0 0 3px #fff; transition: transform .25s ease; }
+  .festa-poster:hover { transform: rotate(-1deg) scale(1.04); }
+  .festa-poster img { display: block; width: 100%; height: auto; border-radius: 12px; }
+  .festa-poster::after { content: "ver pôster"; position: absolute; left: 50%; bottom: -12px; translate: -50% 0; padding: 3px 10px; border-radius: 999px; background: #FF9AD8; color: #24188A; font: 700 11px var(--body); white-space: nowrap; transform: rotate(4deg); box-shadow: 0 4px 10px rgba(36, 24, 138, .2); }
+  .festa-kicker { display: flex; flex-wrap: wrap; align-items: center; gap: 2px 8px; font-family: var(--mono); font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #4B3BB8; }
+  .festa-kicker span, .festa-kicker b { white-space: nowrap; }
+  .festa-kicker b { color: #24188A; }
+  .festa-dot { width: 8px; height: 8px; border-radius: 50%; background: #FF5FB8; box-shadow: 0 0 10px #FF5FB8; animation: led 1.4s ease-in-out infinite; }
+  .festa-title { margin: 6px 0 4px; font-family: var(--display); font-weight: 800; font-size: clamp(30px, 3.8vw, 44px); line-height: 1.05; letter-spacing: -.02em; color: #fff; text-shadow: 0 0 2px #24188A, 0 3px 0 #24188A, 0 0 18px rgba(59, 59, 255, .55); }
+  .festa-when { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; font-family: "Oswald", "Impact", sans-serif; font-weight: 600; font-size: 22px; letter-spacing: .04em; }
+  .festa-when b { font-weight: 700; color: #24188A; }
+  .festa-when span { color: #4B3BB8; }
+  .festa-djs { font-size: 14px; color: #3A2F8F; }
+  .festa-djs b { color: #24188A; }
+  .festa-acts { display: flex; flex-direction: column; align-items: stretch; gap: 8px; }
+  .festa-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 11px 18px; border-radius: 999px; font: 700 14px var(--body); text-decoration: none; white-space: nowrap; cursor: pointer; color: #24188A; background: rgba(255, 255, 255, .6); border: 1px solid rgba(255, 255, 255, .9); transition: transform .18s ease, background .18s ease; }
+  .festa-btn:hover { transform: translateY(-2px); background: #fff; }
+  .festa-btn svg.i { width: 18px; height: 18px; }
+  .festa-btn.main { background: #24188A; border-color: #24188A; color: #fff; box-shadow: 0 8px 22px rgba(36, 24, 138, .35); }
+  .festa-btn.main:hover { background: #3B2FD6; }
   @media (max-width: 860px) {
-    .hw-promo { grid-template-columns: auto 1fr; padding: 20px; }
-    .hw-acts { grid-column: 1 / -1; flex-direction: row; flex-wrap: wrap; }
-    .hw-acts .hw-btn { flex: 1 1 auto; }
+    .festa-promo { grid-template-columns: auto 1fr; padding: 20px; }
+    .festa-acts { grid-column: 1 / -1; flex-direction: row; flex-wrap: wrap; }
+    .festa-acts .festa-btn { flex: 1 1 auto; }
   }
   @media (max-width: 520px) {
-    .hw-promo { gap: 18px; }
-    .hw-poster { width: 92px; }
-    .hw-when { font-size: 19px; }
+    .festa-promo { gap: 18px; }
+    .festa-poster { width: 100px; }
+    .festa-when { font-size: 19px; }
   }
 
-  /* Duas faixas de "cena do crime" cruzando a tela inteira logo acima do destaque, invadindo um pouco o card */
-  .hw-tapes { grid-column: 1 / -1; position: relative; z-index: 3; height: 0; pointer-events: none; }
-  .hw-tapes .clip { position: absolute; left: 50%; width: 100vw; translate: -50% 0; top: -150px; height: 260px; overflow: hidden; }
-  .hw-tape { position: absolute; left: -10%; width: 120%; top: 140px; display: flex; overflow: hidden; padding: 9px 0; font-family: "Oswald", "Impact", sans-serif; font-weight: 700; font-size: 20px; line-height: 1; letter-spacing: .14em; text-transform: uppercase; white-space: nowrap; box-shadow: 0 10px 26px rgba(0, 0, 0, .35); }
-  .hw-tape::before, .hw-tape::after { content: ""; position: absolute; left: 0; right: 0; height: 6px; background: repeating-linear-gradient(-45deg, var(--k) 0 10px, transparent 10px 20px); }
-  .hw-tape::before { top: 0; }
-  .hw-tape::after { bottom: 0; }
-  .hw-tape.t-red { --k: #0B0708; background: #FF2338; color: #0B0708; transform: rotate(-3.5deg); }
-  .hw-tape.t-black { --k: #FF2338; background: #0B0708; color: #FF2338; transform: rotate(3deg); text-shadow: 0 0 12px rgba(255, 35, 56, .6); }
-  .hw-tape .run { display: flex; flex: none; padding-top: 3px; animation: tape 38s linear infinite; }
-  .hw-tape.t-black .run { animation-direction: reverse; }
-  .hw-tape .run span { padding-right: 1.1em; }
-  .hw-tape .run span::after { content: "✦"; padding-left: 1.1em; font-size: .7em; vertical-align: .2em; }
-  .hw-tape .run b { font-weight: 700; color: #fff; }
-  .hw-tape.t-red .run b { color: #fff; text-shadow: 1px 1px 0 #0B0708; }
+  /* Duas faixas cruzando a tela inteira logo acima do destaque, invadindo um pouco o card (bordas de chão xadrez) */
+  .festa-tapes { grid-column: 1 / -1; position: relative; z-index: 3; height: 0; pointer-events: none; }
+  .festa-tapes .clip { position: absolute; left: 50%; width: 100vw; translate: -50% 0; top: -150px; height: 260px; overflow: hidden; }
+  .festa-tape { position: absolute; left: -10%; width: 120%; top: 140px; display: flex; overflow: hidden; padding: 12px 0; font-family: "Oswald", "Impact", sans-serif; font-weight: 700; font-size: 20px; line-height: 1; letter-spacing: .14em; text-transform: uppercase; white-space: nowrap; box-shadow: 0 10px 26px rgba(36, 24, 138, .25); }
+  .festa-tape::before, .festa-tape::after { content: ""; position: absolute; left: 0; right: 0; height: 8px; background: repeating-conic-gradient(#fff 0 25%, #24188A 0 50%) 0 0 / 8px 8px; }
+  .festa-tape::before { top: 0; }
+  .festa-tape::after { bottom: 0; }
+  .festa-tape.t-a { background: #FF9AD8; color: #24188A; transform: rotate(-3.5deg); }
+  .festa-tape.t-b { background: #24188A; color: #8BEBE3; transform: rotate(3deg); text-shadow: 0 0 12px rgba(139, 235, 227, .5); }
+  .festa-tape .run { display: flex; flex: none; padding-top: 3px; animation: tape 38s linear infinite; }
+  .festa-tape.t-b .run { animation-direction: reverse; }
+  .festa-tape .run span { padding-right: 1.1em; }
+  .festa-tape .run span::after { content: "☁"; padding-left: 1.1em; font-size: .9em; }
+  .festa-tape .run b { font-weight: 700; color: #fff; }
+  .festa-tape.t-a .run b { text-shadow: 0 0 1px #24188A, 0 2px 0 #24188A; }
   @keyframes tape { to { transform: translateX(-50%); } }
   @media (max-width: 560px) {
-    .hw-tape { top: 144px; font-size: 15px; padding: 7px 0; }
-    .hw-tape::before, .hw-tape::after { height: 5px; }
-    .hw-tape.t-red { transform: rotate(-8deg); }
-    .hw-tape.t-black { transform: rotate(7deg); }
+    .festa-tape { top: 144px; font-size: 15px; padding: 10px 0; }
+    .festa-tape::before, .festa-tape::after { height: 6px; background-size: 6px 6px; }
+    .festa-tape.t-a { transform: rotate(-8deg); }
+    .festa-tape.t-b { transform: rotate(7deg); }
   }
 
-  /* Concurso no card do MANY: faixa de "cena do crime" + título do pôster */
-  .hw-contest { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 8px; width: 100%; margin-top: 4px; padding: 22px 16px 14px; border: 1px solid rgba(255, 35, 56, .45); border-radius: 20px; cursor: pointer; overflow: hidden; color: #F4ECE6; font: inherit;
-    background: radial-gradient(300px 140px at 50% 40%, rgba(255, 35, 56, .28), transparent 70%), #0B0708; box-shadow: 0 0 0 4px rgba(255, 35, 56, .08); transition: transform .2s ease, box-shadow .2s ease; }
-  .hw-contest::before { content: ""; position: absolute; inset: 0 0 auto; height: 9px; background: repeating-linear-gradient(-45deg, #FF2338 0 10px, #0B0708 10px 20px); }
-  .hw-contest:hover { transform: translateY(-3px); box-shadow: 0 0 0 4px rgba(255, 35, 56, .2), 0 16px 34px rgba(255, 35, 56, .3); }
-  .hw-contest img { width: min(100%, 330px); height: auto; }
-  .hw-contest-tag { position: absolute; top: 16px; right: 12px; padding: 2px 9px; border-radius: 999px; background: #FF2338; color: #fff; font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; transform: rotate(4deg); }
-  .hw-contest-go { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; font-size: 14px; }
-  .hw-contest-go svg.i { width: 16px; height: 16px; transition: transform .2s ease; }
-  .hw-contest:hover .hw-contest-go svg.i { transform: translateX(3px); }
+  /* Próxima festa no card do MANY: logo da festa num céu pastel */
+  .festa-next { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 8px; width: 100%; margin-top: 4px; padding: 18px 16px 14px; border: 2px solid rgba(255, 255, 255, .85); border-radius: 20px; cursor: pointer; overflow: hidden; color: #24188A; font: inherit;
+    background: radial-gradient(240px 80px at 50% 110%, rgba(255, 255, 255, .8), transparent 70%), linear-gradient(120deg, #9FD3FF, #C3B6FF 52%, #FFC4E8); box-shadow: 0 0 0 4px rgba(185, 166, 255, .2); transition: transform .2s ease, box-shadow .2s ease; }
+  .festa-next:hover { transform: translateY(-3px); box-shadow: 0 0 0 4px rgba(185, 166, 255, .35), 0 16px 34px rgba(59, 59, 255, .25); }
+  .festa-next img { width: min(100%, 300px); height: auto; filter: drop-shadow(0 6px 14px rgba(36, 24, 138, .3)); }
+  .festa-next-tag { position: absolute; top: 12px; right: 12px; padding: 2px 9px; border-radius: 999px; background: #24188A; color: #fff; font-family: var(--mono); font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; transform: rotate(4deg); }
+  .festa-next-go { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; font-size: 14px; }
+  .festa-next-go svg.i { width: 16px; height: 16px; transition: transform .2s ease; }
+  .festa-next:hover .festa-next-go svg.i { transform: translateX(3px); }
 
   /* Janela com as artes (carrossel) */
-  html:has(.hw-dlg[open]) { overflow: hidden; }
-  .hw-dlg { --ar: .8; --h: min(calc(92vh - 130px), 900px); width: min(94vw, calc(var(--h) * var(--ar))); max-height: 94vh; padding: 0; border: 1px solid rgba(255, 35, 56, .35); border-radius: 24px; color: #F4ECE6; background: #0B0708; box-shadow: 0 30px 80px rgba(0, 0, 0, .6); overflow: hidden; }
-  .hw-dlg[open] { display: flex; flex-direction: column; }
-  .hw-dlg::backdrop { background: rgba(8, 2, 4, .78); backdrop-filter: blur(6px); }
-  .hw-dlg-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 12px 12px 18px; }
-  .hw-dlg-head h3 { font-family: "Oswald", "Impact", sans-serif; font-weight: 700; font-size: 18px; letter-spacing: .06em; text-transform: uppercase; color: #FF2338; }
-  .hw-dlg .vid-x { border-color: rgba(255, 255, 255, .2); background: rgba(255, 255, 255, .06); color: #fff; }
-  .hw-dlg .vid-x:hover { background: #fff; color: #0B0708; }
-  .hw-stage { position: relative; }
-  .hw-slides { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; }
-  .hw-slides::-webkit-scrollbar { display: none; }
-  .hw-slides img { flex: none; width: 100%; height: auto; aspect-ratio: var(--ar); object-fit: cover; scroll-snap-align: center; display: block; background: #000; }
-  .hw-nav { position: absolute; top: 50%; width: 42px; height: 42px; margin-top: -21px; display: grid; place-items: center; border-radius: 50%; border: 1px solid rgba(255, 255, 255, .25); background: rgba(11, 7, 8, .7); color: #fff; cursor: pointer; backdrop-filter: blur(4px); }
-  .hw-nav:hover { background: #FF2338; border-color: #FF2338; }
-  .hw-nav[disabled] { opacity: 0; pointer-events: none; }
-  .hw-nav svg.i { width: 20px; height: 20px; }
-  .hw-nav.prev { left: 10px; }
-  .hw-nav.prev svg { transform: rotate(90deg); }
-  .hw-nav.next { right: 10px; }
-  .hw-nav.next svg { transform: rotate(-90deg); }
-  .hw-dots { display: flex; justify-content: center; gap: 8px; padding: 12px 0 0; }
-  .hw-dots:empty { display: none; }
-  .hw-dots button { width: 9px; height: 9px; padding: 0; border: 0; border-radius: 999px; background: rgba(255, 255, 255, .3); cursor: pointer; transition: width .2s ease, background .2s ease; }
-  .hw-dots button[aria-current="true"] { width: 26px; background: #FF2338; }
-  .hw-foot { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; padding: 12px 16px 16px; }
+  html:has(.festa-dlg[open]) { overflow: hidden; }
+  .festa-dlg { --ar: .8; --h: min(calc(92vh - 130px), 900px); width: min(94vw, calc(var(--h) * var(--ar))); max-height: 94vh; padding: 0; border: 1px solid rgba(255, 154, 216, .4); border-radius: 24px; color: #fff; background: #151253; box-shadow: 0 30px 80px rgba(13, 11, 58, .6); overflow: hidden; }
+  .festa-dlg[open] { display: flex; flex-direction: column; }
+  .festa-dlg::backdrop { background: rgba(13, 11, 58, .72); backdrop-filter: blur(6px); }
+  .festa-dlg-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 12px 12px 12px 18px; }
+  .festa-dlg-head h3 { font-family: "Oswald", "Impact", sans-serif; font-weight: 700; font-size: 18px; letter-spacing: .06em; text-transform: uppercase; color: #FF9AD8; }
+  .festa-dlg .vid-x { border-color: rgba(255, 255, 255, .2); background: rgba(255, 255, 255, .06); color: #fff; }
+  .festa-dlg .vid-x:hover { background: #fff; color: #151253; }
+  .festa-stage { position: relative; }
+  .festa-slides { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; scrollbar-width: none; overscroll-behavior-x: contain; }
+  .festa-slides::-webkit-scrollbar { display: none; }
+  .festa-slides img { flex: none; width: 100%; height: auto; aspect-ratio: var(--ar); object-fit: cover; scroll-snap-align: center; display: block; background: #0D0B3A; }
+  .festa-nav { position: absolute; top: 50%; width: 42px; height: 42px; margin-top: -21px; display: grid; place-items: center; border-radius: 50%; border: 1px solid rgba(255, 255, 255, .25); background: rgba(21, 18, 83, .7); color: #fff; cursor: pointer; backdrop-filter: blur(4px); }
+  .festa-nav:hover { background: #FF9AD8; border-color: #FF9AD8; color: #24188A; }
+  .festa-nav[disabled] { opacity: 0; pointer-events: none; }
+  .festa-nav svg.i { width: 20px; height: 20px; }
+  .festa-nav.prev { left: 10px; }
+  .festa-nav.prev svg { transform: rotate(90deg); }
+  .festa-nav.next { right: 10px; }
+  .festa-nav.next svg { transform: rotate(-90deg); }
+  .festa-dots { display: flex; justify-content: center; gap: 8px; padding: 12px 0 0; }
+  .festa-dots:empty { display: none; }
+  .festa-dots button { width: 9px; height: 9px; padding: 0; border: 0; border-radius: 999px; background: rgba(255, 255, 255, .3); cursor: pointer; transition: width .2s ease, background .2s ease; }
+  .festa-dots button[aria-current="true"] { width: 26px; background: #FF9AD8; }
+  .festa-foot { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; padding: 12px 16px 16px; }
+  .festa-dlg .festa-btn { color: #fff; background: rgba(255, 255, 255, .08); border-color: rgba(255, 255, 255, .22); }
+  .festa-dlg .festa-btn:hover { background: rgba(255, 255, 255, .16); }
+  .festa-dlg .festa-btn.main { background: #FF9AD8; border-color: #FF9AD8; color: #24188A; box-shadow: 0 8px 22px rgba(255, 154, 216, .35); }
 
   /* ---------- Contato ---------- */
   .band { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
@@ -1029,29 +1031,28 @@
         <span class="spark s4" aria-hidden="true">✦</span>
       </div>
 
-      <!-- Faixas de Halloween cruzando o site logo acima do destaque (temporário; o texto é repetido pelo script) -->
-      <div class="hw-tapes" data-until="2026-11-01T06:00:00-03:00" aria-hidden="true">
+      <!-- Faixas da festa do MANY cruzando o site logo acima do destaque (temporário; o texto é repetido pelo script) -->
+      <div class="festa-tapes" data-until="2026-11-22T06:00:00-03:00" aria-hidden="true">
         <div class="clip">
-          <div class="hw-tape t-red"><div class="run"><span><b>Halloween</b> Many 31/10</span></div></div>
-          <div class="hw-tape t-black"><div class="run"><span><b>Halloween</b> Many 31/10</span></div></div>
+          <div class="festa-tape t-a"><div class="run"><span><b>Many Dream</b> 21/11</span></div></div>
+          <div class="festa-tape t-b"><div class="run"><span><b>Many Dream</b> 21/11</span></div></div>
         </div>
       </div>
 
-      <!-- Destaque temporário: festa de Halloween do MANY (some sozinho depois da festa) -->
-      <aside class="hw-promo" data-until="2026-11-01T06:00:00-03:00" aria-labelledby="hw-t">
-        <button class="hw-poster" type="button" data-gallery="poster" aria-label="Ver o pôster da festa">
-          <img src="assets/many-halloween/poster-thumb.webp" alt="Pôster da festa Many Halloween" width="360" height="540">
+      <!-- Destaque temporário: festa Many Dream do MANY (some sozinho depois da festa) -->
+      <aside class="festa-promo" data-until="2026-11-22T06:00:00-03:00" aria-labelledby="festa-t">
+        <button class="festa-poster" type="button" data-gallery="poster" aria-label="Ver o pôster da festa">
+          <img src="assets/many-dream/poster-thumb.webp" alt="Pôster da festa Many Dream" width="360" height="347">
         </button>
-        <div class="hw-info">
-          <span class="hw-kicker"><i class="hw-dot" aria-hidden="true"></i><span>Festa do MANY</span> <b class="hw-count"></b></span>
-          <h2 class="hw-title" id="hw-t">Many Halloween</h2>
-          <p class="hw-when"><b>31 OUT</b><span>21h BR · 00h PT</span></p>
-          <p class="hw-djs">DJs <b>Aurora</b> &amp; <b>Vortex</b> · sorteio de <b>VRC+</b> durante o evento</p>
+        <div class="festa-info">
+          <span class="festa-kicker"><i class="festa-dot" aria-hidden="true"></i><span>Festa do MANY</span> <b class="festa-count"></b></span>
+          <h2 class="festa-title" id="festa-t">Many Dream</h2>
+          <p class="festa-when"><b>SÁB 21 NOV</b><span>21h BR · 00h PT</span></p>
+          <p class="festa-djs">DJ <b>JAUM</b> · <b>2 atividades</b> valendo <b>VRC+</b></p>
         </div>
-        <div class="hw-acts">
-          <a class="hw-btn red" href="https://vrc.group/MANYML.6219" target="_blank" rel="noopener">Entrar no grupo <svg class="i"><use href="#arrow"/></svg></a>
-          <button class="hw-btn" type="button" data-gallery="concurso">Concurso de avatar</button>
-          <a class="hw-btn" href="https://discord.gg/SP55mVVV5j" target="_blank" rel="noopener"><svg class="i"><use href="#dc"/></svg> Discord</a>
+        <div class="festa-acts">
+          <a class="festa-btn main" href="https://vrc.group/MANYML.6219" target="_blank" rel="noopener">Entrar no grupo <svg class="i"><use href="#arrow"/></svg></a>
+          <a class="festa-btn" href="https://discord.gg/SP55mVVV5j" target="_blank" rel="noopener"><svg class="i"><use href="#dc"/></svg> Discord</a>
         </div>
       </aside>
     </div>
@@ -1210,10 +1211,10 @@
             <a class="btn many-ghost" href="https://www.instagram.com/manyml.6219/" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg> @manyml.6219</a>
             <a class="btn many-ghost" href="https://discord.gg/SP55mVVV5j" target="_blank" rel="noopener"><svg class="i"><use href="#dc"/></svg> Discord</a>
           </div>
-          <button class="hw-contest" type="button" data-gallery="concurso" data-until="2026-11-01T06:00:00-03:00">
-            <span class="hw-contest-tag">até 30/10</span>
-            <img src="assets/many-halloween/titulo-concurso.webp" alt="Concurso de avatar Halloween" width="640" height="206">
-            <span class="hw-contest-go">Ver como participar e os prêmios <svg class="i"><use href="#arrow"/></svg></span>
+          <button class="festa-next" type="button" data-gallery="poster" data-until="2026-11-22T06:00:00-03:00">
+            <span class="festa-next-tag">Sáb 21/11</span>
+            <img src="assets/many-dream/logo.webp" alt="Many Dream, próxima festa" width="660" height="244">
+            <span class="festa-next-go">Próxima festa: ver o pôster <svg class="i"><use href="#arrow"/></svg></span>
           </button>
         </article>
       </div>
@@ -1231,19 +1232,19 @@
     <div class="vid-foot"><a class="btn" id="vid-profile" href="#" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg><span>Ver perfil</span></a></div>
   </dialog>
 
-  <!-- Janela: artes do Halloween do MANY (preenchida pelo script) -->
-  <dialog class="hw-dlg" id="hw-dlg" aria-labelledby="hw-dlg-t">
-    <div class="hw-dlg-head">
-      <h3 id="hw-dlg-t"></h3>
+  <!-- Janela: artes da festa do MANY (preenchida pelo script) -->
+  <dialog class="festa-dlg" id="festa-dlg" aria-labelledby="festa-dlg-t">
+    <div class="festa-dlg-head">
+      <h3 id="festa-dlg-t"></h3>
       <button class="vid-x" type="button" aria-label="Fechar" data-track="off">&times;</button>
     </div>
-    <div class="hw-stage">
-      <div class="hw-slides" id="hw-slides"></div>
-      <button class="hw-nav prev" type="button" aria-label="Imagem anterior" data-track="off"><svg class="i"><use href="#chev"/></svg></button>
-      <button class="hw-nav next" type="button" aria-label="Próxima imagem" data-track="off"><svg class="i"><use href="#chev"/></svg></button>
+    <div class="festa-stage">
+      <div class="festa-slides" id="festa-slides"></div>
+      <button class="festa-nav prev" type="button" aria-label="Imagem anterior" data-track="off"><svg class="i"><use href="#chev"/></svg></button>
+      <button class="festa-nav next" type="button" aria-label="Próxima imagem" data-track="off"><svg class="i"><use href="#chev"/></svg></button>
     </div>
-    <div class="hw-dots" id="hw-dots"></div>
-    <div class="hw-foot" id="hw-foot"></div>
+    <div class="festa-dots" id="festa-dots"></div>
+    <div class="festa-foot" id="festa-foot"></div>
   </dialog>
 
   <!-- Criadores que já participaram dos vídeos -->
@@ -2187,7 +2188,7 @@
     dlg.addEventListener('close', function () { list.textContent = ''; hold(1500); });
   })();
 
-  // ---------- Many Halloween (temporário) ----------
+  // ---------- Festa do MANY em destaque (temporário) ----------
   // Tudo com data-until some sozinho depois dessa hora; quando a festa passar, dá pra apagar este bloco.
   (function () {
     var now = Date.now();
@@ -2196,35 +2197,30 @@
     });
 
     // "faltam X dias" / "é hoje!" contando no horário de Brasília
-    var count = document.querySelector('.hw-count');
+    var count = document.querySelector('.festa-count');
     if (count) {
       var day = function (t) { return Date.parse(new Date(t).toLocaleDateString('en-CA', { timeZone: 'America/Sao_Paulo' })); };
-      var left = Math.round((Date.parse('2026-10-31') - day(now)) / 864e5);
+      var left = Math.round((Date.parse('2026-11-21') - day(now)) / 864e5);
       count.textContent = left > 1 ? '· faltam ' + left + ' dias' : left === 1 ? '· é amanhã!' : '· é hoje!';
     }
 
     // Repete o texto das faixas até cobrir a tela duas vezes (a animação anda metade e recomeça sem emenda)
-    [].forEach.call(document.querySelectorAll('.hw-tape .run'), function (run) {
+    [].forEach.call(document.querySelectorAll('.festa-tape .run'), function (run) {
       var one = run.innerHTML, n = 0;
       while (run.scrollWidth < window.innerWidth * 1.3 && n++ < 40) run.innerHTML += one;
       run.innerHTML += run.innerHTML;
     });
 
-    var dlg = document.getElementById('hw-dlg');
+    var dlg = document.getElementById('festa-dlg');
     if (!dlg) return;
     var DISCORD = 'https://discord.gg/SP55mVVV5j', GROUP = 'https://vrc.group/MANYML.6219';
     var SETS = {
-      concurso: { title: 'Concurso de avatar', ar: '4 / 5', imgs: [
-        ['concurso-1', 'Concurso de avatar Halloween: mostre seu avatar mais assustador e concorra a prêmios. Envie foto ou vídeo até 30/10.'],
-        ['concurso-2', 'Como participar: 1. Monte seu melhor avatar de Halloween no VRChat. 2. Tire uma foto ou grave um vídeo de até 1 minuto dele. 3. Envie no canal indicado do Discord até 30/10. 4. O avatar tem que ser seu (privado) e no tema Halloween. A apresentação também conta.'],
-        ['concurso-3', 'Prêmios: 1º lugar 20 euros, 2º lugar VRC+. Prêmio secreto: depois da festa, no mundo do Milo, tem um sticker escondido; quem achar ganha VRC+. Quem decide é o júri da organização Many, com resultado ao vivo na festa em 31/10.']
-      ], foot: [['red', DISCORD, 'Enviar no Discord', 'dc']] },
-      poster: { title: 'Many Halloween · 31/10', ar: '2 / 3', imgs: [
-        ['poster', 'Pôster da festa Many Halloween: DJs Aurora e Vortex, 31 de outubro, 21h no Brasil, sorteio de VRC+ durante o evento.']
-      ], foot: [['red', GROUP, 'Entrar no grupo', 'arrow'], ['', DISCORD, 'Discord', 'dc']] }
+      poster: { title: 'Many Dream · 21/11', ar: '27 / 26', imgs: [
+        ['poster', 'Pôster da festa Many Dream: sábado, 21 de novembro, 21h no Brasil e 00h em Portugal, com o DJ JAUM.']
+      ], foot: [['main', GROUP, 'Entrar no grupo', 'arrow'], ['', DISCORD, 'Discord', 'dc']] }
     };
-    var slides = document.getElementById('hw-slides'), dots = document.getElementById('hw-dots'), foot = document.getElementById('hw-foot');
-    var prev = dlg.querySelector('.hw-nav.prev'), next = dlg.querySelector('.hw-nav.next');
+    var slides = document.getElementById('festa-slides'), dots = document.getElementById('festa-dots'), foot = document.getElementById('festa-foot');
+    var prev = dlg.querySelector('.festa-nav.prev'), next = dlg.querySelector('.festa-nav.next');
 
     function current() { return Math.round(slides.scrollLeft / Math.max(1, slides.clientWidth)); }
     function sync() {
@@ -2237,11 +2233,11 @@
     function open(key) {
       var set = SETS[key]; if (!set) return;
       dlg.style.setProperty('--ar', set.ar);
-      document.getElementById('hw-dlg-t').textContent = set.title;
+      document.getElementById('festa-dlg-t').textContent = set.title;
       slides.textContent = ''; dots.textContent = ''; foot.textContent = '';
       set.imgs.forEach(function (im, k) {
         var img = document.createElement('img');
-        img.src = 'assets/many-halloween/' + im[0] + '.webp'; img.alt = im[1];
+        img.src = 'assets/many-dream/' + im[0] + '.webp'; img.alt = im[1];
         if (k) img.loading = 'lazy';
         slides.appendChild(img);
         if (set.imgs.length > 1) {
@@ -2253,7 +2249,7 @@
       });
       set.foot.forEach(function (b) {
         var a = document.createElement('a');
-        a.className = 'hw-btn ' + b[0]; a.href = b[1]; a.target = '_blank'; a.rel = 'noopener';
+        a.className = 'festa-btn ' + b[0]; a.href = b[1]; a.target = '_blank'; a.rel = 'noopener';
         var ico = '<svg class="i"><use href="#' + b[3] + '"/></svg>';
         a.innerHTML = b[3] === 'arrow' ? b[2] + ' ' + ico : ico + ' ' + b[2];
         foot.appendChild(a);
