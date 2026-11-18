@@ -290,7 +290,7 @@
   .chips { display: flex; flex-wrap: wrap; gap: 6px; position: relative; }
   .chips span { font-size: 12px; font-weight: 600; padding: 4px 10px; border-radius: 999px; }
   @media (max-width: 860px) { .partners { grid-template-columns: 1fr; grid-template-rows: auto auto auto 18px auto auto; } .partner { padding: 20px; } }
-  /* ---------- Palco de festa atrás da TropiPaw e do MANY ---------- */
+  /* ---------- Palco de festa atrás da TropiPaw e da MANY ---------- */
   /* Desktop: linha 3 = respiro do palco, linha 4 = TropiPaw + MANY; o palco ocupa as duas */
   .party-stage { grid-column: 1 / -1; grid-row: 3 / 5; position: relative; z-index: 0; margin: 0 -34px -46px; border-radius: 38px; overflow: hidden; pointer-events: none;
     background:
@@ -501,7 +501,7 @@
   .vid-foot { display: flex; justify-content: center; padding: 0 18px 18px; }
   .vid-foot .btn { background: var(--ink); color: #fff; }
 
-  /* ---------- Festa do MANY em destaque (temporário: some sozinho depois da festa, ver data-until) ---------- */
+  /* ---------- Festa da MANY em destaque (temporário: some sozinho depois da festa, ver data-until) ---------- */
   /* Visual do Many Dream: céu pastel, nuvens, letras brancas com contorno índigo e chão xadrez */
   .festa-promo { grid-column: 1 / -1; position: relative; z-index: 2; display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 22px 28px; margin-top: 6px; padding: 22px 28px 22px 22px; border-radius: 28px; color: #24188A; overflow: hidden; isolation: isolate;
     background:
@@ -571,7 +571,7 @@
     .festa-tape.t-b { transform: rotate(7deg); }
   }
 
-  /* Próxima festa no card do MANY: logo da festa num céu pastel */
+  /* Próxima festa no card da MANY: logo da festa num céu pastel */
   .festa-next { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 8px; width: 100%; margin-top: 4px; padding: 18px 16px 14px; border: 2px solid rgba(255, 255, 255, .85); border-radius: 20px; cursor: pointer; overflow: hidden; color: #24188A; font: inherit;
     background: radial-gradient(240px 80px at 50% 110%, rgba(255, 255, 255, .8), transparent 70%), linear-gradient(120deg, #9FD3FF, #C3B6FF 52%, #FFC4E8); box-shadow: 0 0 0 4px rgba(185, 166, 255, .2); transition: transform .2s ease, box-shadow .2s ease; }
   .festa-next:hover { transform: translateY(-3px); box-shadow: 0 0 0 4px rgba(185, 166, 255, .35), 0 16px 34px rgba(59, 59, 255, .25); }
@@ -1037,7 +1037,7 @@
         <span class="spark s4" aria-hidden="true">✦</span>
       </div>
 
-      <!-- Faixas da festa do MANY cruzando o site logo acima do destaque (temporário; o texto é repetido pelo script) -->
+      <!-- Faixas da festa da MANY cruzando o site logo acima do destaque (temporário; o texto é repetido pelo script) -->
       <div class="festa-tapes" data-until="2026-11-22T06:00:00-03:00" aria-hidden="true">
         <div class="clip">
           <div class="festa-tape t-a"><div class="run"><span><b>Many Dream</b> 21/11</span><span><b>Mapa novo</b> exclusivo</span></div></div>
@@ -1045,13 +1045,13 @@
         </div>
       </div>
 
-      <!-- Destaque temporário: festa Many Dream do MANY (some sozinho depois da festa) -->
+      <!-- Destaque temporário: festa Many Dream da MANY (some sozinho depois da festa) -->
       <aside class="festa-promo" data-until="2026-11-22T06:00:00-03:00" aria-labelledby="festa-t">
         <button class="festa-poster" type="button" data-gallery="poster" aria-label="Ver o pôster da festa">
           <img src="assets/many-dream/poster-thumb.webp" alt="Pôster da festa Many Dream" width="360" height="417">
         </button>
         <div class="festa-info">
-          <span class="festa-kicker"><i class="festa-dot" aria-hidden="true"></i><span>Festa do MANY</span> <b class="festa-count"></b></span>
+          <span class="festa-kicker"><i class="festa-dot" aria-hidden="true"></i><span>Festa da MANY</span> <b class="festa-count"></b></span>
           <span class="festa-badge"><span aria-hidden="true">✦</span> Mapa novo exclusivo</span>
           <h2 class="festa-title" id="festa-t">Many Dream</h2>
           <p class="festa-when"><b>SÁB 21 NOV</b><span>21h BR · 00h PT</span></p>
@@ -1239,7 +1239,7 @@
     <div class="vid-foot"><a class="btn" id="vid-profile" href="#" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg><span>Ver perfil</span></a></div>
   </dialog>
 
-  <!-- Janela: artes da festa do MANY (preenchida pelo script) -->
+  <!-- Janela: artes da festa da MANY (preenchida pelo script) -->
   <dialog class="festa-dlg" id="festa-dlg" aria-labelledby="festa-dlg-t">
     <div class="festa-dlg-head">
       <h3 id="festa-dlg-t"></h3>
@@ -2195,7 +2195,7 @@
     dlg.addEventListener('close', function () { list.textContent = ''; hold(1500); });
   })();
 
-  // ---------- Festa do MANY em destaque (temporário) ----------
+  // ---------- Festa da MANY em destaque (temporário) ----------
   // Tudo com data-until some sozinho depois dessa hora; quando a festa passar, dá pra apagar este bloco.
   (function () {
     var now = Date.now();
