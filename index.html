@@ -1048,7 +1048,7 @@
       <!-- Destaque temporário: festa Many Dream da MANY (some sozinho depois da festa) -->
       <aside class="festa-promo" data-until="2026-11-22T06:00:00-03:00" aria-labelledby="festa-t">
         <button class="festa-poster" type="button" data-gallery="poster" aria-label="Ver o pôster da festa">
-          <img src="assets/many-dream/poster-thumb.webp" alt="Pôster da festa Many Dream" width="360" height="417">
+          <img src="assets/many-dream/poster-thumb.webp?v=2" alt="Pôster da festa Many Dream" width="360" height="417">
         </button>
         <div class="festa-info">
           <span class="festa-kicker"><i class="festa-dot" aria-hidden="true"></i><span>Festa da MANY</span> <b class="festa-count"></b></span>
@@ -2244,7 +2244,7 @@
       slides.textContent = ''; dots.textContent = ''; foot.textContent = '';
       set.imgs.forEach(function (im, k) {
         var img = document.createElement('img');
-        img.src = 'assets/many-dream/' + im[0] + '.webp'; img.alt = im[1];
+        img.src = 'assets/many-dream/' + im[0] + '.webp?v=2'; img.alt = im[1];
         if (k) img.loading = 'lazy';
         slides.appendChild(img);
         if (set.imgs.length > 1) {
