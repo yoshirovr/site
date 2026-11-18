@@ -519,6 +519,12 @@
   .festa-kicker span, .festa-kicker b { white-space: nowrap; }
   .festa-kicker b { color: #24188A; }
   .festa-dot { width: 8px; height: 8px; border-radius: 50%; background: #FF5FB8; box-shadow: 0 0 10px #FF5FB8; animation: led 1.4s ease-in-out infinite; }
+  .festa-badge { display: inline-flex; align-items: center; gap: 6px; margin-top: 8px; padding: 5px 12px; border-radius: 999px; font-family: "Oswald", "Impact", sans-serif; font-weight: 700; font-size: 15px; letter-spacing: .1em; text-transform: uppercase; color: #24188A; transform: rotate(-2deg);
+    background: linear-gradient(110deg, #FFF07A, #FF9AD8 35%, #8BEBE3 65%, #FFF07A) 0 0 / 300% 100%; border: 2px solid #fff; box-shadow: 0 6px 16px rgba(36, 24, 138, .25), 0 0 18px rgba(255, 154, 216, .55); animation: festa-shine 4s linear infinite; white-space: nowrap; }
+  .festa-badge span { font-size: .85em; }
+  @media (max-width: 560px) { .festa-badge { font-size: 12.5px; letter-spacing: .08em; padding: 4px 10px; } }
+  @keyframes festa-shine { to { background-position: 300% 0; } }
+  @media (prefers-reduced-motion: reduce) { .festa-badge { animation: none; } }
   .festa-title { margin: 6px 0 4px; font-family: var(--display); font-weight: 800; font-size: clamp(30px, 3.8vw, 44px); line-height: 1.05; letter-spacing: -.02em; color: #fff; text-shadow: 0 0 2px #24188A, 0 3px 0 #24188A, 0 0 18px rgba(59, 59, 255, .55); }
   .festa-when { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 14px; font-family: "Oswald", "Impact", sans-serif; font-weight: 600; font-size: 22px; letter-spacing: .04em; }
   .festa-when b { font-weight: 700; color: #24188A; }
@@ -1034,18 +1040,19 @@
       <!-- Faixas da festa do MANY cruzando o site logo acima do destaque (temporário; o texto é repetido pelo script) -->
       <div class="festa-tapes" data-until="2026-11-22T06:00:00-03:00" aria-hidden="true">
         <div class="clip">
-          <div class="festa-tape t-a"><div class="run"><span><b>Many Dream</b> 21/11</span></div></div>
-          <div class="festa-tape t-b"><div class="run"><span><b>Many Dream</b> 21/11</span></div></div>
+          <div class="festa-tape t-a"><div class="run"><span><b>Many Dream</b> 21/11</span><span><b>Mapa novo</b> exclusivo</span></div></div>
+          <div class="festa-tape t-b"><div class="run"><span><b>Many Dream</b> 21/11</span><span><b>Mapa novo</b> exclusivo</span></div></div>
         </div>
       </div>
 
       <!-- Destaque temporário: festa Many Dream do MANY (some sozinho depois da festa) -->
       <aside class="festa-promo" data-until="2026-11-22T06:00:00-03:00" aria-labelledby="festa-t">
         <button class="festa-poster" type="button" data-gallery="poster" aria-label="Ver o pôster da festa">
-          <img src="assets/many-dream/poster-thumb.webp" alt="Pôster da festa Many Dream" width="360" height="347">
+          <img src="assets/many-dream/poster-thumb.webp" alt="Pôster da festa Many Dream" width="360" height="417">
         </button>
         <div class="festa-info">
           <span class="festa-kicker"><i class="festa-dot" aria-hidden="true"></i><span>Festa do MANY</span> <b class="festa-count"></b></span>
+          <span class="festa-badge"><span aria-hidden="true">✦</span> Mapa novo exclusivo</span>
           <h2 class="festa-title" id="festa-t">Many Dream</h2>
           <p class="festa-when"><b>SÁB 21 NOV</b><span>21h BR · 00h PT</span></p>
           <p class="festa-djs">DJ <b>JAUM</b> · <b>2 atividades</b> valendo <b>VRC+</b></p>
@@ -1205,7 +1212,7 @@
         <article class="partner p-many" id="many" aria-labelledby="many-t">
           <h3 id="many-t"><img class="logo-many" src="assets/many-logo.webp" alt="MANY Party Group" width="900" height="388"></h3>
           <p class="desc">Onde a energia não para e cada festa é uma experiência única. Bem-vindos à comunidade Many! 🪩✨💃🏻🕺</p>
-          <p class="owners"><span>Donas</span><a href="https://www.instagram.com/slays_19/" target="_blank" rel="noopener">@slays_19</a><a href="https://www.instagram.com/ew_mango/" target="_blank" rel="noopener">@ew_mango</a><a href="https://www.instagram.com/riviavampira/" target="_blank" rel="noopener">@riviavampira</a></p>
+          <p class="owners"><span>Donas</span><a href="https://www.instagram.com/slays_19/" target="_blank" rel="noopener">@slays_19</a><a href="https://www.instagram.com/ew_mango/" target="_blank" rel="noopener">@ew_mango</a></p>
           <div class="actions">
             <a class="btn many" href="https://vrc.group/MANYML.6219" target="_blank" rel="noopener">Entrar no grupo do <b>VRChat</b> <svg class="i"><use href="#arrow"/></svg></a>
             <a class="btn many-ghost" href="https://www.instagram.com/manyml.6219/" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg> @manyml.6219</a>
@@ -2215,8 +2222,8 @@
     if (!dlg) return;
     var DISCORD = 'https://discord.gg/SP55mVVV5j', GROUP = 'https://vrc.group/MANYML.6219';
     var SETS = {
-      poster: { title: 'Many Dream · 21/11', ar: '27 / 26', imgs: [
-        ['poster', 'Pôster da festa Many Dream: sábado, 21 de novembro, 21h no Brasil e 00h em Portugal, com o DJ JAUM.']
+      poster: { title: 'Many Dream · 21/11', ar: '108 / 125', imgs: [
+        ['poster', 'Pôster da festa Many Dream: sábado, 21 de novembro, 21h no Brasil e 00h em Portugal, com o DJ JAUM, num mapa novo e exclusivo.']
       ], foot: [['main', GROUP, 'Entrar no grupo', 'arrow'], ['', DISCORD, 'Discord', 'dc']] }
     };
     var slides = document.getElementById('festa-slides'), dots = document.getElementById('festa-dots'), foot = document.getElementById('festa-foot');
