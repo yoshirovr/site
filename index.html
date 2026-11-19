@@ -1274,6 +1274,12 @@
             <h3 class="collab-name">@sr_bjorn</h3>
             <div class="collab-acts"><a class="collab-go" href="https://www.instagram.com/sr_bjorn/" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg> Perfil</a></div>
           </article>
+          <article class="collab" data-handle="foxyy_momori" style="--c:#E0559F">
+            <img class="bg" src="assets/criadores/foxyy_momori.jpg" alt="" width="96" height="96" loading="lazy">
+            <span class="collab-av"><img src="assets/criadores/foxyy_momori.jpg" alt="" width="96" height="96" loading="lazy"></span>
+            <h3 class="collab-name">@foxyy_momori</h3>
+            <div class="collab-acts"><a class="collab-go" href="https://www.instagram.com/foxyy_momori/" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg> Perfil</a></div>
+          </article>
           <article class="collab" data-handle="pao_de_queijo_vr1" style="--c:#DB7D43">
             <img class="bg" src="assets/criadores/pao_de_queijo_vr1.jpg" alt="" width="96" height="96" loading="lazy">
             <span class="collab-av"><img src="assets/criadores/pao_de_queijo_vr1.jpg" alt="" width="96" height="96" loading="lazy"></span>
@@ -2034,6 +2040,7 @@
   // Cada código é o que aparece no link: instagram.com/reel/<código>/ — do mais novo para o mais antigo.
   // Quem tem pelo menos um código ganha o botão "Vídeos" no card.
   var COLLAB_VIDEOS = {
+    'foxyy_momori': 'DUbkk-SD_OT DUT2I4iD35m DURN10qAb_D DUJfeF8DeCm DT3d5BADd9k DTTeLSfibd7 DTBcpemiZlb DR0Mw3rDV3m DRvDLijDYdb',
     'sr_bjorn': 'DfFOdYVBFxo De1xqFGhdM9 DeKANk6hKnd Dd9IQI4BucV Dd3-nEqhNCb DdeSEdlhFSZ DdbwV4CIQpr DdRWrq_hu69 DdB585CBHca DcydLiYB8zv DctTnRIh_oC DcgbmzhhANO DbqhPeRBD-r Dbde-JEhB0U DaynzLlhFmP DavIplUhIiT DanaPN3Bfj- DaVYrRchKZe DZ29-nRB7Iv DZnCXnehR8h DZfUBBqhcEE DZaKVF4OHzS DZaKZUJuU9_ DZNk9LioqXZ DZII52nBSLT DYpPRBrhCfl DYFMP-hB53e DX-DnfkN2Bw DX7RCzqhPIU DXpguBXBZgD DXhyPhNhKJ8 DW9vGJVhM01 DWrEbl6BnPz DV9XQt9Dqy3 DV1oz1djruc',
     'pao_de_queijo_vr1': 'Dbde-JEhB0U DaQPCbzBwrp DXhyPhNhKJ8 DWruRUzEfpU DWcJrtOEdeb DUbkk-SD_OT DT3d5BADd9k DSvI0MjGCPg DQaE6bVjaZP DPy81cCjszu DPZpcf9jkp8 DMvEBFtt5Xd DMp6a8aNGzU',
     'francis_dustchat': 'DW9vGJVhM01 DUJfeF8DeCm DT3d5BADd9k DTyUO4sDey1 DTTeLSfibd7 DSqRge7AfJn DRnUwIlAXuY DOJ4bE2DbFU DMLA1XqtK_q DK9w_G4t9XW DKZt7MoNo9S DJkZNslN_Ds',
@@ -2066,7 +2073,7 @@
     'glaux_foxtail': 'DTBcpemiZlb'
   };
   // Reels cujo embed o Instagram bloqueia: aparecem com a capa (assets/collabs/<código>.jpg) e um link pro Instagram.
-  var NO_EMBED = ['DJpizo_NU3i', 'DT3d5BADd9k', 'DTBcpemiZlb', 'DTTeLSfibd7', 'DUJfeF8DeCm'];
+  var NO_EMBED = ['DJpizo_NU3i', 'DUT2I4iD35m', 'DURN10qAb_D', 'DT3d5BADd9k', 'DTBcpemiZlb', 'DTTeLSfibd7', 'DUJfeF8DeCm'];
   (function () {
     var track = document.getElementById('collab-track');
     if (!track) return;
