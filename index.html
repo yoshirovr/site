@@ -4,6 +4,15 @@
 <title>yoshirovr</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<script>
+  /* Tema e idioma salvos (antes de pintar a página, pra não piscar) */
+  (function () {
+    var d = document.documentElement, t = null, l = null;
+    try { t = localStorage.getItem('yv-theme'); l = localStorage.getItem('yv-lang'); } catch (e) {}
+    d.setAttribute('data-theme', t === 'dark' ? 'dark' : 'light');
+    d.setAttribute('lang', l === 'en' ? 'en' : l === 'es' ? 'es' : 'pt-BR');
+  })();
+</script>
 <meta name="description" content="Crio conteúdo para alegrar seu dia ✦ Vídeos curtos no VRChat. Redes, parceiros, cupons e produtos do yoshirovr num lugar só.">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png">
@@ -486,7 +495,8 @@
   .vid-head h3 { margin: 2px 0 0; font-family: var(--display); font-weight: 800; font-size: 20px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
   .vid-x { flex: none; width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--line); background: #fff; color: var(--ink); font-size: 24px; line-height: 1; cursor: pointer; }
   .vid-x:hover { background: var(--ink); color: #fff; }
-  .vid-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); align-items: start; gap: 16px; padding: 18px; overflow-y: auto; }
+  /* grid-auto-rows: max-content — sem isso a lista (altura fixa) espremia as linhas e as capas ficavam uma em cima da outra */
+  .vid-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr)); grid-auto-rows: max-content; align-items: start; gap: 16px; padding: 18px; overflow-y: auto; }
   .vid-list blockquote { display: grid; place-items: center; min-height: 220px; margin: 0; padding: 20px; border-radius: 16px; background: #fff; color: var(--ink); border: 1px solid var(--line); }
   .vid-list .instagram-media { min-width: 0 !important; width: 100% !important; margin: 0 !important; border-radius: 16px !important; border: 1px solid var(--line) !important; box-shadow: none !important; }
   .vid-list a { color: var(--eye-4); font-weight: 700; }
@@ -920,6 +930,121 @@
   .banner > .wrap { position: relative; z-index: 1; }
 
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+
+  /* ---------- Preferências no menu: tema e idioma ---------- */
+  .bar-end { display: flex; align-items: center; gap: 6px; }
+  .prefs { display: flex; align-items: center; gap: 2px; }
+  .pref-btn { display: inline-flex; align-items: center; justify-content: center; gap: 5px; height: 38px; min-width: 38px; padding: 0 9px; border: 0; border-radius: 999px; background: transparent; color: var(--muted); font: 700 12px var(--mono); letter-spacing: .04em; cursor: pointer; transition: background .15s ease, color .15s ease; }
+  .pref-btn:hover, .pref-btn[aria-expanded="true"] { color: var(--ink); background: var(--fur-1); }
+  .pref-btn:active { transform: scale(.94); }
+  .pref-btn svg.i { width: 19px; height: 19px; }
+  .theme-btn .sun { display: none; }
+  html[data-theme="dark"] .theme-btn .sun { display: block; }
+  html[data-theme="dark"] .theme-btn .moon { display: none; }
+  .lang { position: relative; }
+  .lang-menu { position: absolute; right: 0; top: calc(100% + 10px); z-index: 30; display: flex; flex-direction: column; min-width: 158px; padding: 6px; border-radius: 18px; background: var(--surface); border: 1px solid var(--line); box-shadow: 0 18px 40px rgba(20, 24, 22, .18); transform-origin: top right; animation: lang-in .18s cubic-bezier(.2, .8, .2, 1); }
+  .lang-menu[hidden] { display: none; }
+  @keyframes lang-in { from { opacity: 0; transform: scale(.94) translateY(-4px); } }
+  .lang-menu button { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 9px 12px; border: 0; border-radius: 12px; background: none; color: var(--ink); font: 600 14px var(--body); text-align: left; cursor: pointer; }
+  .lang-menu button:hover, .lang-menu button:focus-visible { background: var(--fur-1); }
+  .lang-menu button small { font: 700 11px var(--mono); color: var(--muted); }
+  .lang-menu button[aria-checked="true"] { background: var(--green-sheet); color: var(--green-ink); }
+  .lang-menu button[aria-checked="true"] small { color: inherit; }
+  @media (max-width: 440px) {
+    .prefs { gap: 0; }
+    .bar-end { gap: 0; }
+    .pref-btn { min-width: 34px; height: 34px; padding: 0 6px; }
+    .lang-btn .cur { display: none; }
+  }
+  html[lang="en"] .festa-poster::after { content: "see poster"; }
+  html[lang="es"] .festa-poster::after { content: "ver póster"; }
+
+  /* ---------- Modo escuro ----------
+     As variáveis viram escuras; o que é "adesivo" claro (polaroid, fita, selo) continua claro
+     e ganha a tinta escura de volta (--ink local). */
+  html[data-theme="dark"] {
+    color-scheme: dark;
+    --bg: #111413;
+    --surface: #1A1E1D;
+    --ink: #ECEFED;
+    --muted: #A2AAA6;
+    --line: #2C3230;
+    --fur-1: #262B29;
+    --green-sheet: #11231C;
+    --green-sheet-2: #0F1A16;
+    --purple-sheet: #1C1A2E;
+    --purple-sheet-2: #151422;
+    --green-ink: #3FE0A6;
+    --purple-ink: #AE9BF7;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .3), 0 14px 34px rgba(0, 0, 0, .34);
+  }
+  html.theme-anim, html.theme-anim body, html.theme-anim .sheet, html.theme-anim .nav .bar, html.theme-anim footer { transition: background-color .35s ease, color .35s ease, border-color .35s ease; }
+  html[data-theme="dark"] .ambient i { opacity: .55; }
+  html[data-theme="dark"] .ambient svg { opacity: .22; }
+  html[data-theme="dark"] .nav .bar { background: rgba(26, 30, 29, .82); }
+  html[data-theme="dark"] .lang-menu { box-shadow: 0 18px 40px rgba(0, 0, 0, .5); }
+  html[data-theme="dark"] .ym.on-light .ys { background-image: linear-gradient(90deg, var(--bean) 0%, var(--bean) 14%, #FFFFFF 88%); }
+  html[data-theme="dark"] .ym.on-light .vr { color: #9D82F2; }
+  html[data-theme="dark"] .banner { background:
+      radial-gradient(600px 400px at 8% 20%, rgba(43, 230, 168, .10), transparent 70%),
+      radial-gradient(500px 400px at 40% 100%, rgba(92, 93, 224, .14), transparent 70%),
+      linear-gradient(180deg, rgba(17, 20, 19, .4), rgba(17, 20, 19, .2)); }
+  html[data-theme="dark"] .hero2 { background:
+      radial-gradient(rgba(236, 239, 237, .07) 1.1px, transparent 1.6px) 0 0 / 22px 22px,
+      radial-gradient(600px 420px at 6% 18%, rgba(43, 230, 168, .12), transparent 70%),
+      radial-gradient(520px 420px at 92% 80%, rgba(92, 93, 224, .16), transparent 70%),
+      linear-gradient(180deg, rgba(17, 20, 19, .4), rgba(17, 20, 19, .2)); }
+  html[data-theme="dark"] .tagline, html[data-theme="dark"] .shop-hero p { color: #C7CDCA; }
+  html[data-theme="dark"] .faq-hero .faq-wolf { color: var(--ink); }
+
+  /* Adesivos e superfícies que continuam claras: tinta escura local */
+  html[data-theme="dark"] :is(.board, .ribbon, .ig, .chip-now, .contact .btn, .soon .btn.sug-open, .faq-more .btn.ask-open, .festa-promo, .festa-next) { --ink: #1F2220; color: var(--ink); }
+  html[data-theme="dark"] .soon .btn.sug-open, html[data-theme="dark"] .contact .btn:not(.tg) { color: #1F2220; }
+  html[data-theme="dark"] .contact .btn.tg { --ink: #ECEFED; background: #ECEFED; color: #1F2220; }
+
+  /* Botões "tinta + texto branco": no escuro ficam claros com texto escuro */
+  html[data-theme="dark"] :is(.hero-ctas .btn.dark, .vid-list .vid-more, .vid-foot .btn, .char-links .btn, .gate .btn, .gc-card .btn, .stats-range button.on, .soldout, .nav .cta, .rail-btn:hover, .vid-x:hover) { color: #1F2220; }
+  html[data-theme="dark"] :is(.nav .cta:hover, .hero-ctas .btn.dark:hover) { color: #1F2220; }
+  html[data-theme="dark"] .char-links .btn:hover { color: #fff; }
+
+  /* Superfícies brancas fixas → superfície escura */
+  html[data-theme="dark"] :is(.hello, .hero-ctas .btn.soft, .rail-btn, .vid-dlg, .vid-x, .vid-list blockquote, .char, .gate, .btn.soft, .tile, .sg, .stats-empty, .gc-card, .stats-range, .stats-tabs, .qi, .names span, .ask, .ask-actions .btn.soft, .turma-list span) { background: var(--surface); }
+  html[data-theme="dark"] .rail-btn:hover, html[data-theme="dark"] .vid-x:hover { background: var(--ink); }
+  html[data-theme="dark"] .festa-dlg .vid-x { background: rgba(255, 255, 255, .06); }
+  html[data-theme="dark"] .festa-dlg .vid-x:hover { background: #fff; }
+  html[data-theme="dark"] .qa { background: rgba(26, 30, 29, .92); }
+  html[data-theme="dark"] .soon { background: rgba(255, 255, 255, .03); border-color: #3B3560; }
+  html[data-theme="dark"] .ask { border-color: #3B3560; }
+  html[data-theme="dark"] .vid-head { background: linear-gradient(120deg, color-mix(in srgb, var(--c, #5C3AB5) 24%, var(--surface)), var(--surface) 70%); }
+  html[data-theme="dark"] .vid-head .collab-av img { border-color: var(--surface); }
+  html[data-theme="dark"] .turma-list img { border-color: var(--surface); }
+  html[data-theme="dark"] :is(.chip-m, .qa:nth-of-type(even) .q-ico) { color: var(--purple-ink); }
+  html[data-theme="dark"] .btn.off { color: #7D8481; }
+
+  /* Seções */
+  html[data-theme="dark"] .sheet.dark { background:
+      radial-gradient(520px 320px at 0% 0%, rgba(43, 230, 168, .13), transparent 70%),
+      radial-gradient(520px 360px at 100% 100%, rgba(92, 58, 181, .28), transparent 70%),
+      #0B0D0C; }
+  html[data-theme="dark"] .support { background: radial-gradient(320px 320px at 100% 0%, rgba(92, 93, 224, .30), transparent 70%), linear-gradient(125deg, #1E1C34, #142329 55%, #12251E); }
+  html[data-theme="dark"] .support p { color: #B6BEBA; }
+  html[data-theme="dark"] footer { background: #0A0C0B; }
+
+  /* MarcoVR: cartão escuro com o mesmo azul */
+  html[data-theme="dark"] .p-marco { background: #121B23; border-color: #22384B; }
+  html[data-theme="dark"] .p-marco .kind { background: rgba(79, 172, 254, .14); color: #7CC4FF; }
+  html[data-theme="dark"] .p-marco .chips span { background: rgba(79, 172, 254, .08); color: #B9DCF5; border-color: rgba(79, 172, 254, .22); }
+  html[data-theme="dark"] .marco-tip { background: linear-gradient(110deg, rgba(79, 172, 254, .14), rgba(0, 242, 254, .09)); border-color: rgba(79, 172, 254, .3); color: #CDE9FA; }
+  html[data-theme="dark"] .marco-tip b { color: #fff; }
+  html[data-theme="dark"] .btn.marco { background: #fff; color: #000; }
+  html[data-theme="dark"] .btn.marco-soft { background: rgba(79, 172, 254, .16); color: #CDE9FA; }
+
+  /* Personagens */
+  html[data-theme="dark"] .char-art { background: radial-gradient(circle at 50% 55%, color-mix(in srgb, var(--c1) 22%, #2A302E) 0 30%, transparent 70%), linear-gradient(140deg, color-mix(in srgb, var(--c1) 12%, #1A1E1D), color-mix(in srgb, var(--c1) 26%, #1A1E1D)); }
+  html[data-theme="dark"] .char-role { background: color-mix(in srgb, var(--c1) 20%, #1A1E1D); color: color-mix(in srgb, var(--c1) 55%, #fff); }
+  html[data-theme="dark"] .char-quote { background: color-mix(in srgb, var(--c1) 12%, #1A1E1D); }
+  html[data-theme="dark"] .char-quote span { color: color-mix(in srgb, var(--c1) 55%, #fff); }
+  html[data-theme="dark"] .char-pal i { border-color: var(--surface); box-shadow: 0 0 0 1px rgba(255, 255, 255, .14); }
 </style>
 </head>
 <body>
@@ -976,6 +1101,8 @@
   <symbol id="bulb" viewBox="0 0 24 24"><path d="M9 18h6M10 21h4"/><path d="M12 3a6 6 0 0 0-3.6 10.8c.7.5 1.1 1.3 1.1 2.1V16h5v-.1c0-.8.4-1.6 1.1-2.1A6 6 0 0 0 12 3z"/></symbol>
   <symbol id="pc" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8.5 20h7M12 16v4"/></symbol>
   <symbol id="play" viewBox="0 0 24 24"><path d="M8 5.8v12.4a.8.8 0 0 0 1.2.7l9.7-6.2a.8.8 0 0 0 0-1.4L9.2 5.1A.8.8 0 0 0 8 5.8z"/></symbol>
+  <symbol id="moon" viewBox="0 0 24 24"><path d="M20 14.6A8.2 8.2 0 0 1 9.4 4a8.2 8.2 0 1 0 10.6 10.6z"/></symbol>
+  <symbol id="sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.6v2.1M12 19.3v2.1M2.6 12h2.1M19.3 12h2.1M5.4 5.4l1.5 1.5M17.1 17.1l1.5 1.5M5.4 18.6l1.5-1.5M17.1 6.9l1.5-1.5"/></symbol>
   <symbol id="heart" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.4-7.5-10A4.3 4.3 0 0 1 12 7.4 4.3 4.3 0 0 1 19.5 10c0 5.6-7.5 10-7.5 10z"/></symbol>
 </svg>
 
@@ -992,7 +1119,20 @@
         <li class="keep"><a href="#faq" data-view="faq">FAQ</a></li>
         <li><a href="#contato" data-view="home">Contato</a></li>
       </ul>
-      <a class="cta" href="https://www.instagram.com/yoshirovr/" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg><span class="lbl">Seguir</span></a>
+      <div class="bar-end">
+        <div class="prefs">
+          <button class="pref-btn theme-btn" id="theme-btn" type="button" aria-pressed="false" aria-label="Modo escuro" title="Modo escuro"><svg class="i moon" aria-hidden="true"><use href="#moon"/></svg><svg class="i sun" aria-hidden="true"><use href="#sun"/></svg></button>
+          <div class="lang">
+            <button class="pref-btn lang-btn" id="lang-btn" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="lang-menu" aria-label="Idioma" title="Idioma"><svg class="i" aria-hidden="true"><use href="#globe"/></svg><span class="cur" id="lang-cur">PT</span></button>
+            <div class="lang-menu" id="lang-menu" role="menu" hidden>
+              <button type="button" role="menuitemradio" data-lang="pt" lang="pt-BR" aria-checked="true">Português <small>PT</small></button>
+              <button type="button" role="menuitemradio" data-lang="en" lang="en" aria-checked="false">English <small>EN</small></button>
+              <button type="button" role="menuitemradio" data-lang="es" lang="es" aria-checked="false">Español <small>ES</small></button>
+            </div>
+          </div>
+        </div>
+        <a class="cta" href="https://www.instagram.com/yoshirovr/" target="_blank" rel="noopener"><svg class="i"><use href="#ig"/></svg><span class="lbl">Seguir</span></a>
+      </div>
     </div>
   </div>
 </nav>
@@ -2296,10 +2436,10 @@
     function clean(s) { return (s || '').replace(/\s+/g, ' ').trim(); }
     function labelOf(el) {
       var h = el.querySelector('h3');
-      if (h) { var img = h.querySelector('img'); return clean(img ? img.alt : h.textContent); }
+      if (h) { var img = h.querySelector('img'); return clean(img ? ptAttr(img, 'alt') : ptText(h)); }
       var sr = el.querySelector('.sr');
-      if (sr) return clean(sr.textContent);
-      return clean(el.getAttribute('aria-label') || el.textContent) || el.getAttribute('href') || 'botão';
+      if (sr) return clean(ptText(sr));
+      return clean(ptAttr(el, 'aria-label') || ptText(el)) || el.getAttribute('href') || 'botão';
     }
     function cardOf(el) {
       var c = el.parentElement && el.parentElement.closest('.partner, .product, .qa, .contact, .soon, .notify, .faq-more, .g, .collab');
@@ -2307,7 +2447,7 @@
       var h = c.querySelector('h3, h2, .g-name, .collab-name');
       if (!h) return '';
       var img = h.querySelector('img');
-      return clean(img ? img.alt : h.textContent);
+      return clean(img ? ptAttr(img, 'alt') : ptText(h));
     }
     function keyOf(el) {
       var area = el.closest('[data-area]');
@@ -2726,6 +2866,350 @@
         navigator.clipboard.writeText(code).then(done, selectCode);
       } else { selectCode(); }
     });
+  })();
+</script>
+
+<script>
+  // ---------- Idioma (PT · EN · ES) e tema claro/escuro ----------
+  // O HTML é escrito em português; cada texto/atributo guarda o original (node.__pt) e troca pela tradução.
+  // ptText/ptAttr devolvem sempre o português (o contador de cliques usa isso pra manter os rótulos em PT).
+  var I18N_REV = {};
+  function i18nNorm(s) { return (s || '').replace(/\s+/g, ' ').trim(); }
+  function i18nBack(s) {
+    var k = i18nNorm(s), p = I18N_REV[k];
+    if (p == null) return s;
+    return s.match(/^\s*/)[0] + p + s.match(/\s*$/)[0];
+  }
+  function ptOf(n) { return (n.__tr != null && n.data === n.__tr) ? n.__pt : i18nBack(n.data); }
+  function ptText(el) {
+    if (!el) return '';
+    var s = '', w = document.createTreeWalker(el, NodeFilter.SHOW_TEXT), n;
+    while ((n = w.nextNode())) s += ptOf(n);
+    return s;
+  }
+  function ptAttr(el, a) {
+    var v = el.getAttribute(a);
+    if (v == null) return v;
+    var T = el.__trA;
+    return (T && T[a] != null && v === T[a]) ? el.__ptA[a] : i18nBack(v);
+  }
+
+  (function () {
+    // 'português': ['english', 'español']
+    var D = {
+      'Início': ['Home', 'Inicio'],
+      'Redes': ['Socials', 'Redes'],
+      'Parceiros': ['Partners', 'Aliados'],
+      'Produtos': ['Products', 'Productos'],
+      'Personagens': ['Characters', 'Personajes'],
+      'Contato': ['Contact', 'Contacto'],
+      'Seguir': ['Follow', 'Seguir'],
+      'Principal': ['Main', 'Principal'],
+      'Modo escuro': ['Dark mode', 'Modo oscuro'],
+      'Modo claro': ['Light mode', 'Modo claro'],
+      'Idioma': ['Language', 'Idioma'],
+      'oi! eu sou o': ['hi! I\'m', '¡hola! soy'],
+      'Crio conteúdo para alegrar seu dia': ['I make content to brighten your day', 'Creo contenido para alegrar tu día'],
+      'Ver meus vídeos': ['Watch my videos', 'Ver mis videos'],
+      'Conhecer os parceiros': ['Meet the partners', 'Conocer a los aliados'],
+      'oii!': ['hii!', '¡holaa!'],
+      'vídeos curtos direto do VRChat pra você ♡': ['short videos straight from VRChat for you ♡', 'videos cortos directo de VRChat para ti ♡'],
+      'Mapa novo': ['New map', 'Mapa nuevo'],
+      'exclusivo': ['exclusive', 'exclusivo'],
+      'Festa da MANY': ['MANY party', 'Fiesta de MANY'],
+      'Mapa novo exclusivo': ['Exclusive new map', 'Mapa nuevo exclusivo'],
+      'SÁB 21 NOV': ['SAT NOV 21', 'SÁB 21 NOV'],
+      '21h BR · 00h PT': ['9 PM Brazil · 12 AM Portugal', '21h Brasil · 00h Portugal'],
+      '2 atividades': ['2 activities', '2 actividades'],
+      'valendo': ['worth', 'con premio de'],
+      'Entrar no grupo': ['Join the group', 'Entrar al grupo'],
+      'Entrar no grupo do': ['Join on', 'Entrar al grupo de'],
+      'Sáb 21/11': ['Sat 11/21', 'Sáb 21/11'],
+      'Próxima festa: ver o pôster': ['Next party: see the poster', 'Próxima fiesta: ver el póster'],
+      'Ver o pôster da festa': ['See the party poster', 'Ver el póster de la fiesta'],
+      'Pôster da festa Many Dream': ['Many Dream party poster', 'Póster de la fiesta Many Dream'],
+      'Many Dream, próxima festa': ['Many Dream, next party', 'Many Dream, próxima fiesta'],
+      'Pôster da festa Many Dream: sábado, 21 de novembro, 21h no Brasil e 00h em Portugal, com o DJ JAUM, num mapa novo e exclusivo.': ['Many Dream party poster: Saturday, November 21, 9 PM in Brazil and 12 AM in Portugal, with DJ JAUM, on an exclusive new map.', 'Póster de la fiesta Many Dream: sábado 21 de noviembre, 21h en Brasil y 00h en Portugal, con DJ JAUM, en un mapa nuevo y exclusivo.'],
+      '· é amanhã!': ['· it\'s tomorrow!', '· ¡es mañana!'],
+      '· é hoje!': ['· it\'s today!', '· ¡es hoy!'],
+      'Me acompanhe': ['Follow me', 'Sígueme'],
+      'Vídeos curtos em todas as redes. O Instagram é a principal.': ['Short videos on every platform. Instagram is the main one.', 'Videos cortos en todas las redes. Instagram es la principal.'],
+      'servidor': ['server', 'servidor'],
+      'Quem anda comigo': ['Who I roll with', 'Quienes andan conmigo'],
+      'Lojas, eventos e grupos que eu uso e recomendo.': ['Stores, events and groups I use and recommend.', 'Tiendas, eventos y grupos que uso y recomiendo.'],
+      'Os trackers de full body que eu uso no VRChat. Fabricados no Brasil e compatíveis com SlimeVR.': ['The full body trackers I use in VRChat. Made in Brazil and compatible with SlimeVR.', 'Los trackers de full body que uso en VRChat. Fabricados en Brasil y compatibles con SlimeVR.'],
+      'Feito no Brasil': ['Made in Brazil', 'Hecho en Brasil'],
+      '15h+ de bateria': ['15h+ battery', '15h+ de batería'],
+      'Cupom': ['Coupon', 'Cupón'],
+      '+ mimo': ['+ gift', '+ regalito'],
+      'Copiar': ['Copy', 'Copiar'],
+      'Copiado!': ['Copied!', '¡Copiado!'],
+      'Selecionado': ['Selected', 'Seleccionado'],
+      'Comprando com o meu cupom você ganha o desconto': ['Buy with my coupon and you get the discount', 'Comprando con mi cupón obtienes el descuento'],
+      'e ainda leva um mimo': ['and you also get a little extra', 'y además te llevas un detalle'],
+      'de presente.': ['as a gift.', 'de regalo.'],
+      'Acessar a loja': ['Visit the store', 'Ir a la tienda'],
+      'Loja de VR': ['VR store', 'Tienda de VR'],
+      'Faça parte desse mundo!': ['Be part of this world!', '¡Forma parte de este mundo!'],
+      'A loja do Marco Pereira, onde comprei meu VR. Headsets novos e seminovos, acessórios e consultoria pra entrar no VR.': ['Marco Pereira\'s store, where I bought my VR. New and pre-owned headsets, accessories and advice to get into VR.', 'La tienda de Marco Pereira, donde compré mi VR. Visores nuevos y seminuevos, accesorios y asesoría para entrar al VR.'],
+      'Headsets novos e seminovos': ['New & pre-owned headsets', 'Visores nuevos y seminuevos'],
+      'Consultoria': ['Advice', 'Asesoría'],
+      'Grupo VIP': ['VIP group', 'Grupo VIP'],
+      'Na hora da compra, fala que é': ['When you buy, say you\'re a', 'Al comprar, di que eres'],
+      'seguidor do Yoshiro': ['Yoshiro follower', 'seguidor de Yoshiro'],
+      '. Isso me ajuda muito!': ['. It helps me a lot!', '. ¡Eso me ayuda mucho!'],
+      'Grupo de ofertas': ['Deals group', 'Grupo de ofertas'],
+      'Artista oficial': ['Official artist', 'Artista oficial'],
+      'Desenhista digital e tradicional, apenas desenhando por diversão.': ['Digital and traditional artist, just drawing for fun.', 'Dibujante digital y tradicional, dibujando solo por diversión.'],
+      'O artista oficial do yoshirovr. Aceita pedidos do mundo todo, para projetos pessoais ou comerciais.': ['yoshirovr\'s official artist. Takes commissions from all over the world, for personal or commercial projects.', 'El artista oficial de yoshirovr. Acepta pedidos de todo el mundo, para proyectos personales o comerciales.'],
+      'Ver portfólio': ['See portfolio', 'Ver portafolio'],
+      'digital + tradicional': ['digital + traditional', 'digital + tradicional'],
+      'Comissões para o mundo todo': ['Commissions worldwide', 'Comisiones para todo el mundo'],
+      'Personagem de cabelo azul segurando óculos em forma de estrela, pintura digital de DoremiArtz': ['Blue-haired character holding star-shaped glasses, digital painting by DoremiArtz', 'Personaje de cabello azul sosteniendo lentes en forma de estrella, pintura digital de DoremiArtz'],
+      'Um grupo para furries que amam música eletrônica e boas festas! Criado por brasileiros para fortalecer a cena VR Furry BR. Vem festejar com a gente! 🌴🐾': ['A group for furries who love electronic music and good parties! Made by Brazilians to grow the Brazilian VR furry scene. Come party with us! 🌴🐾', '¡Un grupo para furries que aman la música electrónica y las buenas fiestas! Creado por brasileños para fortalecer la escena VR Furry BR. ¡Ven a festejar con nosotros! 🌴🐾'],
+      '6ª edição em breve': ['6th edition coming soon', '6ª edición muy pronto'],
+      'Acessar o site': ['Visit the website', 'Ir al sitio'],
+      'Onde a energia não para e cada festa é uma experiência única. Bem-vindos à comunidade Many! 🪩✨💃🏻🕺': ['Where the energy never stops and every party is a one-of-a-kind experience. Welcome to the Many community! 🪩✨💃🏻🕺', 'Donde la energía no para y cada fiesta es una experiencia única. ¡Bienvenidos a la comunidad Many! 🪩✨💃🏻🕺'],
+      'Donas': ['Owners', 'Dueñas'],
+      'Vídeos juntos': ['Videos together', 'Videos juntos'],
+      'Vídeos': ['Videos', 'Videos'],
+      'Ver perfil': ['See profile', 'Ver perfil'],
+      'Perfil': ['Profile', 'Perfil'],
+      'Quem já apareceu nos vídeos': ['Who\'s been in the videos', 'Quienes ya salieron en los videos'],
+      'Criadores de conteúdo que já participaram dos meus vídeos. Passa lá e segue também!': ['Content creators who have been in my videos. Go check them out and follow them too!', 'Creadores de contenido que ya participaron en mis videos. ¡Pásate y síguelos también!'],
+      'Capa do vídeo': ['Video cover', 'Portada del video'],
+      'Assistir no Instagram': ['Watch on Instagram', 'Ver en Instagram'],
+      'Ver este vídeo no Instagram': ['See this video on Instagram', 'Ver este video en Instagram'],
+      'Fechar': ['Close', 'Cerrar'],
+      'Voltar': ['Back', 'Atrás'],
+      'Avançar': ['Forward', 'Adelante'],
+      'Imagem anterior': ['Previous image', 'Imagen anterior'],
+      'Próxima imagem': ['Next image', 'Imagen siguiente'],
+      'Contato e apoio': ['Contact and support', 'Contacto y apoyo'],
+      'Contato profissional': ['Business contact', 'Contacto profesional'],
+      'Parcerias e publis': ['Partnerships and sponsored posts', 'Colaboraciones y publicidad'],
+      'Marcas, eventos e mundos do VRChat: fala comigo direto no WhatsApp ou no Telegram.': ['Brands, events and VRChat worlds: talk to me directly on WhatsApp or Telegram.', 'Marcas, eventos y mundos de VRChat: háblame directo por WhatsApp o Telegram.'],
+      'Apoie': ['Support', 'Apoya'],
+      'Curtir, repostar e compartilhar faz muita diferença :>': ['Liking, reposting and sharing makes a big difference :>', 'Dar like, repostear y compartir hace mucha diferencia :>'],
+      'Cada interação ajuda os vídeos a chegarem em mais gente.': ['Every interaction helps the videos reach more people.', 'Cada interacción ayuda a que los videos lleguen a más gente.'],
+      'Loja oficial': ['Official store', 'Tienda oficial'],
+      'produtos': ['products', 'productos'],
+      'Produtos oficiais do yoshirovr. Novidades chegando em breve.': ['Official yoshirovr products. New stuff coming soon.', 'Productos oficiales de yoshirovr. Novedades muy pronto.'],
+      'ESGOTADO': ['SOLD OUT', 'AGOTADO'],
+      'Esgotado': ['Sold out', 'Agotado'],
+      'Mousepad 80×30 yoshirovr': ['yoshirovr 80×30 mousepad', 'Mousepad 80×30 yoshirovr'],
+      'Mousepad grande': ['Large mousepad', 'Mousepad grande'],
+      'Primeiro produto oficial': ['First official product', 'Primer producto oficial'],
+      'O primeiro produto oficial esgotou. Fica de olho nas redes pra saber quando voltar.': ['The first official product sold out. Keep an eye on my socials to know when it\'s back.', 'El primer producto oficial se agotó. Atento a las redes para saber cuándo vuelve.'],
+      'Mousepad 80×30 do yoshirovr com arte do Yoshiro, do lobo e dos personagens em preto, verde e branco': ['yoshirovr 80×30 mousepad with art of Yoshiro, the wolf and the characters in black, green and white', 'Mousepad 80×30 de yoshirovr con arte de Yoshiro, el lobo y los personajes en negro, verde y blanco'],
+      'Ver no Mercado Livre': ['See on Mercado Livre', 'Ver en Mercado Livre'],
+      'Novos produtos em breve': ['New products soon', 'Nuevos productos pronto'],
+      'Estou preparando os próximos lançamentos. Eles vão aparecer aqui primeiro. Tem uma ideia? Me conta qual produto você gostaria de ver!': ['I\'m working on the next releases. They\'ll show up here first. Got an idea? Tell me what product you\'d like to see!', 'Estoy preparando los próximos lanzamientos. Aparecerán aquí primero. ¿Tienes una idea? ¡Cuéntame qué producto te gustaría ver!'],
+      'Sugerir um produto': ['Suggest a product', 'Sugerir un producto'],
+      'Quer saber quando lançar?': ['Want to know when it drops?', '¿Quieres saber cuándo sale?'],
+      'Os lançamentos são anunciados primeiro no Instagram.': ['Releases are announced first on Instagram.', 'Los lanzamientos se anuncian primero en Instagram.'],
+      'Seguir @yoshirovr': ['Follow @yoshirovr', 'Seguir a @yoshirovr'],
+      'Sua sugestão de produto': ['Your product suggestion', 'Tu sugerencia de producto'],
+      'Ex.: chaveiro do Peki, camiseta com o lobo, adesivos da turma…': ['E.g. a Peki keychain, a wolf t-shirt, crew stickers…', 'Ej.: llavero de Peki, camiseta con el lobo, stickers de la pandilla…'],
+      'Seu nome ou @': ['Your name or @', 'Tu nombre o @'],
+      '(opcional)': ['(optional)', '(opcional)'],
+      '@seuinsta': ['@yourinsta', '@tuinsta'],
+      'Enviar sugestão': ['Send suggestion', 'Enviar sugerencia'],
+      'Cancelar': ['Cancel', 'Cancelar'],
+      'Perguntas frequentes': ['Frequently asked questions', 'Preguntas frecuentes'],
+      'Equipamentos, aplicativos e programas que eu uso no VR e nos vídeos.': ['Gear, apps and software I use in VR and for the videos.', 'Equipos, aplicaciones y programas que uso en VR y en los videos.'],
+      'Quais equipamentos você usa?': ['What gear do you use?', '¿Qué equipos usas?'],
+      'Headset VR': ['VR headset', 'Visor VR'],
+      '8 pontos': ['8 points', '8 puntos'],
+      'Cupom YOSHIRO: 8% OFF + mimo': ['Coupon YOSHIRO: 8% OFF + gift', 'Cupón YOSHIRO: 8% OFF + regalito'],
+      'Bateria extra': ['Extra battery', 'Batería extra'],
+      'Qual é o seu PC?': ['What\'s your PC?', '¿Cuál es tu PC?'],
+      'Processador': ['Processor', 'Procesador'],
+      '8 núcleos': ['8 cores', '8 núcleos'],
+      'Placa de vídeo': ['Graphics card', 'Tarjeta gráfica'],
+      'Memória RAM': ['RAM', 'Memoria RAM'],
+      'Placa-mãe': ['Motherboard', 'Placa base'],
+      'Armazenamento': ['Storage', 'Almacenamiento'],
+      '3 SSDs + HD': ['3 SSDs + HDD', '3 SSD + HDD'],
+      '≈ 2 TB SSD + 2 TB HD': ['≈ 2 TB SSD + 2 TB HDD', '≈ 2 TB SSD + 2 TB HDD'],
+      'Sistema': ['OS', 'Sistema'],
+      'Quais aplicativos você usa no VR?': ['What apps do you use in VR?', '¿Qué aplicaciones usas en VR?'],
+      'Para movimentar a posição': ['To move my position around', 'Para mover la posición'],
+      'Para interpretar outros personagens com a voz': ['To voice other characters', 'Para interpretar otros personajes con la voz'],
+      'Para suavizar o movimento dos trackers': ['To smooth out tracker movement', 'Para suavizar el movimiento de los trackers'],
+      'Para mexer no PC dentro do VR': ['To use my PC inside VR', 'Para usar la PC dentro del VR'],
+      'Para monitorar o desempenho do jogo no VR': ['To monitor game performance in VR', 'Para monitorear el rendimiento del juego en VR'],
+      'Quais programas você usa pra fazer os vídeos?': ['What software do you use to make the videos?', '¿Qué programas usas para hacer los videos?'],
+      'Gravação': ['Recording', 'Grabación'],
+      'Edição': ['Editing', 'Edición'],
+      'Quais fullbody trackers você já testou?': ['Which full body trackers have you tried?', '¿Qué trackers de full body ya probaste?'],
+      'O que eu uso hoje': ['What I use now', 'Lo que uso hoy'],
+      'O Yoshiro namora a Aya?': ['Is Yoshiro dating Aya?', '¿Yoshiro sale con Aya?'],
+      'Não! A Aya participa dos vídeos apenas como personagem. Nunca tivemos um relacionamento: ela só faz parte da lore que eu construí.': ['No! Aya is in the videos only as a character. We\'ve never been in a relationship: she\'s just part of the lore I built.', '¡No! Aya participa en los videos solo como personaje. Nunca tuvimos una relación: solo forma parte del lore que construí.'],
+      'O Peki é filho do Yoshiro e da Aya?': ['Is Peki Yoshiro and Aya\'s son?', '¿Peki es hijo de Yoshiro y Aya?'],
+      'Não. O Peki é filho do Yoshiro com a Daiemi, uma gatinha branca que apareceu em poucos vídeos. A Aya é a madrasta do Peki, mas trata ele como filho, e ele trata ela como mãe.': ['No. Peki is the son of Yoshiro and Daiemi, a white kitty who showed up in a few videos. Aya is Peki\'s stepmom, but she treats him like her son, and he treats her like his mom.', 'No. Peki es hijo de Yoshiro con Daiemi, una gatita blanca que apareció en pocos videos. Aya es la madrastra de Peki, pero lo trata como a un hijo, y él la trata como a una madre.'],
+      'Não achou sua pergunta?': ['Didn\'t find your question?', '¿No encontraste tu pregunta?'],
+      'Me chama no Instagram ou no Telegram.': ['Message me on Instagram or Telegram.', 'Escríbeme por Instagram o Telegram.'],
+      'Enviar uma pergunta': ['Send a question', 'Enviar una pregunta'],
+      'Sua pergunta': ['Your question', 'Tu pregunta'],
+      'Escreva sua pergunta aqui…': ['Write your question here…', 'Escribe tu pregunta aquí…'],
+      'Enviar pergunta': ['Send question', 'Enviar pregunta'],
+      'Enviando…': ['Sending…', 'Enviando…'],
+      'Espera alguns segundos antes de mandar outra.': ['Wait a few seconds before sending another one.', 'Espera unos segundos antes de enviar otra.'],
+      'Não consegui enviar agora (talvez um bloqueador de anúncios). Me manda pelo Instagram!': ['Couldn\'t send it right now (maybe an ad blocker). Send it to me on Instagram!', 'No pude enviarlo ahora (quizás un bloqueador de anuncios). ¡Mándamelo por Instagram!'],
+      'Escreve um pouquinho mais pra eu entender a pergunta.': ['Write a little more so I can understand the question.', 'Escribe un poquito más para que entienda la pregunta.'],
+      'Pergunta enviada! Obrigado ✦ Ela pode virar uma resposta aqui no FAQ.': ['Question sent! Thanks ✦ It might become an answer here in the FAQ.', '¡Pregunta enviada! Gracias ✦ Puede convertirse en una respuesta aquí en el FAQ.'],
+      'Escreve um pouquinho mais pra eu entender a ideia.': ['Write a little more so I can understand the idea.', 'Escribe un poquito más para que entienda la idea.'],
+      'Sugestão enviada! Obrigado ✦ Vou levar em conta nos próximos produtos.': ['Suggestion sent! Thanks ✦ I\'ll keep it in mind for the next products.', '¡Sugerencia enviada! Gracias ✦ La tendré en cuenta para los próximos productos.'],
+      'A turma': ['The crew', 'La pandilla'],
+      'personagens': ['characters', 'personajes'],
+      'Quem aparece nos vídeos do yoshirovr.': ['Who shows up in yoshirovr\'s videos.', 'Quienes aparecen en los videos de yoshirovr.'],
+      'Criador do canal': ['Channel creator', 'Creador del canal'],
+      'O dono do yoshirovr e quem aparece em todos os vídeos. Pelagem branca e cinza com detalhes em verde-menta, olhos em degradê do verde ao roxo, óculos redondos e os caninos de cima dourados.': ['The owner of yoshirovr and the one in every video. White and gray fur with mint-green details, eyes fading from green to purple, round glasses and golden upper fangs.', 'El dueño de yoshirovr y quien aparece en todos los videos. Pelaje blanco y gris con detalles verde menta, ojos en degradado del verde al morado, lentes redondos y los colmillos de arriba dorados.'],
+      'Sobrancelhas grandes e delineado de duas pontas': ['Big eyebrows and double-winged eyeliner', 'Cejas grandes y delineado de dos puntas'],
+      'Triângulo acima do focinho': ['Triangle above the snout', 'Triángulo sobre el hocico'],
+      'Bigodes com as pontas verdes': ['Whiskers with green tips', 'Bigotes con las puntas verdes'],
+      'Tatuagens: o kanji 義膽 e um lobo': ['Tattoos: the kanji 義膽 and a wolf', 'Tatuajes: el kanji 義膽 y un lobo'],
+      '“Pra ver o sorriso de alguém, eu sorrio.”': ['“To see someone smile, I smile.”', '“Para ver la sonrisa de alguien, sonrío.”'],
+      'Filho do Yoshiro': ['Yoshiro\'s son', 'Hijo de Yoshiro'],
+      'Pelagem branca com cabelo azul-arroxeado, óculos redondos, brinco de cruz, moletom preto e patas roxas. Na arte oficial: uma presença um pouco barulhenta, mas muito fofa.': ['White fur with bluish-purple hair, round glasses, a cross earring, a black hoodie and purple paws. In the official art: a slightly noisy but very cute presence.', 'Pelaje blanco con cabello azul violáceo, lentes redondos, arete de cruz, sudadera negra y patas moradas. En el arte oficial: una presencia un poco ruidosa, pero muy tierna.'],
+      'Óculos redondos e brinco de cruz': ['Round glasses and a cross earring', 'Lentes redondos y arete de cruz'],
+      'Moletom preto com coleira roxa': ['Black hoodie with a purple collar', 'Sudadera negra con collar morado'],
+      'Patas e cauda em azul-arroxeado': ['Bluish-purple paws and tail', 'Patas y cola azul violáceo'],
+      '“Uma presença um pouco barulhenta, mas fofa.”': ['“A slightly noisy but cute presence.”', '“Una presencia un poco ruidosa, pero tierna.”'],
+      'Esposa da Lore': ['Lore wife', 'Esposa del lore'],
+      'Orelhas longas e caídas, cabelo preto e branco bagunçado, olhos laranja e marquinhas pretas no lugar das sobrancelhas. Aparece de moletom preto listrado.': ['Long floppy ears, messy black and white hair, orange eyes and little black marks instead of eyebrows. Shows up in a striped black hoodie.', 'Orejas largas y caídas, cabello negro y blanco despeinado, ojos naranjas y marquitas negras en lugar de cejas. Aparece con una sudadera negra a rayas.'],
+      'Orelhas longas com a parte de dentro rosada': ['Long ears, pink on the inside', 'Orejas largas con el interior rosado'],
+      'Olhos laranja com contorno escuro': ['Orange eyes with a dark outline', 'Ojos naranjas con contorno oscuro'],
+      'Marquinhas pretas das sobrancelhas': ['Little black eyebrow marks', 'Marquitas negras de las cejas'],
+      'Avatar do Yoshiro no VRChat: gato branco de orelhas verdes, óculos redondos e olhos em degradê verde e azul': ['Yoshiro\'s VRChat avatar: white cat with green ears, round glasses and green-to-blue gradient eyes', 'Avatar de Yoshiro en VRChat: gato blanco de orejas verdes, lentes redondos y ojos en degradado verde y azul'],
+      'Arte do Yoshiro de corpo inteiro: pelagem branca e preta, cabelo e cauda com verde-menta, óculos redondos e o kanji 義膽 tatuado no peito': ['Full-body art of Yoshiro: white and black fur, mint-green hair and tail, round glasses and the kanji 義膽 tattooed on the chest', 'Arte de Yoshiro de cuerpo entero: pelaje blanco y negro, cabello y cola verde menta, lentes redondos y el kanji 義膽 tatuado en el pecho'],
+      'Paleta do Yoshiro': ['Yoshiro\'s palette', 'Paleta de Yoshiro'],
+      'Arte do Peki sentado: pelagem branca, cabelo azul-arroxeado, óculos redondos, brinco de cruz e moletom preto': ['Art of Peki sitting: white fur, bluish-purple hair, round glasses, cross earring and black hoodie', 'Arte de Peki sentado: pelaje blanco, cabello azul violáceo, lentes redondos, arete de cruz y sudadera negra'],
+      'Paleta do Peki': ['Peki\'s palette', 'Paleta de Peki'],
+      'Arte da Aya: orelhas longas caídas, cabelo preto e branco, olhos laranja e moletom listrado': ['Art of Aya: long floppy ears, black and white hair, orange eyes and striped hoodie', 'Arte de Aya: orejas largas caídas, cabello negro y blanco, ojos naranjas y sudadera a rayas'],
+      'Paleta da Aya': ['Aya\'s palette', 'Paleta de Aya'],
+      'Privacidade': ['Privacy', 'Privacidad'],
+      'Termos': ['Terms', 'Términos'],
+      '© 2026 · feito com >ω<': ['© 2026 · made with >ω<', '© 2026 · hecho con >ω<']
+    };
+    // Textos montados no código (com número ou @)
+    var WHAT = { 'perguntas': ['questions', 'preguntas'], 'sugestões': ['suggestions', 'sugerencias'] };
+    var P = [
+      [/^O envio de (.+) funciona no site publicado \(yoshirovr\.com\)\.$/, function (m) { return 'Sending ' + (WHAT[m[1]] || [m[1]])[0] + ' works on the published site (yoshirovr.com).'; }, function (m) { return 'El envío de ' + (WHAT[m[1]] || [0, m[1]])[1] + ' funciona en el sitio publicado (yoshirovr.com).'; }],
+      [/^Carregar mais vídeos \((\d+)\)$/, function (m) { return 'Load more videos (' + m[1] + ')'; }, function (m) { return 'Cargar más videos (' + m[1] + ')'; }],
+      [/^Ver perfil de (@\S+)$/, function (m) { return 'See ' + m[1] + '\'s profile'; }, function (m) { return 'Ver perfil de ' + m[1]; }],
+      [/^· faltam (\d+) dias$/, function (m) { return '· ' + m[1] + ' days to go'; }, function (m) { return '· faltan ' + m[1] + ' días'; }],
+      [/^Imagem (\d+)$/, function (m) { return 'Image ' + m[1]; }, function (m) { return 'Imagen ' + m[1]; }]
+    ];
+    Object.keys(D).forEach(function (k) { D[k].forEach(function (t) { if (t !== k && !(t in D)) I18N_REV[t] = k; }); });
+
+    var SKIP = 'script, style, svg, [lang="ja"], #view-stats, .lang-menu';
+    var ATTRS = ['alt', 'aria-label', 'placeholder', 'title'];
+    var root = document.documentElement, lang = 'pt';
+    function cur() { var l = root.getAttribute('lang'); return l === 'en' || l === 'es' ? l : 'pt'; }
+
+    function tr(s) {
+      if (lang === 'pt' || s == null) return null;
+      var k = i18nNorm(s);
+      if (!k) return null;
+      var i = lang === 'en' ? 0 : 1, out = D[k] ? D[k][i] : null;
+      if (out == null) for (var j = 0; j < P.length; j++) { var m = k.match(P[j][0]); if (m) { out = P[j][1 + i](m); break; } }
+      if (out == null) return null;
+      return s.match(/^\s*/)[0] + out + s.match(/\s*$/)[0];
+    }
+    function doText(n) {
+      var pt = ptOf(n), t = tr(pt);
+      n.__pt = pt;
+      if (t == null || t === pt) { n.__tr = null; if (n.data !== pt) n.data = pt; }
+      else { n.__tr = t; if (n.data !== t) n.data = t; }
+    }
+    function doAttr(el, a) {
+      var pt = ptAttr(el, a);
+      if (pt == null) return;
+      var t = tr(pt);
+      el.__ptA = el.__ptA || {}; el.__trA = el.__trA || {};
+      el.__ptA[a] = pt;
+      if (t == null || t === pt) { el.__trA[a] = null; if (el.getAttribute(a) !== pt) el.setAttribute(a, pt); }
+      else { el.__trA[a] = t; if (el.getAttribute(a) !== t) el.setAttribute(a, t); }
+    }
+    function doEl(el) { for (var i = 0; i < ATTRS.length; i++) if (el.hasAttribute(ATTRS[i])) doAttr(el, ATTRS[i]); }
+    function walk(node) {
+      if (node.nodeType === 3) { if (node.parentElement && !node.parentElement.closest(SKIP)) doText(node); return; }
+      if (node.nodeType !== 1 || node.closest(SKIP)) return;
+      doEl(node);
+      var w = document.createTreeWalker(node, NodeFilter.SHOW_ELEMENT | NodeFilter.SHOW_TEXT, {
+        acceptNode: function (n) { return n.nodeType === 1 && n.matches(SKIP) ? NodeFilter.FILTER_REJECT : NodeFilter.FILTER_ACCEPT; }
+      }), n;
+      while ((n = w.nextNode())) { if (n.nodeType === 3) doText(n); else doEl(n); }
+    }
+
+    var mo = new MutationObserver(function (list) {
+      mo.disconnect();
+      list.forEach(function (m) {
+        if (m.type === 'childList') [].forEach.call(m.addedNodes, walk);
+        else if (m.type === 'characterData') walk(m.target);
+        else if (m.target.nodeType === 1 && !m.target.closest(SKIP)) doAttr(m.target, m.attributeName);
+      });
+      observe();
+    });
+    function observe() { if (lang !== 'pt') mo.observe(document.body, { childList: true, characterData: true, subtree: true, attributes: true, attributeFilter: ATTRS }); }
+
+    var btn = document.getElementById('lang-btn'), menu = document.getElementById('lang-menu');
+    function apply(l) {
+      mo.disconnect();
+      lang = l;
+      root.setAttribute('lang', l === 'pt' ? 'pt-BR' : l);
+      walk(document.body);
+      document.getElementById('lang-cur').textContent = l.toUpperCase();
+      [].forEach.call(menu.querySelectorAll('[data-lang]'), function (b) { b.setAttribute('aria-checked', b.getAttribute('data-lang') === l ? 'true' : 'false'); });
+      observe();
+    }
+    function setMenu(open) {
+      menu.hidden = !open;
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      if (open) (menu.querySelector('[aria-checked="true"]') || menu.querySelector('button')).focus();
+    }
+    btn.addEventListener('click', function () { setMenu(menu.hidden); });
+    menu.addEventListener('click', function (ev) {
+      var b = ev.target.closest('[data-lang]');
+      if (!b) return;
+      var l = b.getAttribute('data-lang');
+      try { localStorage.setItem('yv-lang', l); } catch (e) {}
+      apply(l);
+      setMenu(false);
+      btn.focus();
+    });
+    menu.addEventListener('keydown', function (ev) {
+      var items = [].slice.call(menu.querySelectorAll('button')), i = items.indexOf(document.activeElement);
+      if (ev.key === 'ArrowDown' || ev.key === 'ArrowUp') { ev.preventDefault(); items[(i + (ev.key === 'ArrowDown' ? 1 : items.length - 1)) % items.length].focus(); }
+    });
+    document.addEventListener('click', function (ev) { if (!menu.hidden && !ev.target.closest('.lang')) setMenu(false); });
+    document.addEventListener('keydown', function (ev) { if (ev.key === 'Escape' && !menu.hidden) { setMenu(false); btn.focus(); } });
+
+    // ---------- Tema ----------
+    var tb = document.getElementById('theme-btn'), animT = null;
+    function syncTheme() {
+      var dark = root.getAttribute('data-theme') === 'dark';
+      var pt = dark ? 'Modo claro' : 'Modo escuro';
+      tb.setAttribute('aria-pressed', dark ? 'true' : 'false');
+      // grava o rótulo em PT (sem guardar tradução antiga) e deixa o motor traduzir
+      if (tb.__trA) { tb.__trA['aria-label'] = null; tb.__trA.title = null; }
+      tb.setAttribute('aria-label', pt); tb.setAttribute('title', pt);
+      doAttr(tb, 'aria-label'); doAttr(tb, 'title');
+    }
+    tb.addEventListener('click', function () {
+      var dark = root.getAttribute('data-theme') !== 'dark';
+      root.classList.add('theme-anim');
+      clearTimeout(animT); animT = setTimeout(function () { root.classList.remove('theme-anim'); }, 450);
+      root.setAttribute('data-theme', dark ? 'dark' : 'light');
+      try { localStorage.setItem('yv-theme', dark ? 'dark' : 'light'); } catch (e) {}
+      syncTheme();
+    });
+
+    lang = cur();
+    syncTheme();
+    apply(lang);
   })();
 </script>
 </body>
